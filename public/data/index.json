@@ -1,0 +1,1829 @@
+{
+  "generatedFrom": "/Users/charlottechoi/projects/insjournal/GA채널 대리점별 현황/data/validated_relational/monthly_performance_facts.csv",
+  "gaCount": 415,
+  "recordCount": 135340,
+  "availableYears": [
+    2025,
+    2026
+  ],
+  "availableMonths": [
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02"
+  ],
+  "gas": [
+    {
+      "registrationNumber": "2005058004",
+      "gaName": "21세기비젼보험대리점"
+    },
+    {
+      "registrationNumber": "2007078200",
+      "gaName": "KS자산관리"
+    },
+    {
+      "registrationNumber": "2025058034",
+      "gaName": "LIFE캐쳐"
+    },
+    {
+      "registrationNumber": "2025058035",
+      "gaName": "OH슬기로운"
+    },
+    {
+      "registrationNumber": "2025058038",
+      "gaName": "YEON"
+    },
+    {
+      "registrationNumber": "2025058037",
+      "gaName": "YMI"
+    },
+    {
+      "registrationNumber": "2001088254",
+      "gaName": "가온누리에셋"
+    },
+    {
+      "registrationNumber": "2017128000",
+      "gaName": "가현택스금융절세연구소보험대리점"
+    },
+    {
+      "registrationNumber": "1996099616",
+      "gaName": "강남"
+    },
+    {
+      "registrationNumber": "2021068020",
+      "gaName": "결"
+    },
+    {
+      "registrationNumber": "2007058221",
+      "gaName": "경영자문그룹위드플러스보험대리점"
+    },
+    {
+      "registrationNumber": "2006058031",
+      "gaName": "경인피엠"
+    },
+    {
+      "registrationNumber": "2005061636",
+      "gaName": "경진에셋"
+    },
+    {
+      "registrationNumber": "2012078106",
+      "gaName": "고려경영연구소"
+    },
+    {
+      "registrationNumber": "2005129370",
+      "gaName": "골든크로스에셋"
+    },
+    {
+      "registrationNumber": "2022098015",
+      "gaName": "광성별빛"
+    },
+    {
+      "registrationNumber": "2006038313",
+      "gaName": "굿리치"
+    },
+    {
+      "registrationNumber": "2013030099",
+      "gaName": "굿타임보험대리점"
+    },
+    {
+      "registrationNumber": "2009091278",
+      "gaName": "글로벌금융판매"
+    },
+    {
+      "registrationNumber": "2013038038",
+      "gaName": "글로벌자산관리"
+    },
+    {
+      "registrationNumber": "2015038045",
+      "gaName": "기업금융센타"
+    },
+    {
+      "registrationNumber": "2014098013",
+      "gaName": "기업전략본부"
+    },
+    {
+      "registrationNumber": "2023108009",
+      "gaName": "나라인슈"
+    },
+    {
+      "registrationNumber": "2025108017",
+      "gaName": "나르샤"
+    },
+    {
+      "registrationNumber": "2024078020",
+      "gaName": "나힘"
+    },
+    {
+      "registrationNumber": "2019088099",
+      "gaName": "노남경"
+    },
+    {
+      "registrationNumber": "2016128032",
+      "gaName": "뉴니케"
+    },
+    {
+      "registrationNumber": "2005018107",
+      "gaName": "다모아웰빙"
+    },
+    {
+      "registrationNumber": "2012010021",
+      "gaName": "다사랑인스보험대리점"
+    },
+    {
+      "registrationNumber": "2020088003",
+      "gaName": "다온경영지원단"
+    },
+    {
+      "registrationNumber": "2019010029",
+      "gaName": "다이렉트금융서비스"
+    },
+    {
+      "registrationNumber": "2022088004",
+      "gaName": "다한"
+    },
+    {
+      "registrationNumber": "2022038010",
+      "gaName": "담다"
+    },
+    {
+      "registrationNumber": "2002028027",
+      "gaName": "대한보험금융"
+    },
+    {
+      "registrationNumber": "2024100001",
+      "gaName": "더금융서비스"
+    },
+    {
+      "registrationNumber": "2014028005",
+      "gaName": "더담은"
+    },
+    {
+      "registrationNumber": "2018120019",
+      "gaName": "더베스트금융서비스"
+    },
+    {
+      "registrationNumber": "2014080050",
+      "gaName": "더블에셋보험대리점"
+    },
+    {
+      "registrationNumber": "2008028096",
+      "gaName": "더블유에셋"
+    },
+    {
+      "registrationNumber": "2020108002",
+      "gaName": "더조은기업경영연구소"
+    },
+    {
+      "registrationNumber": "1998019307",
+      "gaName": "더좋은보험금융"
+    },
+    {
+      "registrationNumber": "2012028001",
+      "gaName": "더탑아이앤아이"
+    },
+    {
+      "registrationNumber": "2012018115",
+      "gaName": "더파트너스"
+    },
+    {
+      "registrationNumber": "2008128013",
+      "gaName": "덕암에셋보험대리점"
+    },
+    {
+      "registrationNumber": "2022028001",
+      "gaName": "도하경영컨설팅"
+    },
+    {
+      "registrationNumber": "1996089355",
+      "gaName": "동부길옥"
+    },
+    {
+      "registrationNumber": "2014098037",
+      "gaName": "동부본부보험대리점"
+    },
+    {
+      "registrationNumber": "1998029192",
+      "gaName": "동부창규"
+    },
+    {
+      "registrationNumber": "1997059041",
+      "gaName": "동신"
+    },
+    {
+      "registrationNumber": "2019038007",
+      "gaName": "동아세무회계연구소"
+    },
+    {
+      "registrationNumber": "2022018009",
+      "gaName": "동양생명금융서비스"
+    },
+    {
+      "registrationNumber": "2025078025",
+      "gaName": "동혁도현"
+    },
+    {
+      "registrationNumber": "2016020004",
+      "gaName": "두림엠씨씨"
+    },
+    {
+      "registrationNumber": "2025048015",
+      "gaName": "드리온"
+    },
+    {
+      "registrationNumber": "2025098017",
+      "gaName": "드림"
+    },
+    {
+      "registrationNumber": "2007108015",
+      "gaName": "드림라이프"
+    },
+    {
+      "registrationNumber": "2014060058",
+      "gaName": "드림재무라이프"
+    },
+    {
+      "registrationNumber": "2020040031",
+      "gaName": "디딤돌에셋"
+    },
+    {
+      "registrationNumber": "2014010120",
+      "gaName": "디비금융서비스"
+    },
+    {
+      "registrationNumber": "2008058221",
+      "gaName": "떼소로"
+    },
+    {
+      "registrationNumber": "2013098032",
+      "gaName": "라이나원"
+    },
+    {
+      "registrationNumber": "2011030081",
+      "gaName": "라이프앤리치(GT)"
+    },
+    {
+      "registrationNumber": "2019038006",
+      "gaName": "레인보우에셋보험대리점"
+    },
+    {
+      "registrationNumber": "2020088004",
+      "gaName": "로이드어드바이저"
+    },
+    {
+      "registrationNumber": "2025108010",
+      "gaName": "루아82"
+    },
+    {
+      "registrationNumber": "2023110038",
+      "gaName": "리더스보험대리점"
+    },
+    {
+      "registrationNumber": "2015128022",
+      "gaName": "리더스에셋어드바이저"
+    },
+    {
+      "registrationNumber": "2005118610",
+      "gaName": "리더스탑"
+    },
+    {
+      "registrationNumber": "2018018000",
+      "gaName": "리더에셋코리아보험대리점"
+    },
+    {
+      "registrationNumber": "2014018074",
+      "gaName": "리치골드에셋"
+    },
+    {
+      "registrationNumber": "2021020175",
+      "gaName": "리치금융서비스"
+    },
+    {
+      "registrationNumber": "2024118017",
+      "gaName": "리치디바인파트너즈"
+    },
+    {
+      "registrationNumber": "2009031129",
+      "gaName": "리치에셋"
+    },
+    {
+      "registrationNumber": "2024038016",
+      "gaName": "마루달이네"
+    },
+    {
+      "registrationNumber": "2015038010",
+      "gaName": "마에스트로7보험대리점"
+    },
+    {
+      "registrationNumber": "2021020262",
+      "gaName": "마이금융파트너"
+    },
+    {
+      "registrationNumber": "2006091207",
+      "gaName": "매크로인슈보험대리점"
+    },
+    {
+      "registrationNumber": "2020060003",
+      "gaName": "맥스라이프보험대리점"
+    },
+    {
+      "registrationNumber": "2013090073",
+      "gaName": "맥스인보험대리점"
+    },
+    {
+      "registrationNumber": "2005108004",
+      "gaName": "메가"
+    },
+    {
+      "registrationNumber": "2020028001",
+      "gaName": "메가인포에셋"
+    },
+    {
+      "registrationNumber": "2023070016",
+      "gaName": "메타리치"
+    },
+    {
+      "registrationNumber": "2016058021",
+      "gaName": "메트라이프금융서비스"
+    },
+    {
+      "registrationNumber": "2010058010",
+      "gaName": "명가보험"
+    },
+    {
+      "registrationNumber": "1999028119",
+      "gaName": "명진"
+    },
+    {
+      "registrationNumber": "2017028010",
+      "gaName": "모기지파트너스"
+    },
+    {
+      "registrationNumber": "2007038234",
+      "gaName": "모닝삼성보험대리점"
+    },
+    {
+      "registrationNumber": "2023028002",
+      "gaName": "모아에셋"
+    },
+    {
+      "registrationNumber": "2025108015",
+      "gaName": "몬스테라"
+    },
+    {
+      "registrationNumber": "2019088014",
+      "gaName": "무궁화에셋"
+    },
+    {
+      "registrationNumber": "2018058005",
+      "gaName": "무지개컨설팅"
+    },
+    {
+      "registrationNumber": "2017018012",
+      "gaName": "문화금융서비스"
+    },
+    {
+      "registrationNumber": "2025078026",
+      "gaName": "미라클메이커"
+    },
+    {
+      "registrationNumber": "2014048012",
+      "gaName": "미래에셋금융서비스"
+    },
+    {
+      "registrationNumber": "1997109113",
+      "gaName": "미래와행복"
+    },
+    {
+      "registrationNumber": "2005058030",
+      "gaName": "미래유니버셜"
+    },
+    {
+      "registrationNumber": "2005058032",
+      "gaName": "미래인슈"
+    },
+    {
+      "registrationNumber": "2007088003",
+      "gaName": "미소보험대리점"
+    },
+    {
+      "registrationNumber": "2023108006",
+      "gaName": "미현하은"
+    },
+    {
+      "registrationNumber": "2024038019",
+      "gaName": "바른솔루션"
+    },
+    {
+      "registrationNumber": "2018098000",
+      "gaName": "바른씨앤에스보험대리점"
+    },
+    {
+      "registrationNumber": "2023128005",
+      "gaName": "배려"
+    },
+    {
+      "registrationNumber": "2016118009",
+      "gaName": "백석익투스금융보험대리점"
+    },
+    {
+      "registrationNumber": "2019108003",
+      "gaName": "밸런스에셋보험대리점"
+    },
+    {
+      "registrationNumber": "2011048016",
+      "gaName": "밸류마크"
+    },
+    {
+      "registrationNumber": "2017068009",
+      "gaName": "법인자산관리센터"
+    },
+    {
+      "registrationNumber": "2019070025",
+      "gaName": "베라금융서비스"
+    },
+    {
+      "registrationNumber": "2023108008",
+      "gaName": "베리인슈"
+    },
+    {
+      "registrationNumber": "2007048181",
+      "gaName": "베스트에셋"
+    },
+    {
+      "registrationNumber": "2003098312",
+      "gaName": "베스트코아보험대리점"
+    },
+    {
+      "registrationNumber": "2024048013",
+      "gaName": "별빛성화"
+    },
+    {
+      "registrationNumber": "2025078013",
+      "gaName": "보담인투"
+    },
+    {
+      "registrationNumber": "2019120053",
+      "gaName": "보석보험총괄"
+    },
+    {
+      "registrationNumber": "2018110036",
+      "gaName": "보험닷컴"
+    },
+    {
+      "registrationNumber": "2006058258",
+      "gaName": "보험몰닷컴"
+    },
+    {
+      "registrationNumber": "2006051528",
+      "gaName": "보험세상보험대리점"
+    },
+    {
+      "registrationNumber": "2016050008",
+      "gaName": "봄금융서비스"
+    },
+    {
+      "registrationNumber": "1997089132",
+      "gaName": "부산수정"
+    },
+    {
+      "registrationNumber": "2025108012",
+      "gaName": "블러썸인슈"
+    },
+    {
+      "registrationNumber": "2019028009",
+      "gaName": "비앤디연구소보험대리점"
+    },
+    {
+      "registrationNumber": "2013050071",
+      "gaName": "비앤비월드"
+    },
+    {
+      "registrationNumber": "2004048178",
+      "gaName": "비엔엘보험대리점"
+    },
+    {
+      "registrationNumber": "2018018003",
+      "gaName": "사랑모아금융서비스"
+    },
+    {
+      "registrationNumber": "2015010095",
+      "gaName": "삼성광역법인보험대리점"
+    },
+    {
+      "registrationNumber": "2013018132",
+      "gaName": "삼성금융파트너스"
+    },
+    {
+      "registrationNumber": "2010011234",
+      "gaName": "삼성법인보험대리점"
+    },
+    {
+      "registrationNumber": "2015020007",
+      "gaName": "삼성부경보험대리점"
+    },
+    {
+      "registrationNumber": "2015058028",
+      "gaName": "삼성생명금융서비스"
+    },
+    {
+      "registrationNumber": "2001108367",
+      "gaName": "삼성에이원보험대리점"
+    },
+    {
+      "registrationNumber": "2013010025",
+      "gaName": "삼성화재강남총괄"
+    },
+    {
+      "registrationNumber": "2016040013",
+      "gaName": "삼성화재금융서비스"
+    },
+    {
+      "registrationNumber": "2010021020",
+      "gaName": "삼성화재대경법인"
+    },
+    {
+      "registrationNumber": "2013010012",
+      "gaName": "삼성화재더플러스에셋"
+    },
+    {
+      "registrationNumber": "2013010015",
+      "gaName": "삼성화재동대구"
+    },
+    {
+      "registrationNumber": "2013010016",
+      "gaName": "삼성화재부경프라임"
+    },
+    {
+      "registrationNumber": "2012080030",
+      "gaName": "삼성화재부산스마트"
+    },
+    {
+      "registrationNumber": "2013010021",
+      "gaName": "삼성화재수도권법인보험대리점"
+    },
+    {
+      "registrationNumber": "2013010027",
+      "gaName": "삼성화재스피드"
+    },
+    {
+      "registrationNumber": "2012080027",
+      "gaName": "삼성화재안산총괄보험대리점"
+    },
+    {
+      "registrationNumber": "2015010098",
+      "gaName": "삼성화재올스타에이전시"
+    },
+    {
+      "registrationNumber": "2015020009",
+      "gaName": "삼성화재우리베스트법인보험대리점"
+    },
+    {
+      "registrationNumber": "2012120009",
+      "gaName": "삼성화재인천플러스"
+    },
+    {
+      "registrationNumber": "2011120108",
+      "gaName": "삼성화재인컴"
+    },
+    {
+      "registrationNumber": "2013010017",
+      "gaName": "삼성화재일산법인보험대리점"
+    },
+    {
+      "registrationNumber": "2012010014",
+      "gaName": "삼성화재전국법인보험대리점"
+    },
+    {
+      "registrationNumber": "2013010013",
+      "gaName": "삼성화재전환법인보험대리점"
+    },
+    {
+      "registrationNumber": "2011011135",
+      "gaName": "삼성화재종합법인"
+    },
+    {
+      "registrationNumber": "2013010028",
+      "gaName": "삼성화재직할법인"
+    },
+    {
+      "registrationNumber": "2013010036",
+      "gaName": "삼성화재진성"
+    },
+    {
+      "registrationNumber": "2012010029",
+      "gaName": "삼성화재필보험대리점"
+    },
+    {
+      "registrationNumber": "2019088012",
+      "gaName": "상남보험"
+    },
+    {
+      "registrationNumber": "2016058009",
+      "gaName": "상유12"
+    },
+    {
+      "registrationNumber": "2022078003",
+      "gaName": "샤니"
+    },
+    {
+      "registrationNumber": "2025118013",
+      "gaName": "서산마인드커버"
+    },
+    {
+      "registrationNumber": "2011098062",
+      "gaName": "서울기업금융서비스"
+    },
+    {
+      "registrationNumber": "2006028362",
+      "gaName": "서울법인재무설계센터"
+    },
+    {
+      "registrationNumber": "2025078014",
+      "gaName": "서화74"
+    },
+    {
+      "registrationNumber": "2025048013",
+      "gaName": "선영"
+    },
+    {
+      "registrationNumber": "2025038022",
+      "gaName": "선우HK"
+    },
+    {
+      "registrationNumber": "2025018177",
+      "gaName": "세무법인셜록택스"
+    },
+    {
+      "registrationNumber": "2001048451",
+      "gaName": "세무연합"
+    },
+    {
+      "registrationNumber": "2014120101",
+      "gaName": "세안뱅크"
+    },
+    {
+      "registrationNumber": "1998118424",
+      "gaName": "세안프라자"
+    },
+    {
+      "registrationNumber": "2008118167",
+      "gaName": "세인"
+    },
+    {
+      "registrationNumber": "2014038044",
+      "gaName": "세종법인보험대리점"
+    },
+    {
+      "registrationNumber": "2025058032",
+      "gaName": "소담25"
+    },
+    {
+      "registrationNumber": "2025030014",
+      "gaName": "쇼엠인슈어런스"
+    },
+    {
+      "registrationNumber": "2025128010",
+      "gaName": "스마일"
+    },
+    {
+      "registrationNumber": "2011060052",
+      "gaName": "스마트에셋"
+    },
+    {
+      "registrationNumber": "2022068013",
+      "gaName": "스윗"
+    },
+    {
+      "registrationNumber": "2008128003",
+      "gaName": "스카이보험대리점"
+    },
+    {
+      "registrationNumber": "2007121089",
+      "gaName": "스카이블루에셋"
+    },
+    {
+      "registrationNumber": "2008088014",
+      "gaName": "스타리치어드바이져"
+    },
+    {
+      "registrationNumber": "2014060006",
+      "gaName": "스타인스보험대리점"
+    },
+    {
+      "registrationNumber": "2012050117",
+      "gaName": "스톰"
+    },
+    {
+      "registrationNumber": "2020050020",
+      "gaName": "시그널파이낸셜랩"
+    },
+    {
+      "registrationNumber": "2006078183",
+      "gaName": "신김천"
+    },
+    {
+      "registrationNumber": "1997119074",
+      "gaName": "신세계보험써비스보험대리점"
+    },
+    {
+      "registrationNumber": "2020078003",
+      "gaName": "신한금융플러스"
+    },
+    {
+      "registrationNumber": "2014108003",
+      "gaName": "싸랑보험대리점"
+    },
+    {
+      "registrationNumber": "2022018003",
+      "gaName": "써니데이"
+    },
+    {
+      "registrationNumber": "2006011843",
+      "gaName": "씨앤에이치에셋"
+    },
+    {
+      "registrationNumber": "2015088020",
+      "gaName": "씨이오드림라이프"
+    },
+    {
+      "registrationNumber": "2011038006",
+      "gaName": "아너스금융서비스"
+    },
+    {
+      "registrationNumber": "1999010001",
+      "gaName": "아리랑보험중개서"
+    },
+    {
+      "registrationNumber": "2025058036",
+      "gaName": "아비앙스"
+    },
+    {
+      "registrationNumber": "2007068159",
+      "gaName": "아이러브에셋"
+    },
+    {
+      "registrationNumber": "2005018197",
+      "gaName": "아이에프씨그룹"
+    },
+    {
+      "registrationNumber": "2007028001",
+      "gaName": "아이에프에이"
+    },
+    {
+      "registrationNumber": "2022070038",
+      "gaName": "아이엘에셋"
+    },
+    {
+      "registrationNumber": "2012110139",
+      "gaName": "아이엠보험총괄"
+    },
+    {
+      "registrationNumber": "2012028146",
+      "gaName": "아이클라프보험대리점"
+    },
+    {
+      "registrationNumber": "2023028008",
+      "gaName": "안심금융지키미"
+    },
+    {
+      "registrationNumber": "2008011382",
+      "gaName": "안전복지사업단보험대리점"
+    },
+    {
+      "registrationNumber": "2010071009",
+      "gaName": "알엔아이컨설팅보험대리점"
+    },
+    {
+      "registrationNumber": "2009018107",
+      "gaName": "앤제이라이프"
+    },
+    {
+      "registrationNumber": "2018040001",
+      "gaName": "어센틱금융그룹"
+    },
+    {
+      "registrationNumber": "2025108020",
+      "gaName": "에버그린"
+    },
+    {
+      "registrationNumber": "2008018287",
+      "gaName": "에셋노블리에"
+    },
+    {
+      "registrationNumber": "2009028121",
+      "gaName": "에셋매니지먼트그룹홀딩스"
+    },
+    {
+      "registrationNumber": "2019118001",
+      "gaName": "에스더보험"
+    },
+    {
+      "registrationNumber": "2025028017",
+      "gaName": "에스선"
+    },
+    {
+      "registrationNumber": "2009061116",
+      "gaName": "에스에스보험컨설팅보험대리점"
+    },
+    {
+      "registrationNumber": "2022118009",
+      "gaName": "에스에이치라이프앤컨설팅보험대리점"
+    },
+    {
+      "registrationNumber": "2012108011",
+      "gaName": "에스에이치에셋플러스"
+    },
+    {
+      "registrationNumber": "2013068041",
+      "gaName": "에스엘라이프"
+    },
+    {
+      "registrationNumber": "2016128004",
+      "gaName": "에스제이에셋보험대리점"
+    },
+    {
+      "registrationNumber": "2014038003",
+      "gaName": "에이비씨라이프"
+    },
+    {
+      "registrationNumber": "2018128001",
+      "gaName": "에이비에이금융서비스"
+    },
+    {
+      "registrationNumber": "2013088038",
+      "gaName": "에이스재무설계센터"
+    },
+    {
+      "registrationNumber": "2023088016",
+      "gaName": "에이아이에이프리미어파트너스"
+    },
+    {
+      "registrationNumber": "2012050138",
+      "gaName": "에이아이지어드바이저"
+    },
+    {
+      "registrationNumber": "2008121289",
+      "gaName": "에이엘엠씨보험대리점"
+    },
+    {
+      "registrationNumber": "2011100118",
+      "gaName": "에이원금융판매"
+    },
+    {
+      "registrationNumber": "2022030045",
+      "gaName": "에이원플러스보험대리점"
+    },
+    {
+      "registrationNumber": "2003031321",
+      "gaName": "에이치씨엠하나로"
+    },
+    {
+      "registrationNumber": "2016118012",
+      "gaName": "에이치앤티자산"
+    },
+    {
+      "registrationNumber": "2025068009",
+      "gaName": "에이치에스"
+    },
+    {
+      "registrationNumber": "2023058000",
+      "gaName": "에이치유"
+    },
+    {
+      "registrationNumber": "2023068000",
+      "gaName": "에이치케이금융파트너스"
+    },
+    {
+      "registrationNumber": "2011050198",
+      "gaName": "에이치프로인슈보험대리점"
+    },
+    {
+      "registrationNumber": "2013078020",
+      "gaName": "에이티에셋"
+    },
+    {
+      "registrationNumber": "2007078002",
+      "gaName": "에이플러스에셋어드바이저"
+    },
+    {
+      "registrationNumber": "2021018021",
+      "gaName": "에인스금융서비스"
+    },
+    {
+      "registrationNumber": "2020058001",
+      "gaName": "에임자산관리보험대리점"
+    },
+    {
+      "registrationNumber": "2012118012",
+      "gaName": "에즈금융서비스"
+    },
+    {
+      "registrationNumber": "2019040061",
+      "gaName": "에프씨금융서비스"
+    },
+    {
+      "registrationNumber": "2010078161",
+      "gaName": "에프씨네스트에셋"
+    },
+    {
+      "registrationNumber": "2016058005",
+      "gaName": "에프앤솔루션"
+    },
+    {
+      "registrationNumber": "2020040032",
+      "gaName": "에프에스아이금융서비스보험대리점"
+    },
+    {
+      "registrationNumber": "2005048148",
+      "gaName": "에프에이치씨"
+    },
+    {
+      "registrationNumber": "2005048128",
+      "gaName": "에프에이치씨보험대리점"
+    },
+    {
+      "registrationNumber": "2008058219",
+      "gaName": "에프엔마스터"
+    },
+    {
+      "registrationNumber": "2002031377",
+      "gaName": "에프엠에셋"
+    },
+    {
+      "registrationNumber": "2004091082",
+      "gaName": "에프엠피파트너즈보험대리점"
+    },
+    {
+      "registrationNumber": "2017028020",
+      "gaName": "엑셀금융서비스"
+    },
+    {
+      "registrationNumber": "2011078107",
+      "gaName": "엔에프피"
+    },
+    {
+      "registrationNumber": "2004028017",
+      "gaName": "엔젤인베스터C&F"
+    },
+    {
+      "registrationNumber": "2025108016",
+      "gaName": "엘스토리"
+    },
+    {
+      "registrationNumber": "2009028021",
+      "gaName": "엠금융서비스"
+    },
+    {
+      "registrationNumber": "2023048009",
+      "gaName": "엠제이"
+    },
+    {
+      "registrationNumber": "2014078006",
+      "gaName": "여의도자산관리본부"
+    },
+    {
+      "registrationNumber": "2022028011",
+      "gaName": "열정플러스"
+    },
+    {
+      "registrationNumber": "1994019055",
+      "gaName": "영동"
+    },
+    {
+      "registrationNumber": "2005058036",
+      "gaName": "영진에셋"
+    },
+    {
+      "registrationNumber": "2013108005",
+      "gaName": "예누"
+    },
+    {
+      "registrationNumber": "2013078060",
+      "gaName": "예스인보험대리점"
+    },
+    {
+      "registrationNumber": "2008061346",
+      "gaName": "예스인슈런스"
+    },
+    {
+      "registrationNumber": "2025098014",
+      "gaName": "오경은"
+    },
+    {
+      "registrationNumber": "2006068260",
+      "gaName": "오에이엠"
+    },
+    {
+      "registrationNumber": "2002108206",
+      "gaName": "오지에이"
+    },
+    {
+      "registrationNumber": "2021010041",
+      "gaName": "온앤오프금융서비스보험대리점"
+    },
+    {
+      "registrationNumber": "2016098030",
+      "gaName": "온에셋"
+    },
+    {
+      "registrationNumber": "2019058003",
+      "gaName": "온천보험대리점"
+    },
+    {
+      "registrationNumber": "2023018010",
+      "gaName": "올라이프케어"
+    },
+    {
+      "registrationNumber": "2025080099",
+      "gaName": "올리브파이낸스"
+    },
+    {
+      "registrationNumber": "2011028103",
+      "gaName": "올바른에셋금융서비스"
+    },
+    {
+      "registrationNumber": "2010031269",
+      "gaName": "올어슈보험대리점"
+    },
+    {
+      "registrationNumber": "2010081149",
+      "gaName": "와프"
+    },
+    {
+      "registrationNumber": "2007111083",
+      "gaName": "우리인슈맨라이프"
+    },
+    {
+      "registrationNumber": "2019020052",
+      "gaName": "원금융서비스"
+    },
+    {
+      "registrationNumber": "2022058003",
+      "gaName": "원재경"
+    },
+    {
+      "registrationNumber": "2025068011",
+      "gaName": "원티어"
+    },
+    {
+      "registrationNumber": "2021068019",
+      "gaName": "월드에셋라이프"
+    },
+    {
+      "registrationNumber": "2017028015",
+      "gaName": "월드클래스컨설팅금융서비스"
+    },
+    {
+      "registrationNumber": "2007038009",
+      "gaName": "웰스라이프"
+    },
+    {
+      "registrationNumber": "2007018203",
+      "gaName": "웰시라이프"
+    },
+    {
+      "registrationNumber": "2011120101",
+      "gaName": "위너스에프엔"
+    },
+    {
+      "registrationNumber": "2013020110",
+      "gaName": "위더스인슈라이프"
+    },
+    {
+      "registrationNumber": "2024020016",
+      "gaName": "윙스컨설팅그룹"
+    },
+    {
+      "registrationNumber": "2008098153",
+      "gaName": "유니버셜자산관리"
+    },
+    {
+      "registrationNumber": "2025080098",
+      "gaName": "유민파트너"
+    },
+    {
+      "registrationNumber": "2013088060",
+      "gaName": "유블레스보험대리점"
+    },
+    {
+      "registrationNumber": "2010088006",
+      "gaName": "유어즈에셋"
+    },
+    {
+      "registrationNumber": "2005118607",
+      "gaName": "유엔아이인슈컨설팅"
+    },
+    {
+      "registrationNumber": "2023128004",
+      "gaName": "유지선"
+    },
+    {
+      "registrationNumber": "2019098004",
+      "gaName": "유진베스트"
+    },
+    {
+      "registrationNumber": "2001048024",
+      "gaName": "유퍼스트"
+    },
+    {
+      "registrationNumber": "2007118261",
+      "gaName": "유한회사월광"
+    },
+    {
+      "registrationNumber": "2025108037",
+      "gaName": "유현환희"
+    },
+    {
+      "registrationNumber": "2024088002",
+      "gaName": "윤주나라"
+    },
+    {
+      "registrationNumber": "2022068011",
+      "gaName": "율무"
+    },
+    {
+      "registrationNumber": "2025078027",
+      "gaName": "이설나라"
+    },
+    {
+      "registrationNumber": "2025048016",
+      "gaName": "이제이행복"
+    },
+    {
+      "registrationNumber": "2024128019",
+      "gaName": "이지클럽"
+    },
+    {
+      "registrationNumber": "2013110047",
+      "gaName": "이플러스금융판매"
+    },
+    {
+      "registrationNumber": "2007108134",
+      "gaName": "인베스터"
+    },
+    {
+      "registrationNumber": "2014030134",
+      "gaName": "인슈런스컴퍼니"
+    },
+    {
+      "registrationNumber": "2024070085",
+      "gaName": "인슈어스보험대리점"
+    },
+    {
+      "registrationNumber": "2007041262",
+      "gaName": "인슈코아"
+    },
+    {
+      "registrationNumber": "2014070157",
+      "gaName": "인슈포유명성보험대리점"
+    },
+    {
+      "registrationNumber": "2008041331",
+      "gaName": "인슈프라자"
+    },
+    {
+      "registrationNumber": "2007061422",
+      "gaName": "인스누리보험대리점"
+    },
+    {
+      "registrationNumber": "2001118026",
+      "gaName": "인스럭키대리점"
+    },
+    {
+      "registrationNumber": "2001048405",
+      "gaName": "인스밸리"
+    },
+    {
+      "registrationNumber": "1995110587",
+      "gaName": "인스토피아"
+    },
+    {
+      "registrationNumber": "2007121497",
+      "gaName": "인카금융서비스"
+    },
+    {
+      "registrationNumber": "2021070078",
+      "gaName": "인코미디어넷(GT)"
+    },
+    {
+      "registrationNumber": "2009121179",
+      "gaName": "인포유금융서비스"
+    },
+    {
+      "registrationNumber": "2001031773",
+      "gaName": "일석TS보험대리점"
+    },
+    {
+      "registrationNumber": "2025028018",
+      "gaName": "임은진"
+    },
+    {
+      "registrationNumber": "2023050029",
+      "gaName": "자이언트에셋보험대리점"
+    },
+    {
+      "registrationNumber": "2012110077",
+      "gaName": "재람보험대리점"
+    },
+    {
+      "registrationNumber": "2018038002",
+      "gaName": "재무설계센타"
+    },
+    {
+      "registrationNumber": "2024100026",
+      "gaName": "제니스금융그룹"
+    },
+    {
+      "registrationNumber": "2015010104",
+      "gaName": "제이앤굿종합법인보험대리점"
+    },
+    {
+      "registrationNumber": "2022068010",
+      "gaName": "제이앤피"
+    },
+    {
+      "registrationNumber": "2015088008",
+      "gaName": "제이에스에셋"
+    },
+    {
+      "registrationNumber": "2013038002",
+      "gaName": "제일법인보험"
+    },
+    {
+      "registrationNumber": "2016018000",
+      "gaName": "제티아이보험대리점"
+    },
+    {
+      "registrationNumber": "2002038084",
+      "gaName": "종신복지"
+    },
+    {
+      "registrationNumber": "2025050006",
+      "gaName": "중겸금융파트너스"
+    },
+    {
+      "registrationNumber": "2020050003",
+      "gaName": "지금융코리아"
+    },
+    {
+      "registrationNumber": "2021070175",
+      "gaName": "지금융플러스"
+    },
+    {
+      "registrationNumber": "2001078127",
+      "gaName": "지앤비라이프"
+    },
+    {
+      "registrationNumber": "2021048014",
+      "gaName": "지에스리테일(GT)"
+    },
+    {
+      "registrationNumber": "2010018019",
+      "gaName": "지에이스타금융서비스"
+    },
+    {
+      "registrationNumber": "2009098136",
+      "gaName": "지에이코리아"
+    },
+    {
+      "registrationNumber": "2002118280",
+      "gaName": "지엠아이컨설팅"
+    },
+    {
+      "registrationNumber": "2004108338",
+      "gaName": "지우인슈보험대리점"
+    },
+    {
+      "registrationNumber": "2023098010",
+      "gaName": "지원정현"
+    },
+    {
+      "registrationNumber": "2019028013",
+      "gaName": "진원에셋"
+    },
+    {
+      "registrationNumber": "2010028081",
+      "gaName": "진천화랑보험대리점"
+    },
+    {
+      "registrationNumber": "2013078003",
+      "gaName": "참좋은재무컨설팅보험대리점"
+    },
+    {
+      "registrationNumber": "2024118010",
+      "gaName": "채원라이프"
+    },
+    {
+      "registrationNumber": "2025068010",
+      "gaName": "체리파트너"
+    },
+    {
+      "registrationNumber": "2009081272",
+      "gaName": "초록인슈"
+    },
+    {
+      "registrationNumber": "2025010042",
+      "gaName": "카라멜에셋"
+    },
+    {
+      "registrationNumber": "2020040015",
+      "gaName": "케이금융파트너스"
+    },
+    {
+      "registrationNumber": "2022058010",
+      "gaName": "케이비라이프파트너스보험대리점"
+    },
+    {
+      "registrationNumber": "2010108072",
+      "gaName": "케이스타에셋"
+    },
+    {
+      "registrationNumber": "2005128032",
+      "gaName": "케이아이엔지"
+    },
+    {
+      "registrationNumber": "2016030008",
+      "gaName": "케이아이지"
+    },
+    {
+      "registrationNumber": "2024018028",
+      "gaName": "케이에셋금융서비스보험대리점"
+    },
+    {
+      "registrationNumber": "2001088108",
+      "gaName": "케이에프지"
+    },
+    {
+      "registrationNumber": "2002108032",
+      "gaName": "케이에프큐"
+    },
+    {
+      "registrationNumber": "2005098007",
+      "gaName": "케이엔젤"
+    },
+    {
+      "registrationNumber": "2005118591",
+      "gaName": "케이엠아이에셋"
+    },
+    {
+      "registrationNumber": "2020128017",
+      "gaName": "케이자산관리본부"
+    },
+    {
+      "registrationNumber": "2005118578",
+      "gaName": "케이지에이"
+    },
+    {
+      "registrationNumber": "2009071004",
+      "gaName": "케이지에이에셋"
+    },
+    {
+      "registrationNumber": "2009088002",
+      "gaName": "케이탑자산관리"
+    },
+    {
+      "registrationNumber": "2021078000",
+      "gaName": "케이피앤컴퍼니"
+    },
+    {
+      "registrationNumber": "2006018026",
+      "gaName": "코너스톤라이프"
+    },
+    {
+      "registrationNumber": "2008041204",
+      "gaName": "코리아인슈"
+    },
+    {
+      "registrationNumber": "2019060032",
+      "gaName": "코리아퍼스트에셋"
+    },
+    {
+      "registrationNumber": "2011058076",
+      "gaName": "코어라이프"
+    },
+    {
+      "registrationNumber": "2011020148",
+      "gaName": "코퍼레이션케이알"
+    },
+    {
+      "registrationNumber": "2008018024",
+      "gaName": "크는자산보험대리점"
+    },
+    {
+      "registrationNumber": "2022108011",
+      "gaName": "큰한빛"
+    },
+    {
+      "registrationNumber": "2003058232",
+      "gaName": "키움에셋플래너"
+    },
+    {
+      "registrationNumber": "2014058001",
+      "gaName": "킴스미래"
+    },
+    {
+      "registrationNumber": "2017108000",
+      "gaName": "태이경영연구소"
+    },
+    {
+      "registrationNumber": "2018110037",
+      "gaName": "토스인슈어런스"
+    },
+    {
+      "registrationNumber": "2007078195",
+      "gaName": "투데이에셋"
+    },
+    {
+      "registrationNumber": "2023088013",
+      "gaName": "트러스트이와이"
+    },
+    {
+      "registrationNumber": "2008028386",
+      "gaName": "트루"
+    },
+    {
+      "registrationNumber": "2023100018",
+      "gaName": "티금융서비스"
+    },
+    {
+      "registrationNumber": "2008031151",
+      "gaName": "티앤티지에이보험대리점"
+    },
+    {
+      "registrationNumber": "2019078001",
+      "gaName": "파스플러스"
+    },
+    {
+      "registrationNumber": "2010128101",
+      "gaName": "파인빌머치"
+    },
+    {
+      "registrationNumber": "2001098125",
+      "gaName": "팸코"
+    },
+    {
+      "registrationNumber": "2024018029",
+      "gaName": "평생보장파트너"
+    },
+    {
+      "registrationNumber": "2007021188",
+      "gaName": "푸른신호등"
+    },
+    {
+      "registrationNumber": "2009058101",
+      "gaName": "프라임에셋"
+    },
+    {
+      "registrationNumber": "2013040099",
+      "gaName": "프로넷인슈보험대리점"
+    },
+    {
+      "registrationNumber": "2004118108",
+      "gaName": "플러스라이프"
+    },
+    {
+      "registrationNumber": "2004018025",
+      "gaName": "피플라이프"
+    },
+    {
+      "registrationNumber": "2021040072",
+      "gaName": "하나금융파인드"
+    },
+    {
+      "registrationNumber": "2148600845",
+      "gaName": "하나생명본사"
+    },
+    {
+      "registrationNumber": "2017110029",
+      "gaName": "하니비프렌즈"
+    },
+    {
+      "registrationNumber": "2023098009",
+      "gaName": "하영소윤"
+    },
+    {
+      "registrationNumber": "2018040027",
+      "gaName": "하이파베스트"
+    },
+    {
+      "registrationNumber": "2018040028",
+      "gaName": "하이파챔프"
+    },
+    {
+      "registrationNumber": "2005118577",
+      "gaName": "하프타임라이프"
+    },
+    {
+      "registrationNumber": "2008048289",
+      "gaName": "한결인슈"
+    },
+    {
+      "registrationNumber": "2020128019",
+      "gaName": "한국금융컨설팅"
+    },
+    {
+      "registrationNumber": "2016128023",
+      "gaName": "한국기업진단보험대리점"
+    },
+    {
+      "registrationNumber": "2004048143",
+      "gaName": "한국보험금융"
+    },
+    {
+      "registrationNumber": "2006018011",
+      "gaName": "한국재무설계"
+    },
+    {
+      "registrationNumber": "2017078000",
+      "gaName": "한국재무진단보험대리점"
+    },
+    {
+      "registrationNumber": "2014108005",
+      "gaName": "한국중소기업지원"
+    },
+    {
+      "registrationNumber": "2016078000",
+      "gaName": "한국지에이금융서비스"
+    },
+    {
+      "registrationNumber": "2002128071",
+      "gaName": "한마음에셋"
+    },
+    {
+      "registrationNumber": "2013028011",
+      "gaName": "한솔금융서비스"
+    },
+    {
+      "registrationNumber": "2006058252",
+      "gaName": "한솔법인대리점"
+    },
+    {
+      "registrationNumber": "1995089472",
+      "gaName": "한양"
+    },
+    {
+      "registrationNumber": "2014088030",
+      "gaName": "한영에셋"
+    },
+    {
+      "registrationNumber": "2004098116",
+      "gaName": "한올자산관리"
+    },
+    {
+      "registrationNumber": "2005048010",
+      "gaName": "한화라이프랩"
+    },
+    {
+      "registrationNumber": "2010018017",
+      "gaName": "한화법인"
+    },
+    {
+      "registrationNumber": "2021048000",
+      "gaName": "한화생명금융서비스"
+    },
+    {
+      "registrationNumber": "2022078004",
+      "gaName": "해강"
+    },
+    {
+      "registrationNumber": "2014018070",
+      "gaName": "해피트리에셋보험대리점"
+    },
+    {
+      "registrationNumber": "2025028019",
+      "gaName": "햇살처럼"
+    },
+    {
+      "registrationNumber": "2008048298",
+      "gaName": "행복재무설계"
+    },
+    {
+      "registrationNumber": "2012108069",
+      "gaName": "행복한사람들보험대리점"
+    },
+    {
+      "registrationNumber": "2024128018",
+      "gaName": "행운옥"
+    },
+    {
+      "registrationNumber": "2019128010",
+      "gaName": "허브인"
+    },
+    {
+      "registrationNumber": "2012048196",
+      "gaName": "헤리티지센터보험대리점"
+    },
+    {
+      "registrationNumber": "2018010053",
+      "gaName": "현대금융컨설팅강남보험대리점"
+    },
+    {
+      "registrationNumber": "2018010051",
+      "gaName": "현대금융컨설팅강북보험대리점"
+    },
+    {
+      "registrationNumber": "2018010050",
+      "gaName": "현대금융컨설팅강서"
+    },
+    {
+      "registrationNumber": "2018010059",
+      "gaName": "현대금융컨설팅울산"
+    },
+    {
+      "registrationNumber": "2014020042",
+      "gaName": "현대하이라이프재무설계"
+    },
+    {
+      "registrationNumber": "2003078112",
+      "gaName": "현대홈쇼핑"
+    },
+    {
+      "registrationNumber": "2025058014",
+      "gaName": "현진나라"
+    },
+    {
+      "registrationNumber": "2010128050",
+      "gaName": "현파트너즈보험대리점"
+    },
+    {
+      "registrationNumber": "2017120058",
+      "gaName": "화홍"
+    },
+    {
+      "registrationNumber": "2022098010",
+      "gaName": "황희선"
+    },
+    {
+      "registrationNumber": "2003058011",
+      "gaName": "휴런스보험대리점"
+    },
+    {
+      "registrationNumber": "2016108004",
+      "gaName": "휴먼인사이트보험대리점"
+    },
+    {
+      "registrationNumber": "2020118028",
+      "gaName": "희망보험"
+    },
+    {
+      "registrationNumber": "2019098005",
+      "gaName": "희망플러스"
+    },
+    {
+      "registrationNumber": "2012080014",
+      "gaName": "희우법률세무연구원보험대리점"
+    }
+  ],
+  "sheets": [
+    {
+      "sheetName": "건강_간편",
+      "hasProductTypes": true,
+      "rowCount": 22213
+    },
+    {
+      "sheetName": "건강_일반",
+      "hasProductTypes": true,
+      "rowCount": 23453
+    },
+    {
+      "sheetName": "경정",
+      "hasProductTypes": true,
+      "rowCount": 2170
+    },
+    {
+      "sheetName": "기타건강",
+      "hasProductTypes": true,
+      "rowCount": 4971
+    },
+    {
+      "sheetName": "기타종신",
+      "hasProductTypes": true,
+      "rowCount": 8927
+    },
+    {
+      "sheetName": "단기납",
+      "hasProductTypes": true,
+      "rowCount": 13405
+    },
+    {
+      "sheetName": "변액저축",
+      "hasProductTypes": true,
+      "rowCount": 5401
+    },
+    {
+      "sheetName": "보장성",
+      "hasProductTypes": false,
+      "rowCount": 19270
+    },
+    {
+      "sheetName": "상속",
+      "hasProductTypes": true,
+      "rowCount": 3340
+    },
+    {
+      "sheetName": "월초",
+      "hasProductTypes": false,
+      "rowCount": 20841
+    },
+    {
+      "sheetName": "일반저축",
+      "hasProductTypes": true,
+      "rowCount": 3475
+    },
+    {
+      "sheetName": "치매",
+      "hasProductTypes": true,
+      "rowCount": 7918
+    }
+  ],
+  "recordFiles": [
+    {
+      "year": 2025,
+      "path": "/data/records/2025.json",
+      "recordCount": 115534
+    },
+    {
+      "year": 2026,
+      "path": "/data/records/2026.json",
+      "recordCount": 19806
+    }
+  ],
+  "yearlySummaryFiles": [
+    {
+      "year": 2025,
+      "path": "/data/summary/yearly/2025.json"
+    },
+    {
+      "year": 2026,
+      "path": "/data/summary/yearly/2026.json"
+    }
+  ],
+  "monthlySummaryFiles": [
+    {
+      "monthKey": "2025-01",
+      "path": "/data/summary/monthly/2025-01.json"
+    },
+    {
+      "monthKey": "2025-02",
+      "path": "/data/summary/monthly/2025-02.json"
+    },
+    {
+      "monthKey": "2025-03",
+      "path": "/data/summary/monthly/2025-03.json"
+    },
+    {
+      "monthKey": "2025-04",
+      "path": "/data/summary/monthly/2025-04.json"
+    },
+    {
+      "monthKey": "2025-05",
+      "path": "/data/summary/monthly/2025-05.json"
+    },
+    {
+      "monthKey": "2025-06",
+      "path": "/data/summary/monthly/2025-06.json"
+    },
+    {
+      "monthKey": "2025-07",
+      "path": "/data/summary/monthly/2025-07.json"
+    },
+    {
+      "monthKey": "2025-08",
+      "path": "/data/summary/monthly/2025-08.json"
+    },
+    {
+      "monthKey": "2025-09",
+      "path": "/data/summary/monthly/2025-09.json"
+    },
+    {
+      "monthKey": "2025-10",
+      "path": "/data/summary/monthly/2025-10.json"
+    },
+    {
+      "monthKey": "2025-11",
+      "path": "/data/summary/monthly/2025-11.json"
+    },
+    {
+      "monthKey": "2025-12",
+      "path": "/data/summary/monthly/2025-12.json"
+    },
+    {
+      "monthKey": "2026-01",
+      "path": "/data/summary/monthly/2026-01.json"
+    },
+    {
+      "monthKey": "2026-02",
+      "path": "/data/summary/monthly/2026-02.json"
+    }
+  ]
+}

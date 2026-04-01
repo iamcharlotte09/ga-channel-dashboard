@@ -1,4 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  buildDashboardData,
+  fetchDashboardIndex,
+  fetchDashboardYearRecords,
+  getRequiredYears,
+} from "../lib/dashboardData";
 
 const CHART_COLORS = ["#0f766e", "#ea580c", "#2563eb", "#dc2626", "#7c3aed", "#0891b2"];
 const ALL_INSURERS_NAME = "__ALL__";
@@ -504,7 +510,8 @@ function PieChart({ title, slices }) {
 }
 
 export default function InsurerPerformancePage() {
-  const [dashboardData, setDashboardData] = useState(null);
+  const [dashboardIndex, setDashboardIndex] = useState(null);
+  const [yearRecordsMap, setYearRecordsMap] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
   const [selectedInsurerName, setSelectedInsurerName] = useState(ALL_INSURERS_NAME);
@@ -525,22 +532,17 @@ export default function InsurerPerformancePage() {
   useEffect(() => {
     let isCancelled = false;
 
-    async function loadDashboardData() {
+    async function loadDashboardIndex() {
       setIsLoading(true);
       setLoadError("");
 
       try {
-        const response = await fetch("/data/monthStartDashboardData.json");
-        if (!response.ok) {
-          throw new Error("대시보드 데이터를 불러오지 못했습니다.");
-        }
-
-        const payload = await response.json();
+        const payload = await fetchDashboardIndex();
         if (isCancelled) return;
 
         const latestMonthKey = payload.availableMonths.at(-1) ?? "";
         const [latestYear, latestMonth] = latestMonthKey.split("-");
-        setDashboardData(payload);
+        setDashboardIndex(payload);
         setSelectedSheetName(payload.sheets.find((item) => item.sheetName === "월초")?.sheetName ?? payload.sheets[0]?.sheetName ?? "");
         setSelectedYear(latestYear ?? "");
         setSelectedMonth(latestMonth ?? "");
@@ -554,12 +556,49 @@ export default function InsurerPerformancePage() {
       }
     }
 
-    void loadDashboardData();
+    void loadDashboardIndex();
 
     return () => {
       isCancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function loadYearRecords() {
+      if (!dashboardIndex || !selectedYear) return;
+
+      setIsLoading(true);
+      setLoadError("");
+
+      try {
+        const requiredYears = getRequiredYears(dashboardIndex, selectedYear);
+        const nextYearRecordsMap = {};
+
+        for (const year of requiredYears) {
+          nextYearRecordsMap[year] = await fetchDashboardYearRecords(year);
+          if (isCancelled) return;
+        }
+
+        if (isCancelled) return;
+        setYearRecordsMap(nextYearRecordsMap);
+      } catch (error) {
+        if (isCancelled) return;
+        setLoadError(error.message ?? "대시보드 데이터를 불러오지 못했습니다.");
+      } finally {
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    void loadYearRecords();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [dashboardIndex, selectedYear]);
 
   useEffect(() => {
     function handlePointerDown(event) {
@@ -581,14 +620,15 @@ export default function InsurerPerformancePage() {
     return () => document.removeEventListener("mousedown", handlePointerDown);
   }, []);
 
-  const allYears = dashboardData
-    ? [...new Set(dashboardData.records.map((item) => String(item.year)))].sort()
+  const dashboardData = dashboardIndex ? buildDashboardData(dashboardIndex, yearRecordsMap) : null;
+  const allYears = dashboardIndex
+    ? [...(dashboardIndex.availableYears ?? [])].map((item) => String(item)).sort()
     : [];
-  const availableMonthsForYear = dashboardData
+  const availableMonthsForYear = dashboardIndex
     ? [...new Set(
-        dashboardData.records
-          .filter((item) => String(item.year) === selectedYear)
-          .map((item) => String(item.month).padStart(2, "0"))
+        (dashboardIndex.availableMonths ?? [])
+          .filter((monthKey) => monthKey.startsWith(`${selectedYear}-`))
+          .map((monthKey) => monthKey.split("-")[1])
       )].sort()
     : [];
   const periodMode = selectedMonth === "all" ? "yearly" : "monthly";
