@@ -982,8 +982,8 @@ export default function InsurerPerformancePage() {
                 </span>
                 <div className="mt-1.5 grid grid-cols-2 gap-2">
                   {[
-                    { value: "decimal", label: "소수점 포함" },
-                    { value: "truncated", label: "소수점 미포함" },
+                    { value: "decimal", label: "행별 소수점 포함" },
+                    { value: "truncated", label: "행별 소수점 제외" },
                   ].map((option) => (
                     <button
                       key={option.value}
