@@ -17,6 +17,11 @@ function formatMonthLabel(monthKey) {
   return `${year}.${month}`;
 }
 
+function formatPeriodRangeLabel(startMonthKey, endMonthKey) {
+  if (!startMonthKey || !endMonthKey) return "-";
+  return `${formatMonthLabel(startMonthKey)} ~ ${formatMonthLabel(endMonthKey)}`;
+}
+
 function formatPerformance(value) {
   return new Intl.NumberFormat("ko-KR", {
     maximumFractionDigits: 0,
@@ -72,9 +77,11 @@ function buildPeriodMap(records, periodMode, dimensionKey) {
       periodKey,
       dimensions: new Map(),
       totalPerformance: 0,
+      truncatedTotalPerformance: 0,
     };
 
     periodEntry.totalPerformance += record.performanceThousandKrw;
+    periodEntry.truncatedTotalPerformance += Math.trunc(record.performanceThousandKrw);
     periodEntry.dimensions.set(
       dimensionName,
       (periodEntry.dimensions.get(dimensionName) ?? 0) + record.performanceThousandKrw
@@ -83,6 +90,24 @@ function buildPeriodMap(records, periodMode, dimensionKey) {
   });
 
   return periodMap;
+}
+
+function buildMonthlyTotals(records) {
+  const monthlyTotalsMap = new Map();
+
+  records.forEach((record) => {
+    const monthKey = record.monthKey;
+    const current = monthlyTotalsMap.get(monthKey) ?? {
+      totalPerformance: 0,
+      truncatedTotalPerformance: 0,
+    };
+
+    current.totalPerformance += record.performanceThousandKrw;
+    current.truncatedTotalPerformance += Math.trunc(record.performanceThousandKrw);
+    monthlyTotalsMap.set(monthKey, current);
+  });
+
+  return new Map([...monthlyTotalsMap.entries()].sort(([a], [b]) => a.localeCompare(b)));
 }
 
 function buildPieSlices(currentPeriod, chartColors) {
@@ -149,7 +174,8 @@ function buildInsurerDashboardState(
   selectedInsurerName,
   selectedSheetName,
   periodMode,
-  selectedPeriodKey
+  selectedPeriodKey,
+  aggregationMode
 ) {
   const isAllInsurersView = selectedInsurerName === ALL_INSURERS_NAME;
   const selectedSheet = dashboardData.sheets.find((item) => item.sheetName === selectedSheetName) ?? dashboardData.sheets[0];
@@ -162,6 +188,7 @@ function buildInsurerDashboardState(
   const dimensionLabel = isAllInsurersView ? "보험사" : "GA명";
   const availableYears = [...new Set(insurerRecords.map((item) => item.year))].sort();
   const periodMap = buildPeriodMap(insurerRecords, periodMode, dimensionKey);
+  const monthlyTotalsMap = buildMonthlyTotals(insurerRecords);
   const periods = [...periodMap.keys()].sort();
   const activePeriodKey = periods.includes(selectedPeriodKey) ? selectedPeriodKey : periods.at(-1) ?? "";
   const currentPeriodIndex = periods.indexOf(activePeriodKey);
@@ -175,14 +202,27 @@ function buildInsurerDashboardState(
   const currentPeriod = periodMap.get(activePeriodKey) ?? {
     dimensions: new Map(),
     totalPerformance: 0,
+    truncatedTotalPerformance: 0,
   };
   const previousPeriod = previousPeriodKey
-    ? periodMap.get(previousPeriodKey) ?? { dimensions: new Map(), totalPerformance: 0 }
-    : { dimensions: new Map(), totalPerformance: 0 };
+    ? periodMap.get(previousPeriodKey) ?? { dimensions: new Map(), totalPerformance: 0, truncatedTotalPerformance: 0 }
+    : { dimensions: new Map(), totalPerformance: 0, truncatedTotalPerformance: 0 };
 
   const currentRanked = [...currentPeriod.dimensions.entries()]
     .map(([name, performance]) => ({ name, performance }))
     .sort((a, b) => b.performance - a.performance);
+  const allMonthKeys = [...monthlyTotalsMap.keys()];
+  const rollingEndMonthKey = periodMode === "monthly"
+    ? activePeriodKey
+    : allMonthKeys.filter((monthKey) => monthKey.startsWith(`${activePeriodKey}-`)).at(-1) ?? "";
+  const rollingEndIndex = allMonthKeys.indexOf(rollingEndMonthKey);
+  const rollingMonthKeys = rollingEndIndex >= 11
+    ? allMonthKeys.slice(rollingEndIndex - 11, rollingEndIndex + 1)
+    : [];
+  const rollingMonthKeySet = new Set(rollingMonthKeys);
+  const rollingTotalPerformance = rollingMonthKeys.length === 12
+    ? rollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
+    : 0;
   const previousRankMap = new Map(
     [...previousPeriod.dimensions.entries()]
       .map(([name, performance]) => ({ name, performance }))
@@ -213,20 +253,30 @@ function buildInsurerDashboardState(
       : 0;
     const hasBenchmarkData = periodMode === "yearly"
       ? availableYears.length >= 2 && priorPeriods.length >= 1
-      : availableYears.length >= 2 && priorPeriods.length >= 12;
+      : rollingMonthKeys.length >= 12 && rollingTotalPerformance > 0;
     const benchmarkMs = hasBenchmarkData
-      ? priorPeriods.reduce((sum, periodKey) => {
-          const periodEntry = periodMap.get(periodKey);
-          const periodTotal = periodEntry?.totalPerformance ?? 0;
-          const periodPerformance = item.isOtherBucket
-            ? (item.memberNames ?? []).reduce(
-                (memberSum, memberName) => memberSum + (periodEntry?.dimensions.get(memberName) ?? 0),
-                0
-              )
-            : (periodEntry?.dimensions.get(item.name) ?? 0);
-          if (!periodTotal) return sum;
-          return sum + (periodPerformance / periodTotal) * 100;
-        }, 0) / priorPeriods.length
+      ? periodMode === "yearly"
+        ? priorPeriods.reduce((sum, periodKey) => {
+            const periodEntry = periodMap.get(periodKey);
+            const periodTotal = periodEntry?.totalPerformance ?? 0;
+            const periodPerformance = item.isOtherBucket
+              ? (item.memberNames ?? []).reduce(
+                  (memberSum, memberName) => memberSum + (periodEntry?.dimensions.get(memberName) ?? 0),
+                  0
+                )
+              : (periodEntry?.dimensions.get(item.name) ?? 0);
+            if (!periodTotal) return sum;
+            return sum + (periodPerformance / periodTotal) * 100;
+          }, 0) / priorPeriods.length
+        : (() => {
+            const memberNames = new Set(item.memberNames ?? [item.name]);
+            const rollingPerformance = insurerRecords.reduce((sum, record) => {
+              if (!rollingMonthKeySet.has(record.monthKey)) return sum;
+              if (!memberNames.has(record[dimensionKey])) return sum;
+              return sum + record.performanceThousandKrw;
+            }, 0);
+            return (rollingPerformance / rollingTotalPerformance) * 100;
+          })()
       : null;
 
     return {
@@ -264,11 +314,19 @@ function buildInsurerDashboardState(
   }));
 
   const topBenchmarkMs = tableRows[0]?.benchmarkMs ?? null;
-  const priorTotalPerformance = periodMode === "yearly"
-    ? (previousPeriodKey ? (periodMap.get(previousPeriodKey)?.totalPerformance ?? null) : null)
-    : priorPeriods.length >= 12
-      ? priorPeriods.reduce((sum, periodKey) => sum + (periodMap.get(periodKey)?.totalPerformance ?? 0), 0)
-      : null;
+  const recent12TotalPerformance = rollingMonthKeys.length === 12
+    ? rollingMonthKeys.reduce((sum, monthKey) => {
+        const monthEntry = monthlyTotalsMap.get(monthKey);
+        return sum + (
+          aggregationMode === "truncated"
+            ? (monthEntry?.truncatedTotalPerformance ?? 0)
+            : (monthEntry?.totalPerformance ?? 0)
+        );
+      }, 0)
+    : null;
+  const totalPerformance = aggregationMode === "truncated"
+    ? currentPeriod.truncatedTotalPerformance
+    : currentPeriod.totalPerformance;
 
   return {
     isAllInsurersView,
@@ -278,9 +336,12 @@ function buildInsurerDashboardState(
     periods,
     activePeriodKey,
     recentPeriods,
-    totalPerformance: currentPeriod.totalPerformance,
+    totalPerformance,
     topBenchmarkMs,
-    priorTotalPerformance,
+    recent12TotalPerformance,
+    recent12RangeLabel: rollingMonthKeys.length === 12
+      ? formatPeriodRangeLabel(rollingMonthKeys[0], rollingMonthKeys[rollingMonthKeys.length - 1])
+      : "-",
     tableRows,
     chartSeries,
     chartTitle: isAllInsurersView
@@ -296,7 +357,8 @@ function buildInsurerDashboardState(
     tableTitle: isAllInsurersView
       ? "전체 보험사 순위"
       : `${selectedInsurerName} 판매 GA Top 20`,
-    benchmarkLabel: periodMode === "yearly" ? "전년 MS(%)" : "직전 1년 평균 MS(%)",
+    benchmarkLabel: periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월 MS(%)",
+    benchmarkHeaderLabel: periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월\nMS(%)",
     deltaLabel: periodMode === "yearly" ? "전년 대비" : "전월 대비",
     summaryName: isAllInsurersView ? "전체" : selectedInsurerName,
     pieSlices: isProductSheet
@@ -514,6 +576,7 @@ export default function InsurerPerformancePage() {
   const [yearRecordsMap, setYearRecordsMap] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
+  const [aggregationMode, setAggregationMode] = useState("truncated");
   const [selectedInsurerName, setSelectedInsurerName] = useState(ALL_INSURERS_NAME);
   const [selectedSheetName, setSelectedSheetName] = useState("월초");
   const [selectedYear, setSelectedYear] = useState("");
@@ -678,7 +741,8 @@ export default function InsurerPerformancePage() {
         selectedInsurerName,
         selectedSheetName,
         periodMode,
-        selectedPeriodKey
+        selectedPeriodKey,
+        aggregationMode
       )
     : null;
 
@@ -738,18 +802,18 @@ export default function InsurerPerformancePage() {
                 <p className="mt-2 text-xl font-semibold text-slate-900">
                   {formatPerformance(dashboardState.totalPerformance)}
                 </p>
-                <p className="mt-1 text-xs text-slate-400">단위: 천원, 소수점 포함 합산</p>
+                <p className="mt-1 text-xs text-slate-400">단위: 천원</p>
               </div>
               <div className="rounded-[1.5rem] bg-white/90 px-5 py-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  직전1년 총합
+                  최근 12개월 누적 실적
                 </p>
                 <p className="mt-2 text-xl font-semibold text-slate-900">
-                  {dashboardState.priorTotalPerformance == null
+                  {dashboardState.recent12TotalPerformance == null
                     ? "-"
-                    : formatPerformance(dashboardState.priorTotalPerformance)}
+                    : formatPerformance(dashboardState.recent12TotalPerformance)}
                 </p>
-                <p className="mt-1 text-xs text-slate-400">단위: 천원, 소수점 포함 합산</p>
+                <p className="mt-1 text-xs text-slate-400">기준: {dashboardState.recent12RangeLabel}</p>
               </div>
             </div>
           </div>
@@ -912,6 +976,30 @@ export default function InsurerPerformancePage() {
                   ) : null}
                 </div>
               </label>
+              <div className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  합산 방법
+                </span>
+                <div className="mt-1.5 grid grid-cols-2 gap-2">
+                  {[
+                    { value: "decimal", label: "소수점 포함" },
+                    { value: "truncated", label: "소수점 미포함" },
+                  ].map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => setAggregationMode(option.value)}
+                      className={`rounded-xl border px-3 py-2 text-sm font-semibold transition ${
+                        aggregationMode === option.value
+                          ? "border-slate-900 bg-slate-900 text-white"
+                          : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -936,11 +1024,11 @@ export default function InsurerPerformancePage() {
               <thead>
                 <tr className="text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
                   <th className="px-3 py-2">순위</th>
-                  <th className="px-3 py-2">{dashboardState.deltaLabel}</th>
+                  <th className="px-3 py-2 whitespace-nowrap">{dashboardState.deltaLabel}</th>
                   <th className="px-3 py-2">{dashboardState.dimensionLabel}</th>
-                  <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
                   <th className="px-3 py-2 text-right">실적(천원)</th>
-                  <th className="px-3 py-2 text-right">{dashboardState.benchmarkLabel}</th>
+                  <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
+                  <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.benchmarkHeaderLabel}</th>
                   <th className="px-3 py-2 text-right">Gap</th>
                 </tr>
               </thead>
@@ -959,7 +1047,7 @@ export default function InsurerPerformancePage() {
                       }`}
                     >
                       <td className="rounded-l-2xl px-3 py-3 font-semibold text-slate-900">{row.rank}</td>
-                      <td className="px-3 py-3">
+                      <td className="whitespace-nowrap px-3 py-3">
                         <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${row.delta.tone}`}>
                           {row.delta.label}
                         </span>
@@ -967,8 +1055,8 @@ export default function InsurerPerformancePage() {
                       <td className="px-3 py-3 font-semibold text-slate-900">
                         {row.name}
                       </td>
-                      <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPercent(row.currentMs)}</td>
                       <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPerformance(row.performance)}</td>
+                      <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPercent(row.currentMs)}</td>
                       <td className="px-3 py-3 text-right text-slate-500">{formatPercent(row.benchmarkMs)}</td>
                       <td className={`rounded-r-2xl px-3 py-3 text-right font-semibold ${getGapTone(row.gap ?? 0)}`}>
                         {row.gap == null ? "-" : `${row.gap > 0 ? "+" : ""}${row.gap.toFixed(1)}%p`}
@@ -980,13 +1068,12 @@ export default function InsurerPerformancePage() {
             </table>
           </div>
 
-          <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">
+          <div className="mt-4 rounded-2xl bg-slate-50/70 px-4 py-3 text-xs leading-5 text-slate-500">
             <ul className="list-disc space-y-1 pl-5">
-              <li>실적: 천원 단위로 소수점을 포함해 합산한 값</li>
-              <li>MS(%): 선택한 기간 내 기준 집합 총실적 대비 {dashboardState.dimensionLabel} 비중</li>
-              <li>{dashboardState.deltaLabel}: 직전 기간 순위와 비교한 값</li>
-              <li>{dashboardState.benchmarkLabel}: 이전 기준 기간의 평균 또는 전년 점유율 값</li>
-              <li>Gap: 현재 MS에서 {dashboardState.benchmarkLabel.replace("(%)", "")}를 뺀 값</li>
+              <li>MS(%): 선택한 기간의 전체 실적 대비 해당 대상이 차지하는 비중</li>
+              <li>{dashboardState.deltaLabel}: 직전 기간과 비교한 순위 변동</li>
+              <li>{dashboardState.benchmarkLabel}: 최근 12개월 동안의 해당 대상 실적 합계를 전체 실적 합계로 나누어 계산한 점유율</li>
+              <li>Gap: 현재 MS와 최근 12개월 MS의 차이(%p)</li>
               {dashboardState.isProductSheet ? <li>우측 파이차트: 선택 항목 내부의 상품군 비중</li> : null}
             </ul>
           </div>
