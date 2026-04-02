@@ -5,134 +5,24 @@ import {
   fetchDashboardYearRecords,
   getRequiredYears,
 } from "../lib/dashboardData";
+import {
+  buildMonthlyTotals,
+  buildPeriodMap,
+  buildPieSlices,
+  formatMonthLabel,
+  formatPercent,
+  formatPerformance,
+  formatPeriodRangeLabel,
+  getGapTone,
+  getRankDelta,
+  summarizeNames,
+} from "../lib/dashboardFormatters";
 
 const CHART_COLORS = ["#0f766e", "#ea580c", "#2563eb", "#dc2626", "#7c3aed", "#0891b2"];
 const ALL_INSURERS_NAME = "__ALL__";
 const OVERALL_TABLE_ROW_LIMIT = 100;
 const DETAIL_TABLE_ROW_LIMIT = 20;
 const OTHER_BUCKET_NAME = "기타";
-
-function formatMonthLabel(monthKey) {
-  const [year, month] = monthKey.split("-");
-  return `${year}.${month}`;
-}
-
-function formatPeriodRangeLabel(startMonthKey, endMonthKey) {
-  if (!startMonthKey || !endMonthKey) return "-";
-  return `${formatMonthLabel(startMonthKey)} ~ ${formatMonthLabel(endMonthKey)}`;
-}
-
-function formatPerformance(value) {
-  return new Intl.NumberFormat("ko-KR", {
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
-function formatPercent(value) {
-  if (value == null) return "-";
-  return `${value.toFixed(1)}%`;
-}
-
-function getRankDelta(previousRank, currentRank) {
-  if (!previousRank) {
-    return {
-      label: "*",
-      tone: "bg-slate-100 text-slate-500",
-    };
-  }
-
-  if (previousRank === currentRank) {
-    return {
-      label: "•",
-      tone: "bg-slate-100 text-slate-500",
-    };
-  }
-
-  if (previousRank > currentRank) {
-    return {
-      label: `▲${previousRank - currentRank}`,
-      tone: "bg-emerald-100 text-emerald-700",
-    };
-  }
-
-  return {
-    label: `▼${currentRank - previousRank}`,
-    tone: "bg-rose-100 text-rose-700",
-  };
-}
-
-function getGapTone(value) {
-  if (value > 0) return "text-emerald-700";
-  if (value < 0) return "text-rose-700";
-  return "text-slate-500";
-}
-
-function buildPeriodMap(records, periodMode, dimensionKey) {
-  const periodMap = new Map();
-
-  records.forEach((record) => {
-    const periodKey = periodMode === "yearly" ? String(record.year) : record.monthKey;
-    const dimensionName = record[dimensionKey];
-    const periodEntry = periodMap.get(periodKey) ?? {
-      periodKey,
-      dimensions: new Map(),
-      totalPerformance: 0,
-      truncatedTotalPerformance: 0,
-    };
-
-    periodEntry.totalPerformance += record.performanceThousandKrw;
-    periodEntry.truncatedTotalPerformance += Math.trunc(record.performanceThousandKrw);
-    periodEntry.dimensions.set(
-      dimensionName,
-      (periodEntry.dimensions.get(dimensionName) ?? 0) + record.performanceThousandKrw
-    );
-    periodMap.set(periodKey, periodEntry);
-  });
-
-  return periodMap;
-}
-
-function buildMonthlyTotals(records) {
-  const monthlyTotalsMap = new Map();
-
-  records.forEach((record) => {
-    const monthKey = record.monthKey;
-    const current = monthlyTotalsMap.get(monthKey) ?? {
-      totalPerformance: 0,
-      truncatedTotalPerformance: 0,
-    };
-
-    current.totalPerformance += record.performanceThousandKrw;
-    current.truncatedTotalPerformance += Math.trunc(record.performanceThousandKrw);
-    monthlyTotalsMap.set(monthKey, current);
-  });
-
-  return new Map([...monthlyTotalsMap.entries()].sort(([a], [b]) => a.localeCompare(b)));
-}
-
-function buildPieSlices(currentPeriod, chartColors) {
-  const ranked = [...currentPeriod.dimensions.entries()]
-    .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value);
-
-  const topSlices = ranked.slice(0, 8);
-  const otherTotal = ranked.slice(8).reduce((sum, item) => sum + item.value, 0);
-  const slices = otherTotal > 0 ? [...topSlices, { name: OTHER_BUCKET_NAME, value: otherTotal }] : topSlices;
-  const total = slices.reduce((sum, item) => sum + item.value, 0);
-
-  return slices.map((slice, index) => ({
-    ...slice,
-    share: total ? (slice.value / total) * 100 : 0,
-    color: chartColors[index % chartColors.length],
-  }));
-}
-
-function summarizeNames(names) {
-  const uniqueNames = [...new Set(names)].filter(Boolean).sort();
-  if (!uniqueNames.length) return "";
-  if (uniqueNames.length <= 2) return uniqueNames.join(", ");
-  return `${uniqueNames.slice(0, 2).join(", ")} 외 ${uniqueNames.length - 2}`;
-}
 
 function buildProductMixSlices(records, activePeriodKey, periodMode, insurerNames, gaNames, chartColors) {
   const insurerNameSet = new Set(Array.isArray(insurerNames) ? insurerNames : [insurerNames]);
@@ -160,7 +50,8 @@ function buildProductMixSlices(records, activePeriodKey, periodMode, insurerName
     {
       dimensions: grouped,
     },
-    chartColors
+    chartColors,
+    OTHER_BUCKET_NAME
   );
 
   return slices.map((slice) => ({
@@ -709,6 +600,17 @@ export default function InsurerPerformancePage() {
     if (!keyword) return true;
     return item.label.toLowerCase().includes(keyword);
   });
+  const insurerCountBaseRecords = dashboardData
+    ? dashboardData.records.filter((record) => {
+        const matchesPeriod = periodMode === "yearly"
+          ? String(record.year) === selectedYear
+          : record.monthKey === selectedPeriodKey;
+        if (!matchesPeriod) return false;
+        if (record.sheetName !== selectedSheetName) return false;
+        return true;
+      })
+    : [];
+  const insurerOptionCount = new Set(insurerCountBaseRecords.map((record) => record.insurerName)).size;
   const availableSheets = dashboardData?.sheets.filter((sheet) =>
     selectedInsurerName === ALL_INSURERS_NAME ||
     dashboardData.records.some(
@@ -779,18 +681,20 @@ export default function InsurerPerformancePage() {
     <div className="space-y-6">
       <section className="overflow-visible rounded-[2rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_#fff7ed,_#ffffff_55%),linear-gradient(135deg,#f8fafc,#ffffff)] p-6 shadow-sm">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-          <div className="max-w-3xl flex-1">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-600">
-              INSURER PERFORMANCE
-            </p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              보험사 상세 분석
-            </h1>
-            <p className="mt-3 max-w-2xl text-xs leading-6 text-slate-500 sm:text-sm">
-              * 본 자료는 보험저널에서 GA별로 취재, 집계된 데이터입니다.
-            </p>
+          <div className="max-w-3xl flex-1 xl:flex xl:min-h-[21.5rem] xl:flex-col xl:justify-between">
+            <div className="-mt-4 sm:-mt-5 xl:-mt-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-600">
+                INSURER PERFORMANCE
+              </p>
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+                보험사 상세 분석
+              </h1>
+              <p className="mt-3 max-w-2xl text-xs leading-6 text-slate-500 sm:text-sm">
+                * 본 자료는 보험저널에서 GA별로 취재, 집계된 데이터입니다.
+              </p>
+            </div>
 
-            <div className="mt-6 grid gap-3 lg:grid-cols-2">
+            <div className="mt-6 grid gap-3 lg:grid-cols-2 xl:mt-4">
               <div className="rounded-[1.5rem] bg-white/90 px-5 py-4 lg:col-span-2">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">선택 보험사</p>
                 <p className="mt-2 text-xl font-semibold text-slate-900">{dashboardState.summaryName}</p>
@@ -894,7 +798,7 @@ export default function InsurerPerformancePage() {
 
               <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                  보험사 선택
+                  보험사 선택 ({insurerOptionCount})
                 </span>
                 <div ref={insurerSelectorRef} className="relative mt-1.5">
                   <input
