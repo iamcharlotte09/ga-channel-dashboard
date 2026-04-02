@@ -1,7 +1,7 @@
 {
   "generatedFrom": "/Users/charlottechoi/projects/insjournal/GA채널 대리점별 현황/data/validated_relational/monthly_performance_facts.csv",
   "gaCount": 415,
-  "recordCount": 135340,
+  "recordCount": 135342,
   "availableYears": [
     2025,
     2026
@@ -1688,12 +1688,12 @@
     {
       "sheetName": "건강_간편",
       "hasProductTypes": true,
-      "rowCount": 22213
+      "rowCount": 22214
     },
     {
       "sheetName": "건강_일반",
       "hasProductTypes": true,
-      "rowCount": 23453
+      "rowCount": 23454
     },
     {
       "sheetName": "경정",
@@ -1755,7 +1755,7 @@
     {
       "year": 2026,
       "path": "/data/records/2026.json",
-      "recordCount": 19806
+      "recordCount": 19808
     }
   ],
   "yearlySummaryFiles": [

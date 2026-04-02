@@ -3,11 +3,11 @@
   "sheetTotals": [
     {
       "sheetName": "건강_간편",
-      "totalPerformanceThousandKrw": 6712657.431
+      "totalPerformanceThousandKrw": 6712707.511
     },
     {
       "sheetName": "건강_일반",
-      "totalPerformanceThousandKrw": 3715791.478
+      "totalPerformanceThousandKrw": 3715930.108
     },
     {
       "sheetName": "경정",
@@ -758,6 +758,11 @@
     },
     {
       "sheetName": "건강_간편",
+      "gaName": "하나생명본사",
+      "totalPerformanceThousandKrw": 50.08
+    },
+    {
+      "sheetName": "건강_간편",
       "gaName": "하프타임라이프",
       "totalPerformanceThousandKrw": 171.893
     },
@@ -1495,6 +1500,11 @@
       "sheetName": "건강_일반",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 2791.443
+    },
+    {
+      "sheetName": "건강_일반",
+      "gaName": "하나생명본사",
+      "totalPerformanceThousandKrw": 138.63
     },
     {
       "sheetName": "건강_일반",
@@ -8036,7 +8046,7 @@
     {
       "sheetName": "건강_간편",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 231151.318
+      "totalPerformanceThousandKrw": 231201.398
     },
     {
       "sheetName": "건강_간편",
@@ -8111,7 +8121,7 @@
     {
       "sheetName": "건강_일반",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 117327.738
+      "totalPerformanceThousandKrw": 117466.368
     },
     {
       "sheetName": "건강_일반",
@@ -8225,7 +8235,7 @@
     },
     {
       "sheetName": "기타종신",
-      "insurerName": "IM라이프생명",
+      "insurerName": "IM라이프",
       "totalPerformanceThousandKrw": 494170.585
     },
     {
@@ -8290,7 +8300,7 @@
     },
     {
       "sheetName": "단기납",
-      "insurerName": "IM라이프생명",
+      "insurerName": "IM라이프",
       "totalPerformanceThousandKrw": 274981.44
     },
     {
@@ -8375,7 +8385,7 @@
     },
     {
       "sheetName": "변액저축",
-      "insurerName": "IM라이프생명",
+      "insurerName": "IM라이프",
       "totalPerformanceThousandKrw": 394230.0
     },
     {
@@ -8635,7 +8645,7 @@
     },
     {
       "sheetName": "일반저축",
-      "insurerName": "IM라이프생명",
+      "insurerName": "IM라이프",
       "totalPerformanceThousandKrw": 8600.0
     },
     {
@@ -8680,7 +8690,7 @@
     },
     {
       "sheetName": "치매",
-      "insurerName": "IM라이프생명",
+      "insurerName": "IM라이프",
       "totalPerformanceThousandKrw": 1306.25
     },
     {
