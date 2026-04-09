@@ -24,6 +24,187 @@ const OVERALL_TABLE_ROW_LIMIT = 100;
 const DETAIL_TABLE_ROW_LIMIT = 20;
 const OTHER_BUCKET_NAME = "기타";
 
+function formatSelectionMonthLabel(selectedYear, selectedMonth) {
+  if (!selectedYear) return "-";
+  if (selectedMonth === "all") return `${selectedYear}년 전체`;
+  if (!selectedMonth) return `${selectedYear}년`;
+  return `${selectedYear}년 ${Number(selectedMonth)}월`;
+}
+
+function formatAggregationModeLabel(aggregationMode) {
+  return aggregationMode === "decimal" ? "행별 소수점 포함" : "행별 소수점 제외";
+}
+
+function formatChangePercent(currentValue, previousValue) {
+  if (!previousValue) return "비교 불가";
+  const change = ((currentValue - previousValue) / previousValue) * 100;
+  return `${change > 0 ? "+" : ""}${change.toFixed(1)}%`;
+}
+
+function buildInsurerPrompt({
+  dashboardState,
+  selectedInsurerName,
+  selectedYear,
+  selectedMonth,
+  aggregationMode,
+  periodMode,
+}) {
+  const periodLabel = formatSelectionMonthLabel(selectedYear, selectedMonth);
+  const insurerLabel = dashboardState.isAllInsurersView ? "전체" : selectedInsurerName;
+  const topRows = dashboardState.tableRows.slice(0, 10);
+  const firstRow = topRows[0];
+  const secondRow = topRows[1];
+  const thirdRow = topRows[2];
+  const topThreeShare = topRows.slice(0, 3).reduce((sum, row) => sum + row.currentMs, 0);
+  const yearlyLeaders = dashboardState.tableRows
+    .filter((row) => row.benchmarkMs != null)
+    .sort((a, b) => (b.benchmarkMs ?? 0) - (a.benchmarkMs ?? 0))
+    .slice(0, topThreeShare >= 60 ? 3 : 5);
+  const yearlyStructureLines = yearlyLeaders.length
+    ? yearlyLeaders.map((row) => `${row.name} ${formatPercent(row.benchmarkMs)}`).join(", ")
+    : "직전 1년 기준 데이터 없음";
+  const topTenLines = topRows.length
+    ? topRows.map((row) =>
+        `${row.rank}위 ${row.name} | 실적 ${formatPerformance(row.performance)}천원 | 점유율 ${formatPercent(row.currentMs)} | 순위변동 ${row.delta.label}`
+      ).join("\n")
+    : "상위 10위 데이터 없음";
+  const trendLines = dashboardState.chartSeries.length
+    ? dashboardState.chartSeries.map((series) => {
+        const pointSummary = series.points
+          .map((point) => `${periodMode === "yearly" ? point.periodKey : formatMonthLabel(point.periodKey)} ${formatPercent(point.ms)}`)
+          .join(", ");
+        return `- ${series.name}: ${pointSummary}`;
+      }).join("\n")
+    : "- 추이 데이터 없음";
+
+  return [
+    "다음 데이터를 바탕으로 보험전문지 스타일의 월간 GA 실적 점유율 기사를 한국어로 작성해줘.",
+    "",
+    "[목표]",
+    "- 독자가 한 번에 흐름을 이해할 수 있는 간결한 기사체로 작성",
+    "- 수치를 나열하는 리포트 문체가 아니라, 자연스럽게 읽히는 기사 문장으로 작성",
+    "- GA별 순위 변화와 시장 흐름이 한눈에 들어오게 작성",
+    "",
+    "[출력 형식]",
+    "- 제목 1개",
+    "- 본문 5~7문단",
+    "- 불릿, 번호, 표 없이 기사 본문만 출력",
+    "- 기사 외 설명은 출력하지 말 것",
+    "",
+    "[문체]",
+    "- 보험전문지 보도문 스타일",
+    "- 짧고 명확한 문장 위주",
+    "- 숫자는 꼭 필요한 것만 넣고 문장 속에 자연스럽게 녹여 쓸 것",
+    "- 같은 표현 반복 금지",
+    "- 데이터에 없는 원인·배경은 추정하지 말 것",
+    "- 다만 데이터상 확인되는 흐름은 기사체로 자연스럽게 해석할 것",
+    "",
+    "[핵심 작성 원칙]",
+    "- GA별 데이터를 기계적으로 한 줄씩 나열하지 말 것",
+    "- 같은 권역의 GA들은 묶어서 흐름 중심으로 서술할 것",
+    "- 독자가 숫자를 외우지 않아도 판세를 이해할 수 있게 작성할 것",
+    "- 중요한 GA는 길게, 나머지는 짧게 처리할 것",
+    "- 급등·급락 GA는 반드시 언급할 것",
+    "- 마지막 문장은 해당 월의 핵심 특징을 한 번 정리하고 끝낼 것",
+    "",
+    "[점유율 및 순위 해석 규칙]",
+    "- 표기용 점유율은 기사 본문에서 소수점 첫째 자리까지만 표시할 수 있다",
+    "- 단, 순위 판단과 해석은 반드시 원데이터 기준의 실제 점유율 값(소수점 둘째 자리 이상 포함)과 실적 금액을 함께 기준으로 할 것",
+    "- 겉으로 보기에 같은 점유율로 보이더라도 순위가 다를 수 있으며, 이를 모순처럼 해석하지 말 것",
+    "- 기사에서 “같은 점유율인데 더 낮은 순위를 기록했다”와 같은 표현은 사용하지 말 것",
+    "- 순위 차이가 발생하면 실제 실적 금액 차이 또는 반올림 전 점유율 미세 차이에 따른 결과로 간주하고 자연스럽게 처리할 것",
+    "- 순위 설명은 반드시 제공된 순위 데이터를 우선 기준으로 작성할 것",
+    "- 점유율이 유사한 GA들은 ‘비슷한 점유율대에서 순위가 갈렸다’, ‘접전 양상을 보였다’ 정도로만 표현하고, 표기값만 보고 역전 이유를 단정하지 말 것",
+    "",
+    "[숫자 표기 규칙]",
+    "- 모든 숫자는 읽기 쉽게 천 단위 콤마(,)를 넣어 표기할 것",
+    "- 금액은 기사체에 맞게 ‘약 ○억 ○만원’, ‘약 ○만원’처럼 자연스럽게 변환",
+    "- 점유율은 기사 표기상 소수점 첫째 자리까지 사용",
+    "- 단, 해석은 내부적으로 소수점 둘째 자리 이상과 실적 금액을 고려해 작성할 것",
+    "",
+    "[추이 데이터 활용 규칙]",
+    "- 기사 해석의 기본 기준은 전월 대비 변화로 할 것",
+    "- 최근 3개월 추이는 반드시 언급할 필요는 없다",
+    "- 최근 3개월 추이에서 점유율 확대·축소, 선두 변화, 상위권 재편 등 뚜렷한 흐름이 확인될 때만 제한적으로 활용할 것",
+    "- 큰 변화가 없다면 최근 3개월 추이는 생략하고, 전월 대비 설명만으로 충분히 작성할 것",
+    "- 3개월 추이를 언급하더라도 장황하게 나열하지 말고, 한 문장 안에서 간단히 정리할 것",
+    "",
+    "[제목 규칙]",
+    "- 제목은 반드시 한 줄",
+    "- 제목은 기사 핵심 구도가 바로 드러나게 작성",
+    "- 상위 집중도가 핵심이면:",
+    `  "{보험사명} {월} GA {시장구분} 실적 M/S…‘{핵심 GA1}·{핵심 GA2}·{핵심 GA3}’ 상위 3개사 점유율 {합산 점유율}%"`,
+    "- 1위 GA가 핵심이면:",
+    `  "{보험사명} {월} GA {시장구분} 실적 M/S…‘{1위 GA}’ 1위 유지 속, ‘{2위 GA}·{3위 GA}’ 상위권 형성"`,
+    "",
+    "[본문 구성]",
+    "- 1문단: 전체 실적과 전월 대비 흐름을 짧게 요약하고, 1위 GA를 함께 제시",
+    "- 2문단: 1위 GA의 유지·하락·확대 여부를 중심으로 판세 설명",
+    "- 3문단: 2~4위권 변화를 묶어 서술하며, 새롭게 올라온 GA나 밀린 GA를 함께 설명",
+    "- 4문단: 5~8위권 또는 중위권 흐름을 묶어 정리",
+    "- 5문단 이후: 하위권은 압축적으로 처리",
+    "- 마지막 문단: 직전 1년 기준 구조 + 해당 월 특징 한 번 정리하고 마무리",
+    "",
+    "[용어 규칙]",
+    "- 기사 본문에서는 M/S라는 표현 대신 반드시 ‘점유율’로 표기할 것",
+    "- 제목에서는 필요할 경우만 M/S를 사용할 수 있으나, 본문에서는 모두 ‘점유율’로 통일할 것",
+    "",
+    "[중위권 서술 규칙]",
+    "- 중위권은 특이점이 없으면 별도의 전월 비교나 해석 없이 간결하게 정리할 것",
+    "- 중위권 문단은 1~2문장 내에서 묶어 서술하고, 당월 점유율과 실적만 자연스럽게 제시할 것",
+    "- 순위 급등·급락, 점유율 급변 등 뚜렷한 변화가 있을 때만 별도 설명을 덧붙일 것",
+    "- 특이점이 없을 경우 예시처럼 간결한 기사체로 처리할 것",
+    "- 예:",
+    '  "중위권에서는 삼성금융파트너스가 점유율 5.2%, 약 4억 5,452만원을 기록했고, 밸류마크 4.7%, 케이지에이에셋 3.5%, 프라임에셋 3.2% 순으로 뒤를 이었다. 무지개컨설팅과 메가, 아너스금융서비스 등도 2%대 점유율로 중위권을 형성했다."',
+    "",
+    "[GA 서술 규칙]",
+    "- GA별로 모두 같은 길이로 설명하지 말 것",
+    "- 순위 급등, 급락, 점유율 변화가 큰 GA는 반드시 언급",
+    "- “1위를 유지했다”, “상위권으로 올라섰다”, “중위권으로 밀렸다”, “비중을 키웠다”, “존재감이 줄었다” 같은 기사체 표현 활용",
+    "- 숫자는 GA명 뒤에 바로 붙여 독자가 쉽게 이해하게 작성",
+    "- 단, 표기상 동일한 점유율만 보고 순위의 높고 낮음을 직접 비교해 설명하지 말 것",
+    "",
+    "[마지막 문단 규칙]",
+    "- 마지막 문단은 2문장 정도로 마무리",
+    "- 첫 문장은 “직전 1년 기준 점유율을 보면”으로 시작하는 구조 설명 문장으로 작성",
+    "- 직전 1년 기준은 상위 집중형이면 3위까지, 분산형이면 5위까지 점유율을 나열",
+    "- 단순 수치 나열로 끝내지 말고 구조를 한 문장으로 정리",
+    "- 마지막 문장은 해당 월의 특징을 기사체로 한 번 정리하고 끝낼 것",
+    "- 과장된 전망이나 원인 추정은 금지",
+    "",
+    "[금지 사항]",
+    "- GA별 데이터를 보고서처럼 한 줄씩 병렬 나열하지 말 것",
+    "- ‘A는 몇 %, B는 몇 %, C는 몇 %’ 식의 반복형 문장 금지",
+    "- 표기상 같은 점유율만 근거로 순위 역전 또는 순위 열세 원인을 단정하지 말 것",
+    "- 데이터에 없는 영업 배경, 상품 전략, 조직 특성 추정 금지",
+    "- 과장된 평가 표현 금지",
+    "",
+    "[수치 검증 규칙]",
+    "- 기사 작성 전, 입력된 실적·점유율·순위 데이터가 서로 일치하는지 먼저 확인할 것",
+    "- 순위는 제공된 순위 데이터를 절대 우선 기준으로 사용할 것",
+    "- 기사에 사용한 금액, 점유율, 순위 변동, 합산 점유율은 입력값과 다시 대조한 뒤 작성할 것",
+    "- 금액 단위 변환(천원 → 억/만원)은 반드시 재확인할 것",
+    "- 상위 3개 또는 5개 합산 점유율을 기사에서 언급할 경우, 입력값이 있으면 그 값을 그대로 사용하고 별도 재계산하지 말 것",
+    "- 입력값끼리 충돌하는 경우 임의 보정하지 말고, 충돌 사실을 밝히고 보수적으로 서술할 것",
+    "- 수치가 불확실한 경우 해석보다 원문 수치 인용을 우선할 것",
+    "- 기사 문장을 쓰기 전에 먼저 사용될 핵심 수치 목록을 내부적으로 정리하고, 그 수치만 본문에 반영할 것",
+    "- 계산이 필요한 수치는 한 번 더 검산한 뒤 사용할 것",
+    "- 입력 데이터에 없는 수치는 새로 계산해 단정적으로 쓰지 말 것",
+    "",
+    "입력값:",
+    `- 기준 월: ${periodLabel}`,
+    `- 보험사명: ${insurerLabel}`,
+    `- 시장구분: ${dashboardState.selectedSheet?.sheetName ?? "-"}`,
+    `- 당월 전체 실적: ${formatPerformance(dashboardState.totalPerformance)}천원`,
+    `- 전월 전체 실적: ${dashboardState.previousTotalPerformance == null ? "비교 불가" : `${formatPerformance(dashboardState.previousTotalPerformance)}천원`}`,
+    `- 상위 3개 GA 합산 점유율: ${formatPercent(topThreeShare)}`,
+    `- 당월 GA별 점유율/실적/순위 변동 데이터:\n${topTenLines}`,
+    `- 직전 1년 기준 GA별 점유율 데이터: ${yearlyStructureLines}`,
+    `- 최근 월별 추이:\n${trendLines}`,
+    `- 실적 기준: ${formatAggregationModeLabel(aggregationMode)}`,
+  ].join("\n");
+}
+
 function buildProductMixSlices(records, activePeriodKey, periodMode, insurerNames, gaNames, chartColors) {
   const insurerNameSet = new Set(Array.isArray(insurerNames) ? insurerNames : [insurerNames]);
   const gaNameSet = new Set(Array.isArray(gaNames) ? gaNames : [gaNames]);
@@ -218,6 +399,13 @@ function buildInsurerDashboardState(
   const totalPerformance = aggregationMode === "truncated"
     ? currentPeriod.truncatedTotalPerformance
     : currentPeriod.totalPerformance;
+  const previousTotalPerformance = previousPeriodKey
+    ? (
+        aggregationMode === "truncated"
+          ? previousPeriod.truncatedTotalPerformance
+          : previousPeriod.totalPerformance
+      )
+    : null;
 
   return {
     isAllInsurersView,
@@ -228,6 +416,7 @@ function buildInsurerDashboardState(
     activePeriodKey,
     recentPeriods,
     totalPerformance,
+    previousTotalPerformance,
     topBenchmarkMs,
     recent12TotalPerformance,
     recent12RangeLabel: rollingMonthKeys.length === 12
@@ -478,6 +667,8 @@ export default function InsurerPerformancePage() {
   const [isMonthSelectorOpen, setIsMonthSelectorOpen] = useState(false);
   const [isSheetSelectorOpen, setIsSheetSelectorOpen] = useState(false);
   const [hoveredGAName, setHoveredGAName] = useState("");
+  const [copyFeedback, setCopyFeedback] = useState("");
+  const [copyStatus, setCopyStatus] = useState("idle");
   const insurerSelectorRef = useRef(null);
   const yearSelectorRef = useRef(null);
   const monthSelectorRef = useRef(null);
@@ -574,6 +765,17 @@ export default function InsurerPerformancePage() {
     return () => document.removeEventListener("mousedown", handlePointerDown);
   }, []);
 
+  useEffect(() => {
+    if (copyStatus === "idle") return undefined;
+
+    const timer = window.setTimeout(() => {
+      setCopyStatus("idle");
+      setCopyFeedback("");
+    }, 2200);
+
+    return () => window.clearTimeout(timer);
+  }, [copyStatus]);
+
   const dashboardData = dashboardIndex ? buildDashboardData(dashboardIndex, yearRecordsMap) : null;
   const allYears = dashboardIndex
     ? [...(dashboardIndex.availableYears ?? [])].map((item) => String(item)).sort()
@@ -669,12 +871,34 @@ export default function InsurerPerformancePage() {
   const highlightedGAName = chartSeriesNames.has(highlightedGANameCandidate)
     ? highlightedGANameCandidate
     : "";
+  const promptSummaryLabel = `${selectedYear}년 ${selectedMonth === "all" ? "전체" : `${Number(selectedMonth)}월`} ${dashboardState.summaryName} ${dashboardState.selectedSheet?.sheetName ?? selectedSheetName} 기준 보험사별 분석 프롬프트입니다.`;
+  const generatedPrompt = buildInsurerPrompt({
+    dashboardState,
+    selectedInsurerName,
+    selectedYear,
+    selectedMonth,
+    aggregationMode,
+    periodMode,
+  });
 
   function selectInsurer(option) {
     setSelectedInsurerName(option.insurerName);
     setInsurerSearchText(option.label);
     setHoveredGAName("");
     setIsInsurerSelectorOpen(false);
+    setCopyFeedback("");
+    setCopyStatus("idle");
+  }
+
+  async function handleCopyPrompt() {
+    try {
+      await navigator.clipboard.writeText(generatedPrompt);
+      setCopyFeedback("프롬프트를 복사했습니다.");
+      setCopyStatus("success");
+    } catch {
+      setCopyFeedback("자동 복사에 실패했습니다. 아래 텍스트를 직접 복사해주세요.");
+      setCopyStatus("error");
+    }
   }
 
   return (
@@ -745,7 +969,11 @@ export default function InsurerPerformancePage() {
                             key={year}
                             type="button"
                             onMouseDown={(event) => event.preventDefault()}
-                            onClick={() => setSelectedYear(year)}
+                            onClick={() => {
+                              setSelectedYear(year);
+                              setCopyFeedback("");
+                              setCopyStatus("idle");
+                            }}
                             className={`flex w-full items-center justify-between gap-3 px-3 py-3 text-left text-sm transition hover:bg-orange-50 ${
                               year === selectedYear ? "bg-slate-50" : ""
                             }`}
@@ -780,7 +1008,11 @@ export default function InsurerPerformancePage() {
                             key={month}
                             type="button"
                             onMouseDown={(event) => event.preventDefault()}
-                            onClick={() => setSelectedMonth(month)}
+                            onClick={() => {
+                              setSelectedMonth(month);
+                              setCopyFeedback("");
+                              setCopyStatus("idle");
+                            }}
                             className={`flex w-full items-center justify-between gap-3 px-3 py-3 text-left text-sm transition hover:bg-orange-50 ${
                               month === selectedMonth ? "bg-slate-50" : ""
                             }`}
@@ -867,7 +1099,11 @@ export default function InsurerPerformancePage() {
                             key={sheet.sheetName}
                             type="button"
                             onMouseDown={(event) => event.preventDefault()}
-                            onClick={() => setSelectedSheetName(sheet.sheetName)}
+                            onClick={() => {
+                              setSelectedSheetName(sheet.sheetName);
+                              setCopyFeedback("");
+                              setCopyStatus("idle");
+                            }}
                             className={`flex w-full items-center justify-between gap-3 px-3 py-3 text-left text-sm transition hover:bg-orange-50 ${
                               sheet.sheetName === selectedSheetName ? "bg-slate-50" : ""
                             }`}
@@ -892,7 +1128,11 @@ export default function InsurerPerformancePage() {
                     <button
                       key={option.value}
                       type="button"
-                      onClick={() => setAggregationMode(option.value)}
+                      onClick={() => {
+                        setAggregationMode(option.value);
+                        setCopyFeedback("");
+                        setCopyStatus("idle");
+                      }}
                       className={`rounded-xl border px-3 py-2 text-sm font-semibold transition ${
                         aggregationMode === option.value
                           ? "border-slate-900 bg-slate-900 text-white"
@@ -906,6 +1146,47 @@ export default function InsurerPerformancePage() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="relative mt-6 rounded-[1.5rem] bg-white/90 px-5 py-5">
+          {copyStatus !== "idle" ? (
+            <div className="pointer-events-none absolute right-5 top-5 z-10">
+              <div
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold shadow-lg transition ${
+                  copyStatus === "success"
+                    ? "bg-slate-900 text-white"
+                    : "bg-rose-600 text-white"
+                }`}
+              >
+                {copyStatus === "success" ? "복사 완료" : "복사 실패"}
+              </div>
+            </div>
+          ) : null}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">기사 프롬프트 생성</p>
+              <p className="mt-2 text-sm leading-6 text-slate-500">
+                {promptSummaryLabel}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={handleCopyPrompt}
+              className="inline-flex shrink-0 items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+            >
+              복사하기
+            </button>
+          </div>
+          <textarea
+            readOnly
+            value={generatedPrompt}
+            className="mt-4 min-h-[15rem] w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700 outline-none"
+          />
+          <p className="mt-2 text-xs text-slate-400">
+            {copyStatus === "error"
+              ? copyFeedback
+              : "필터를 바꾸면 프롬프트도 자동으로 갱신됩니다."}
+          </p>
         </div>
       </section>
 

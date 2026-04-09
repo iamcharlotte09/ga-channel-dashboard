@@ -62,6 +62,7 @@ export function buildPeriodMap(records, periodMode, dimensionKey) {
     const periodEntry = periodMap.get(periodKey) ?? {
       periodKey,
       dimensions: new Map(),
+      truncatedDimensions: new Map(),
       totalPerformance: 0,
       truncatedTotalPerformance: 0,
     };
@@ -71,6 +72,10 @@ export function buildPeriodMap(records, periodMode, dimensionKey) {
     periodEntry.dimensions.set(
       dimensionName,
       (periodEntry.dimensions.get(dimensionName) ?? 0) + record.performanceThousandKrw
+    );
+    periodEntry.truncatedDimensions.set(
+      dimensionName,
+      (periodEntry.truncatedDimensions.get(dimensionName) ?? 0) + Math.trunc(record.performanceThousandKrw)
     );
     periodMap.set(periodKey, periodEntry);
   });

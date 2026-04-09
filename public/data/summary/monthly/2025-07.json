@@ -23,15 +23,15 @@
     },
     {
       "sheetName": "단기납",
-      "totalPerformanceThousandKrw": 19028903.171
+      "totalPerformanceThousandKrw": 19027902.371
     },
     {
       "sheetName": "변액저축",
-      "totalPerformanceThousandKrw": 3852988.438
+      "totalPerformanceThousandKrw": 3852688.438
     },
     {
       "sheetName": "보장성",
-      "totalPerformanceThousandKrw": 49593475.367
+      "totalPerformanceThousandKrw": 49592474.567
     },
     {
       "sheetName": "상속",
@@ -39,7 +39,7 @@
     },
     {
       "sheetName": "월초",
-      "totalPerformanceThousandKrw": 60956775.425
+      "totalPerformanceThousandKrw": 60955474.625
     },
     {
       "sheetName": "일반저축",
@@ -3429,7 +3429,7 @@
     {
       "sheetName": "단기납",
       "gaName": "봄금융서비스",
-      "totalPerformanceThousandKrw": 194822.537
+      "totalPerformanceThousandKrw": 193821.737
     },
     {
       "sheetName": "단기납",
@@ -4184,7 +4184,7 @@
     {
       "sheetName": "변액저축",
       "gaName": "봄금융서비스",
-      "totalPerformanceThousandKrw": 500.0
+      "totalPerformanceThousandKrw": 200.0
     },
     {
       "sheetName": "변액저축",
@@ -4894,7 +4894,7 @@
     {
       "sheetName": "보장성",
       "gaName": "봄금융서비스",
-      "totalPerformanceThousandKrw": 200539.579
+      "totalPerformanceThousandKrw": 199538.779
     },
     {
       "sheetName": "보장성",
@@ -6609,7 +6609,7 @@
     {
       "sheetName": "월초",
       "gaName": "봄금융서비스",
-      "totalPerformanceThousandKrw": 207039.579
+      "totalPerformanceThousandKrw": 205738.779
     },
     {
       "sheetName": "월초",
@@ -9041,7 +9041,7 @@
     {
       "sheetName": "단기납",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 444161.374
+      "totalPerformanceThousandKrw": 443160.574
     },
     {
       "sheetName": "단기납",
@@ -9086,7 +9086,7 @@
     {
       "sheetName": "변액저축",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 256680.0
+      "totalPerformanceThousandKrw": 256380.0
     },
     {
       "sheetName": "보장성",
@@ -9171,7 +9171,7 @@
     {
       "sheetName": "보장성",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 648759.973
+      "totalPerformanceThousandKrw": 647759.173
     },
     {
       "sheetName": "보장성",
@@ -9306,7 +9306,7 @@
     {
       "sheetName": "월초",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 935357.183
+      "totalPerformanceThousandKrw": 934056.383
     },
     {
       "sheetName": "월초",

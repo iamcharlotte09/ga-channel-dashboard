@@ -31,7 +31,7 @@
     },
     {
       "sheetName": "보장성",
-      "totalPerformanceThousandKrw": 46178417.837
+      "totalPerformanceThousandKrw": 46178344.385
     },
     {
       "sheetName": "상속",
@@ -39,7 +39,7 @@
     },
     {
       "sheetName": "월초",
-      "totalPerformanceThousandKrw": 63580237.153
+      "totalPerformanceThousandKrw": 63580163.701
     },
     {
       "sheetName": "일반저축",
@@ -47,7 +47,7 @@
     },
     {
       "sheetName": "치매",
-      "totalPerformanceThousandKrw": 3781113.844
+      "totalPerformanceThousandKrw": 3781040.392
     }
   ],
   "gaTotals": [
@@ -4994,7 +4994,7 @@
     {
       "sheetName": "보장성",
       "gaName": "봄금융서비스",
-      "totalPerformanceThousandKrw": 143601.822
+      "totalPerformanceThousandKrw": 143528.37
     },
     {
       "sheetName": "보장성",
@@ -6809,7 +6809,7 @@
     {
       "sheetName": "월초",
       "gaName": "봄금융서비스",
-      "totalPerformanceThousandKrw": 170201.822
+      "totalPerformanceThousandKrw": 170128.37
     },
     {
       "sheetName": "월초",
@@ -8494,7 +8494,7 @@
     {
       "sheetName": "치매",
       "gaName": "봄금융서비스",
-      "totalPerformanceThousandKrw": 455.443
+      "totalPerformanceThousandKrw": 381.991
     },
     {
       "sheetName": "치매",
@@ -9441,7 +9441,7 @@
     {
       "sheetName": "보장성",
       "insurerName": "흥국생명",
-      "totalPerformanceThousandKrw": 2382256.399
+      "totalPerformanceThousandKrw": 2382182.947
     },
     {
       "sheetName": "상속",
@@ -9576,7 +9576,7 @@
     {
       "sheetName": "월초",
       "insurerName": "흥국생명",
-      "totalPerformanceThousandKrw": 2382256.399
+      "totalPerformanceThousandKrw": 2382182.947
     },
     {
       "sheetName": "일반저축",
@@ -9666,7 +9666,7 @@
     {
       "sheetName": "치매",
       "insurerName": "흥국생명",
-      "totalPerformanceThousandKrw": 637119.58
+      "totalPerformanceThousandKrw": 637046.128
     }
   ]
 }

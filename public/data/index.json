@@ -1,7 +1,7 @@
 {
   "generatedFrom": "/Users/charlottechoi/projects/insjournal/GA채널 대리점별 현황/data/validated_relational/monthly_performance_facts.csv",
   "gaCount": 415,
-  "recordCount": 135342,
+  "recordCount": 135313,
   "availableYears": [
     2025,
     2026
@@ -1688,7 +1688,7 @@
     {
       "sheetName": "건강_간편",
       "hasProductTypes": true,
-      "rowCount": 22214
+      "rowCount": 22213
     },
     {
       "sheetName": "건강_일반",
@@ -1713,17 +1713,17 @@
     {
       "sheetName": "단기납",
       "hasProductTypes": true,
-      "rowCount": 13405
+      "rowCount": 13396
     },
     {
       "sheetName": "변액저축",
       "hasProductTypes": true,
-      "rowCount": 5401
+      "rowCount": 5400
     },
     {
       "sheetName": "보장성",
       "hasProductTypes": false,
-      "rowCount": 19270
+      "rowCount": 19260
     },
     {
       "sheetName": "상속",
@@ -1733,7 +1733,7 @@
     {
       "sheetName": "월초",
       "hasProductTypes": false,
-      "rowCount": 20841
+      "rowCount": 20831
     },
     {
       "sheetName": "일반저축",
@@ -1743,19 +1743,19 @@
     {
       "sheetName": "치매",
       "hasProductTypes": true,
-      "rowCount": 7918
+      "rowCount": 7914
     }
   ],
   "recordFiles": [
     {
       "year": 2025,
       "path": "/data/records/2025.json",
-      "recordCount": 115534
+      "recordCount": 115511
     },
     {
       "year": 2026,
       "path": "/data/records/2026.json",
-      "recordCount": 19808
+      "recordCount": 19802
     }
   ],
   "yearlySummaryFiles": [
