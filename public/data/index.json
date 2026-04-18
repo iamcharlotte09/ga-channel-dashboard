@@ -1,7 +1,7 @@
 {
   "generatedFrom": "/Users/charlottechoi/projects/insjournal/GA채널 대리점별 현황/data/validated_relational/monthly_performance_facts.csv",
-  "gaCount": 415,
-  "recordCount": 135313,
+  "gaCount": 419,
+  "recordCount": 145596,
   "availableYears": [
     2025,
     2026
@@ -20,7 +20,8 @@
     "2025-11",
     "2025-12",
     "2026-01",
-    "2026-02"
+    "2026-02",
+    "2026-03"
   ],
   "gas": [
     {
@@ -320,6 +321,10 @@
       "gaName": "마루달이네"
     },
     {
+      "registrationNumber": "2024050022",
+      "gaName": "마미톡꿀팁연구소"
+    },
+    {
       "registrationNumber": "2015038010",
       "gaName": "마에스트로7보험대리점"
     },
@@ -498,6 +503,10 @@
     {
       "registrationNumber": "2025108012",
       "gaName": "블러썸인슈"
+    },
+    {
+      "registrationNumber": "2003128243",
+      "gaName": "비스코보험대리점"
     },
     {
       "registrationNumber": "2019028009",
@@ -1184,6 +1193,10 @@
       "gaName": "인슈코아"
     },
     {
+      "registrationNumber": "2017100053",
+      "gaName": "인슈퍼스트(GT)"
+    },
+    {
       "registrationNumber": "2014070157",
       "gaName": "인슈포유명성보험대리점"
     },
@@ -1480,6 +1493,10 @@
       "gaName": "푸른신호등"
     },
     {
+      "registrationNumber": "2019070051",
+      "gaName": "퓨쳐라이프보험대리점"
+    },
+    {
       "registrationNumber": "2009058101",
       "gaName": "프라임에셋"
     },
@@ -1688,62 +1705,62 @@
     {
       "sheetName": "건강_간편",
       "hasProductTypes": true,
-      "rowCount": 22213
+      "rowCount": 24028
     },
     {
       "sheetName": "건강_일반",
       "hasProductTypes": true,
-      "rowCount": 23454
+      "rowCount": 25139
     },
     {
       "sheetName": "경정",
       "hasProductTypes": true,
-      "rowCount": 2170
+      "rowCount": 2301
     },
     {
       "sheetName": "기타건강",
       "hasProductTypes": true,
-      "rowCount": 4971
+      "rowCount": 5351
     },
     {
       "sheetName": "기타종신",
       "hasProductTypes": true,
-      "rowCount": 8927
+      "rowCount": 9814
     },
     {
       "sheetName": "단기납",
       "hasProductTypes": true,
-      "rowCount": 13396
+      "rowCount": 14245
     },
     {
       "sheetName": "변액저축",
       "hasProductTypes": true,
-      "rowCount": 5400
+      "rowCount": 5826
     },
     {
       "sheetName": "보장성",
       "hasProductTypes": false,
-      "rowCount": 19260
+      "rowCount": 20688
     },
     {
       "sheetName": "상속",
       "hasProductTypes": true,
-      "rowCount": 3340
+      "rowCount": 3626
     },
     {
       "sheetName": "월초",
       "hasProductTypes": false,
-      "rowCount": 20831
+      "rowCount": 22377
     },
     {
       "sheetName": "일반저축",
       "hasProductTypes": true,
-      "rowCount": 3475
+      "rowCount": 3755
     },
     {
       "sheetName": "치매",
       "hasProductTypes": true,
-      "rowCount": 7914
+      "rowCount": 8484
     }
   ],
   "recordFiles": [
@@ -1755,7 +1772,7 @@
     {
       "year": 2026,
       "path": "/data/records/2026.json",
-      "recordCount": 19802
+      "recordCount": 30085
     }
   ],
   "yearlySummaryFiles": [
@@ -1824,6 +1841,10 @@
     {
       "monthKey": "2026-02",
       "path": "/data/summary/monthly/2026-02.json"
+    },
+    {
+      "monthKey": "2026-03",
+      "path": "/data/summary/monthly/2026-03.json"
     }
   ]
 }
