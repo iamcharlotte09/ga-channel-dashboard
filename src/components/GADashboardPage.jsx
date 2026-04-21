@@ -1506,46 +1506,6 @@ export default function GADashboardPage() {
           </div>
         </div>
 
-        <div className="relative mt-6 rounded-[1.5rem] bg-white/90 px-5 py-5">
-          {copyStatus !== "idle" ? (
-            <div className="pointer-events-none absolute right-5 top-5 z-10">
-              <div
-                className={`rounded-full px-3 py-1.5 text-xs font-semibold shadow-lg transition ${
-                  copyStatus === "success"
-                    ? "bg-slate-900 text-white"
-                    : "bg-rose-600 text-white"
-                }`}
-              >
-                {copyStatus === "success" ? "복사 완료" : "복사 실패"}
-              </div>
-            </div>
-          ) : null}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">기사 프롬프트 생성</p>
-              <p className="mt-2 text-sm leading-6 text-slate-500">
-                {promptSummaryLabel}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={handleCopyPrompt}
-              className="inline-flex shrink-0 items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
-            >
-              복사하기
-            </button>
-          </div>
-          <textarea
-            readOnly
-            value={generatedPrompt}
-            className="mt-4 min-h-[15rem] w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700 outline-none"
-          />
-          <p className="mt-2 text-xs text-slate-400">
-            {copyStatus === "error"
-              ? copyFeedback
-              : "필터를 바꾸면 프롬프트도 자동으로 갱신됩니다."}
-          </p>
-        </div>
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
@@ -1647,6 +1607,47 @@ export default function GADashboardPage() {
             />
           ) : null}
         </div>
+      </section>
+
+      <section className="relative rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm">
+        {copyStatus !== "idle" ? (
+          <div className="pointer-events-none absolute right-5 top-5 z-10">
+            <div
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold shadow-lg transition ${
+                copyStatus === "success"
+                  ? "bg-slate-900 text-white"
+                  : "bg-rose-600 text-white"
+              }`}
+            >
+              {copyStatus === "success" ? "복사 완료" : "복사 실패"}
+            </div>
+          </div>
+        ) : null}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">기사 프롬프트 생성</p>
+            <p className="mt-2 text-sm leading-6 text-slate-500">
+              {promptSummaryLabel}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={handleCopyPrompt}
+            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+          >
+            복사하기
+          </button>
+        </div>
+        <textarea
+          readOnly
+          value={generatedPrompt}
+          className="mt-4 min-h-[15rem] w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700 outline-none"
+        />
+        <p className="mt-2 text-xs text-slate-400">
+          {copyStatus === "error"
+            ? copyFeedback
+            : "필터를 바꾸면 프롬프트도 자동으로 갱신됩니다."}
+        </p>
       </section>
 
       {discrepancyNotes.length ? (
