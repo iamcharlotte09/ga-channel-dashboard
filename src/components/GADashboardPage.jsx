@@ -99,8 +99,15 @@ function getDiscrepancyNotes(discrepancies, periodMode, periodKey, sheetName, ga
   const bucket = periodDiscrepancies[bucketKey];
   if (!bucket) return [];
 
-  if (!gaName) return bucket.overallNotes ?? [];
-  return bucket.gaNotes?.[gaName] ?? [];
+  const notes = [...(bucket.overallNotes ?? [])];
+  if (!gaName) return notes;
+
+  for (const note of bucket.gaNotes?.[gaName] ?? []) {
+    if (!notes.includes(note)) {
+      notes.push(note);
+    }
+  }
+  return notes;
 }
 
 function buildDashboardPrompt({

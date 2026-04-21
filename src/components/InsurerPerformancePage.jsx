@@ -20,6 +20,7 @@ import {
 
 const CHART_COLORS = ["#0f766e", "#ea580c", "#2563eb", "#dc2626", "#7c3aed", "#0891b2"];
 const ALL_INSURERS_NAME = "__ALL__";
+const ALL_SHEETS_NAME = "전체";
 const OVERALL_TABLE_ROW_LIMIT = 100;
 const DETAIL_TABLE_ROW_LIMIT = 20;
 const OTHER_BUCKET_NAME = "기타";
@@ -50,8 +51,15 @@ function getDiscrepancyNotes(discrepancies, periodMode, periodKey, sheetName, in
   const bucket = periodDiscrepancies[bucketKey];
   if (!bucket) return [];
 
-  if (!insurerName) return bucket.overallNotes ?? [];
-  return bucket.insurerNotes?.[insurerName] ?? [];
+  const notes = [...(bucket.overallNotes ?? [])];
+  if (!insurerName) return notes;
+
+  for (const note of bucket.insurerNotes?.[insurerName] ?? []) {
+    if (!notes.includes(note)) {
+      notes.push(note);
+    }
+  }
+  return notes;
 }
 
 function buildInsurerPrompt({
