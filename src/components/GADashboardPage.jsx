@@ -1657,7 +1657,7 @@ export default function GADashboardPage() {
           </div>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
             {discrepancyNotes.map((note) => (
-              <li key={note}>{note}</li>
+              <li key={note} className="whitespace-pre-line">{note}</li>
             ))}
           </ul>
         </section>
