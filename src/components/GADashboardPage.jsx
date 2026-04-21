@@ -24,6 +24,7 @@ const ALL_SHEETS_NAME = "전체";
 const OVERALL_TABLE_ROW_LIMIT = 100;
 const DETAIL_TABLE_ROW_LIMIT = 20;
 const OTHER_BUCKET_NAME = "기타";
+const DISCREPANCY_ALL_SHEETS_KEY = "__ALL__";
 
 function formatSelectionMonthLabel(selectedYear, selectedMonth) {
   if (!selectedYear) return "-";
@@ -88,6 +89,18 @@ function buildHeadlineGuide(topRows) {
 function buildTopFiveShareLine(topRows) {
   const topFiveShare = topRows.slice(0, 5).reduce((sum, row) => sum + row.currentMs, 0);
   return formatPercent(topFiveShare);
+}
+
+function getDiscrepancyNotes(discrepancies, periodMode, periodKey, sheetName, gaName) {
+  const periodDiscrepancies = discrepancies?.[periodMode === "yearly" ? "yearly" : "monthly"]?.[periodKey];
+  if (!periodDiscrepancies) return [];
+
+  const bucketKey = sheetName === ALL_SHEETS_NAME ? DISCREPANCY_ALL_SHEETS_KEY : sheetName;
+  const bucket = periodDiscrepancies[bucketKey];
+  if (!bucket) return [];
+
+  if (!gaName) return bucket.overallNotes ?? [];
+  return bucket.gaNotes?.[gaName] ?? [];
 }
 
 function buildDashboardPrompt({
@@ -1160,6 +1173,13 @@ export default function GADashboardPage() {
     ? highlightedInsurerCandidate
     : "";
   const promptSummaryLabel = `${selectedYear}년 ${selectedMonth === "all" ? "전체" : `${Number(selectedMonth)}월`} ${dashboardState.gaMeta?.gaName ?? "-"} ${dashboardState.selectedSheet?.sheetName ?? selectedSheetName} 기준 GA별 분석 프롬프트입니다.`;
+  const discrepancyNotes = getDiscrepancyNotes(
+    dashboardData.discrepancies,
+    periodMode,
+    dashboardState.activePeriodKey,
+    dashboardState.selectedSheet?.sheetName ?? selectedSheetName,
+    dashboardState.isAllGAView ? null : dashboardState.gaMeta?.gaName
+  );
   const generatedPrompt = buildDashboardPrompt({
     dashboardState,
     selectedGA,
@@ -1621,6 +1641,20 @@ export default function GADashboardPage() {
           ) : null}
         </div>
       </section>
+
+      {discrepancyNotes.length ? (
+        <section className="rounded-[2rem] border border-amber-200 bg-amber-50/70 p-5 shadow-sm">
+          <div className="border-b border-amber-200 pb-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-700">Source Check</p>
+            <h2 className="mt-1 text-xl font-semibold text-slate-900">원본 대비 차이 안내</h2>
+          </div>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
+            {discrepancyNotes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   );
 }

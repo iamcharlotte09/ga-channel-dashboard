@@ -3,11 +3,11 @@
   "sheetTotals": [
     {
       "sheetName": "건강_간편",
-      "totalPerformanceThousandKrw": 8432838.907
+      "totalPerformanceThousandKrw": 8432372.47
     },
     {
       "sheetName": "건강_일반",
-      "totalPerformanceThousandKrw": 4423250.173
+      "totalPerformanceThousandKrw": 4423199.866
     },
     {
       "sheetName": "경정",
@@ -27,11 +27,11 @@
     },
     {
       "sheetName": "변액저축",
-      "totalPerformanceThousandKrw": 4844997.926
+      "totalPerformanceThousandKrw": 4844697.926
     },
     {
       "sheetName": "보장성",
-      "totalPerformanceThousandKrw": 49423362.973
+      "totalPerformanceThousandKrw": 49422846.229
     },
     {
       "sheetName": "상속",
@@ -39,7 +39,7 @@
     },
     {
       "sheetName": "월초",
-      "totalPerformanceThousandKrw": 57645273.526
+      "totalPerformanceThousandKrw": 57644456.782
     },
     {
       "sheetName": "일반저축",
@@ -803,11 +803,6 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "하나생명본사",
-      "totalPerformanceThousandKrw": 466.437
-    },
-    {
-      "sheetName": "건강_간편",
       "gaName": "하이파베스트",
       "totalPerformanceThousandKrw": 987.463
     },
@@ -1530,11 +1525,6 @@
       "sheetName": "건강_일반",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 4428.155
-    },
-    {
-      "sheetName": "건강_일반",
-      "gaName": "하나생명본사",
-      "totalPerformanceThousandKrw": 50.307
     },
     {
       "sheetName": "건강_일반",
@@ -4298,11 +4288,6 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "하나생명본사",
-      "totalPerformanceThousandKrw": 300.0
-    },
-    {
-      "sheetName": "변액저축",
       "gaName": "한국보험금융",
       "totalPerformanceThousandKrw": 129280.0
     },
@@ -5365,11 +5350,6 @@
       "sheetName": "보장성",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 33936.829
-    },
-    {
-      "sheetName": "보장성",
-      "gaName": "하나생명본사",
-      "totalPerformanceThousandKrw": 516.744
     },
     {
       "sheetName": "보장성",
@@ -6953,11 +6933,6 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "하나생명본사",
-      "totalPerformanceThousandKrw": 816.744
-    },
-    {
-      "sheetName": "월초",
       "gaName": "하이파베스트",
       "totalPerformanceThousandKrw": 10507.161
     },
@@ -8151,7 +8126,7 @@
     {
       "sheetName": "건강_간편",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 266562.238
+      "totalPerformanceThousandKrw": 266095.801
     },
     {
       "sheetName": "건강_간편",
@@ -8226,7 +8201,7 @@
     {
       "sheetName": "건강_일반",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 116753.824
+      "totalPerformanceThousandKrw": 116703.517
     },
     {
       "sheetName": "건강_일반",
@@ -8511,7 +8486,7 @@
     {
       "sheetName": "변액저축",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 296270.0
+      "totalPerformanceThousandKrw": 295970.0
     },
     {
       "sheetName": "보장성",
@@ -8596,7 +8571,7 @@
     {
       "sheetName": "보장성",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 2945158.898
+      "totalPerformanceThousandKrw": 2944642.154
     },
     {
       "sheetName": "보장성",
@@ -8731,7 +8706,7 @@
     {
       "sheetName": "월초",
       "insurerName": "하나생명",
-      "totalPerformanceThousandKrw": 3272152.088
+      "totalPerformanceThousandKrw": 3271335.344
     },
     {
       "sheetName": "월초",
