@@ -512,10 +512,7 @@ function DashboardChart({
     <div className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,#fff7ed_0%,#ffffff_56%)] p-4">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-600">
-            {periodMode === "yearly" ? "Recent 3 Years" : "Recent 3 Months"}
-          </p>
-          <h3 className="mt-1 whitespace-nowrap text-lg font-semibold text-slate-900">
+          <h3 className="whitespace-nowrap text-lg font-semibold text-slate-900">
             {chartTitle}
           </h3>
         </div>
