@@ -677,7 +677,7 @@ export default function InsurerPerformancePage() {
   const [yearRecordsMap, setYearRecordsMap] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [aggregationMode, setAggregationMode] = useState("truncated");
+  const [aggregationMode, setAggregationMode] = useState("decimal");
   const [selectedInsurerName, setSelectedInsurerName] = useState(ALL_INSURERS_NAME);
   const [selectedSheetName, setSelectedSheetName] = useState("월초");
   const [selectedYear, setSelectedYear] = useState("");
@@ -931,13 +931,10 @@ export default function InsurerPerformancePage() {
 
   return (
     <div className="space-y-6">
-      <section className="overflow-visible rounded-[2rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_#fff7ed,_#ffffff_55%),linear-gradient(135deg,#f8fafc,#ffffff)] p-6 shadow-sm">
-        <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-          <div className="max-w-3xl flex-1 xl:flex xl:min-h-[21.5rem] xl:flex-col xl:justify-between">
-            <div className="-mt-4 sm:-mt-5 xl:-mt-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-600">
-                INSURER PERFORMANCE
-              </p>
+      <section className="overflow-visible rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="flex flex-col gap-5">
+          <div className="max-w-3xl">
+            <div className="pt-1 sm:pt-1.5">
               <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
                 보험사 상세 분석
               </h1>
@@ -945,38 +942,11 @@ export default function InsurerPerformancePage() {
                 * 본 자료는 보험저널에서 GA별로 취재, 집계된 데이터입니다.
               </p>
             </div>
-
-            <div className="mt-6 grid gap-3 lg:grid-cols-2 xl:mt-4">
-              <div className="rounded-[1.5rem] bg-white/90 px-5 py-4 lg:col-span-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">선택 보험사</p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">{dashboardState.summaryName}</p>
-              </div>
-              <div className="rounded-[1.5rem] bg-white/90 px-5 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  {periodMode === "yearly" ? "당해 실적" : "당월 실적"}
-                </p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">
-                  {formatPerformance(dashboardState.totalPerformance)}
-                </p>
-                <p className="mt-1 text-xs text-slate-400">단위: 천원</p>
-              </div>
-              <div className="rounded-[1.5rem] bg-white/90 px-5 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  최근 12개월 누적 실적
-                </p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">
-                  {dashboardState.recent12TotalPerformance == null
-                    ? "-"
-                    : formatPerformance(dashboardState.recent12TotalPerformance)}
-                </p>
-                <p className="mt-1 text-xs text-slate-400">기준: {dashboardState.recent12RangeLabel}</p>
-              </div>
-            </div>
           </div>
 
-          <div className="w-full xl:w-[33rem] xl:self-end">
-            <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-2">
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5">
+          <div className="w-full rounded-[2.25rem] border border-slate-200 bg-white p-2 shadow-[0_16px_34px_-22px_rgba(15,23,42,0.2)]">
+            <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-[0.8fr_0.8fr_1.8fr_1fr_1.6fr] xl:gap-0">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition xl:rounded-none xl:border-r xl:border-slate-200">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                   연 선택
                 </span>
@@ -984,7 +954,7 @@ export default function InsurerPerformancePage() {
                   <button
                     type="button"
                     onClick={() => setIsYearSelectorOpen((current) => !current)}
-                    className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-semibold text-slate-900"
+                    className="flex w-full items-center justify-between bg-transparent py-0.5 text-left text-lg font-medium text-slate-900"
                   >
                     <span>{selectedYear}</span>
                     <span className="text-slate-400">{isYearSelectorOpen ? "▲" : "▼"}</span>
@@ -1015,7 +985,7 @@ export default function InsurerPerformancePage() {
                 </div>
               </label>
 
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition xl:rounded-none xl:border-r xl:border-slate-200">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                   월 선택
                 </span>
@@ -1023,7 +993,7 @@ export default function InsurerPerformancePage() {
                   <button
                     type="button"
                     onClick={() => setIsMonthSelectorOpen((current) => !current)}
-                    className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-semibold text-slate-900"
+                    className="flex w-full items-center justify-between bg-transparent py-0.5 text-left text-lg font-medium text-slate-900"
                   >
                     <span>{selectedMonth === "all" ? "전체" : Number(selectedMonth || "0")}</span>
                     <span className="text-slate-400">{isMonthSelectorOpen ? "▲" : "▼"}</span>
@@ -1056,7 +1026,7 @@ export default function InsurerPerformancePage() {
                 </div>
               </label>
 
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition md:col-span-2 xl:col-span-1 xl:rounded-none xl:border-r xl:border-slate-200">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                   보험사 선택 ({insurerOptionCount})
                 </span>
@@ -1082,7 +1052,7 @@ export default function InsurerPerformancePage() {
                       }
                     }}
                     placeholder="보험사 입력"
-                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none ring-0 placeholder:font-medium placeholder:text-slate-400 focus:border-orange-300"
+                    className="w-full bg-transparent py-0.5 text-lg font-medium text-slate-900 outline-none ring-0 placeholder:font-medium placeholder:text-slate-400"
                   />
                   {isInsurerSelectorOpen ? (
                     <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-30 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
@@ -1106,7 +1076,7 @@ export default function InsurerPerformancePage() {
                 </div>
               </label>
 
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition md:col-span-1 xl:col-span-1 xl:rounded-none xl:border-r xl:border-slate-200">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                   시트 선택
                 </span>
@@ -1114,7 +1084,7 @@ export default function InsurerPerformancePage() {
                   <button
                     type="button"
                     onClick={() => setIsSheetSelectorOpen((current) => !current)}
-                    className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-semibold text-slate-900"
+                    className="flex w-full items-center justify-between bg-transparent py-0.5 text-left text-lg font-medium text-slate-900"
                   >
                     <span>{dashboardState.selectedSheet?.sheetName ?? selectedSheetName}</span>
                     <span className="text-slate-400">{isSheetSelectorOpen ? "▲" : "▼"}</span>
@@ -1144,7 +1114,7 @@ export default function InsurerPerformancePage() {
                   ) : null}
                 </div>
               </label>
-              <div className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
+              <div className="rounded-[1.45rem] bg-white px-4 py-3 transition md:col-span-1 xl:col-span-1 xl:rounded-none">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                   합산 방법
                 </span>
@@ -1161,7 +1131,7 @@ export default function InsurerPerformancePage() {
                         setCopyFeedback("");
                         setCopyStatus("idle");
                       }}
-                      className={`rounded-xl border px-3 py-2 text-sm font-semibold transition ${
+                      className={`rounded-full border px-3 py-2 text-sm font-semibold transition ${
                         aggregationMode === option.value
                           ? "border-slate-900 bg-slate-900 text-white"
                           : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"
@@ -1190,6 +1160,27 @@ export default function InsurerPerformancePage() {
                 ? `${dashboardState.activePeriodKey} 실적 기준`
                 : `${formatMonthLabel(dashboardState.activePeriodKey)} 실적 기준`}
             </p>
+          </div>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                {periodMode === "yearly" ? "당해 실적" : "당월 실적"}
+              </p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">
+                {formatPerformance(dashboardState.totalPerformance)}
+              </p>
+              <p className="mt-1 text-xs text-slate-400">단위: 천원</p>
+            </div>
+            <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">최근 12개월 누적 실적</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">
+                {dashboardState.recent12TotalPerformance == null
+                  ? "-"
+                  : formatPerformance(dashboardState.recent12TotalPerformance)}
+              </p>
+              <p className="mt-1 text-xs text-slate-400">기준: {dashboardState.recent12RangeLabel}</p>
+            </div>
           </div>
 
           <div className="mt-4 overflow-x-auto">

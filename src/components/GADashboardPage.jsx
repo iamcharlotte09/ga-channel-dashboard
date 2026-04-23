@@ -638,6 +638,31 @@ function buildDashboardState(
     }),
   }));
 
+  const previousTotalForChange = selectedPreviousTotalPerformance;
+  const msChangeRows = [...new Set([
+    ...currentDimensionMap.keys(),
+    ...previousDimensionMap.keys(),
+  ])]
+    .map((name) => {
+      const currentPerformance = currentDimensionMap.get(name) ?? 0;
+      const previousPerformance = previousDimensionMap.get(name) ?? 0;
+      const currentMs = selectedCurrentTotalPerformance > 0
+        ? (currentPerformance / selectedCurrentTotalPerformance) * 100
+        : 0;
+      const previousMs = previousTotalForChange > 0
+        ? (previousPerformance / previousTotalForChange) * 100
+        : 0;
+      return {
+        name,
+        currentMs,
+        previousMs,
+        changeMs: currentMs - previousMs,
+      };
+    })
+    .filter((row) => Math.abs(row.changeMs) > 0)
+    .sort((a, b) => Math.abs(b.changeMs) - Math.abs(a.changeMs))
+    .slice(0, 10);
+
   const topBenchmarkMs = tableRows[0]?.benchmarkMs ?? null;
   const recent12TotalPerformance = rollingMonthKeys.length === 12
     ? rollingMonthKeys.reduce((sum, monthKey) => {
@@ -661,14 +686,16 @@ function buildDashboardState(
         ? "최근 3개년 TOP 5 GA별 MS 추이"
         : "최근 3개월 TOP 5 GA별 MS 추이"
       : periodMode === "yearly"
-        ? "최근 3개년 MS 추이"
-        : "최근 3개월 MS 추이";
+        ? "TOP 5 최근 3개년 MS 추이"
+        : "TOP 5 최근 3개월 MS 추이";
   const pieChartTitle = isAllSheetsView
     ? "전체 상품군 비중"
     : isAllGAView
       ? "전체 GA 상품군 비중"
       : `${gaMeta?.gaName ?? "선택한 GA"} 상품군 비중`;
-  const tableTitle = isAllGAView ? "전체 GA 순위" : `${gaMeta?.gaName ?? "선택한 GA"} 판매 보험사 순위`;
+  const tableTitle = isAllGAView
+    ? "전체 GA 순위"
+    : `${gaMeta?.gaName ?? "선택한 GA"} ${selectedSheet?.sheetName ?? selectedSheetName} 판매 보험사 순위`;
   const summaryDescription = isAllGAView
     ? "시장 전체 기준 GA 순위와 최근 흐름"
     : isProductSheet
@@ -694,6 +721,7 @@ function buildDashboardState(
     totalPerformance,
     tableRows,
     chartSeries,
+    msChangeRows,
     pieSlices: isProductSheet
         ? buildProductMixSlices(
           allSheetRecords,
@@ -848,6 +876,52 @@ function DashboardChart({
   );
 }
 
+function MsChangeChart({ rows, title, deltaLabel }) {
+  const maxAbsValue = Math.max(0.5, ...rows.map((row) => Math.abs(row.changeMs)));
+
+  return (
+    <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="mb-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">{deltaLabel}</p>
+        <h3 className="mt-1 text-lg font-semibold text-slate-900">{title}</h3>
+      </div>
+
+      {rows.length ? (
+        <div className="space-y-3">
+          {rows.map((row) => {
+            const width = `${(Math.abs(row.changeMs) / maxAbsValue) * 100}%`;
+            const isPositive = row.changeMs > 0;
+            return (
+              <div key={row.name} className="grid gap-1.5">
+                <div className="flex items-center justify-between gap-3 text-sm">
+                  <span className="truncate font-medium text-slate-900">{row.name}</span>
+                  <span className={isPositive ? "font-semibold text-emerald-700" : "font-semibold text-rose-700"}>
+                    {`${isPositive ? "+" : ""}${row.changeMs.toFixed(1)}%p`}
+                  </span>
+                </div>
+                <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+                  <div
+                    className={`h-full rounded-full ${isPositive ? "bg-emerald-500" : "bg-rose-500"}`}
+                    style={{ width }}
+                  />
+                </div>
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span>이전 {formatPercent(row.previousMs)}</span>
+                  <span>현재 {formatPercent(row.currentMs)}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="rounded-2xl bg-slate-50 px-4 py-6 text-sm text-slate-500">
+          비교 가능한 전월 데이터가 없습니다.
+        </div>
+      )}
+    </div>
+  );
+}
+
 function PieChart({ title, slices }) {
   const radius = 86;
   const centerX = 130;
@@ -924,7 +998,7 @@ export default function GADashboardPage() {
   const [yearRecordsMap, setYearRecordsMap] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [aggregationMode, setAggregationMode] = useState("truncated");
+  const [aggregationMode, setAggregationMode] = useState("decimal");
   const [selectedRegistrationNumber, setSelectedRegistrationNumber] = useState("");
   const [selectedSheetName, setSelectedSheetName] = useState("월초");
   const [selectedYear, setSelectedYear] = useState("");
@@ -1243,13 +1317,10 @@ export default function GADashboardPage() {
 
   return (
     <div className="space-y-6">
-      <section className="overflow-visible rounded-[2rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_#fff7ed,_#ffffff_55%),linear-gradient(135deg,#f8fafc,#ffffff)] p-6 shadow-sm">
-        <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-          <div className="max-w-3xl flex-1 xl:flex xl:min-h-[21.5rem] xl:flex-col xl:justify-between">
-            <div className="-mt-4 sm:-mt-5 xl:-mt-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-600">
-                GA PERFORMANCE
-              </p>
+      <section className="overflow-visible rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="flex flex-col gap-5">
+          <div className="max-w-3xl">
+            <div className="pt-1 sm:pt-1.5">
               <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
                 GA 상세 분석
               </h1>
@@ -1258,37 +1329,11 @@ export default function GADashboardPage() {
               </p>
             </div>
 
-            <div className="mt-6 grid gap-3 lg:grid-cols-2 xl:mt-4">
-              <div className="rounded-[1.5rem] bg-white/90 px-5 py-4 lg:col-span-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">선택 GA</p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">{dashboardState.gaMeta?.gaName ?? "-"}</p>
-              </div>
-              <div className="rounded-[1.5rem] bg-white/90 px-5 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  {periodMode === "yearly" ? "당해 실적" : "당월 실적"}
-                </p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">
-                  {formatPerformance(dashboardState.totalPerformance)}
-                </p>
-                <p className="mt-1 text-xs text-slate-400">단위: 천원</p>
-              </div>
-              <div className="rounded-[1.5rem] bg-white/90 px-5 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  최근 12개월 누적 실적
-                </p>
-                <p className="mt-2 text-xl font-semibold text-slate-900">
-                  {dashboardState.recent12TotalPerformance == null
-                    ? "-"
-                    : formatPerformance(dashboardState.recent12TotalPerformance)}
-                </p>
-                <p className="mt-1 text-xs text-slate-400">기준: {dashboardState.recent12RangeLabel}</p>
-              </div>
-            </div>
           </div>
 
-          <div className="w-full xl:w-[33rem] xl:self-end">
-            <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-2">
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5">
+          <div className="w-full rounded-[2.25rem] border border-slate-200 bg-white p-2 shadow-[0_16px_34px_-22px_rgba(15,23,42,0.2)]">
+            <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-[0.8fr_0.8fr_1.8fr_1fr_1.6fr] xl:gap-0">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition xl:rounded-none xl:border-r xl:border-slate-200">
               <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 연 선택
               </span>
@@ -1296,7 +1341,7 @@ export default function GADashboardPage() {
                 <button
                   type="button"
                   onClick={() => setIsYearSelectorOpen((current) => !current)}
-                  className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-semibold text-slate-900"
+                  className="flex w-full items-center justify-between bg-transparent py-0.5 text-left text-lg font-medium text-slate-900"
                 >
                   <span>{selectedYear}</span>
                   <span className="text-slate-400">{isYearSelectorOpen ? "▲" : "▼"}</span>
@@ -1328,7 +1373,7 @@ export default function GADashboardPage() {
               </div>
               </label>
 
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition xl:rounded-none xl:border-r xl:border-slate-200">
               <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 월 선택
               </span>
@@ -1336,7 +1381,7 @@ export default function GADashboardPage() {
                 <button
                   type="button"
                   onClick={() => setIsMonthSelectorOpen((current) => !current)}
-                  className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-semibold text-slate-900"
+                  className="flex w-full items-center justify-between bg-transparent py-0.5 text-left text-lg font-medium text-slate-900"
                 >
                   <span>{selectedMonth === "all" ? "전체" : Number(selectedMonth || "0")}</span>
                   <span className="text-slate-400">{isMonthSelectorOpen ? "▲" : "▼"}</span>
@@ -1370,7 +1415,7 @@ export default function GADashboardPage() {
               </div>
               </label>
 
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition md:col-span-2 xl:col-span-1 xl:rounded-none xl:border-r xl:border-slate-200">
               <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 GA 선택 ({gaOptionCount})
               </span>
@@ -1394,7 +1439,7 @@ export default function GADashboardPage() {
                     }
                   }}
                   placeholder="GA명 또는 등록번호 입력"
-                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none ring-0 placeholder:font-medium placeholder:text-slate-400 focus:border-orange-300"
+                  className="w-full bg-transparent py-0.5 text-lg font-medium text-slate-900 outline-none ring-0 placeholder:font-medium placeholder:text-slate-400"
                 />
                 {isGASelectorOpen ? (
                   <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-30 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
@@ -1434,7 +1479,7 @@ export default function GADashboardPage() {
               </div>
               </label>
 
-              <label className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
+              <label className="rounded-[1.45rem] bg-white px-4 py-3 transition md:col-span-1 xl:col-span-1 xl:rounded-none xl:border-r xl:border-slate-200">
               <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 시트 선택
               </span>
@@ -1442,7 +1487,7 @@ export default function GADashboardPage() {
                 <button
                   type="button"
                   onClick={() => setIsSheetSelectorOpen((current) => !current)}
-                  className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-semibold text-slate-900"
+                  className="flex w-full items-center justify-between bg-transparent py-0.5 text-left text-lg font-medium text-slate-900"
                 >
                   <span>{dashboardState.selectedSheet?.sheetName ?? selectedSheetName}</span>
                   <span className="text-slate-400">{isSheetSelectorOpen ? "▲" : "▼"}</span>
@@ -1474,7 +1519,7 @@ export default function GADashboardPage() {
               </div>
               </label>
 
-              <div className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 sm:col-span-2">
+              <div className="rounded-[1.45rem] bg-white px-4 py-3 transition md:col-span-1 xl:col-span-1 xl:rounded-none">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                   합산 방법
                 </span>
@@ -1491,7 +1536,7 @@ export default function GADashboardPage() {
                         setCopyFeedback("");
                         setCopyStatus("idle");
                       }}
-                      className={`rounded-xl border px-3 py-2 text-sm font-semibold transition ${
+                      className={`rounded-full border px-3 py-2 text-sm font-semibold transition ${
                         aggregationMode === option.value
                           ? "border-slate-900 bg-slate-900 text-white"
                           : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"
@@ -1522,6 +1567,25 @@ export default function GADashboardPage() {
                 ? `${dashboardState.activePeriodKey} 실적 기준`
                 : `${formatMonthLabel(dashboardState.activePeriodKey)} 실적 기준`}
             </p>
+          </div>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">당월 실적</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">
+                {formatPerformance(dashboardState.totalPerformance)}
+              </p>
+              <p className="mt-1 text-xs text-slate-400">단위: 천원</p>
+            </div>
+            <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">최근 12개월 누적 실적</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">
+                {dashboardState.recent12TotalPerformance == null
+                  ? "-"
+                  : formatPerformance(dashboardState.recent12TotalPerformance)}
+              </p>
+              <p className="mt-1 text-xs text-slate-400">기준: {dashboardState.recent12RangeLabel}</p>
+            </div>
           </div>
 
           <div className="mt-4 overflow-x-auto">
@@ -1599,6 +1663,11 @@ export default function GADashboardPage() {
             onLeaveInsurer={() => setHoveredInsurerName("")}
             chartTitle={dashboardState.chartTitle}
             periodMode={periodMode}
+          />
+          <MsChangeChart
+            rows={dashboardState.msChangeRows}
+            title={periodMode === "yearly" ? "전년 대비 MS 변화 Top 10" : "전월 대비 MS 변화 Top 10"}
+            deltaLabel={dashboardState.deltaLabel}
           />
           {dashboardState.isProductSheet ? (
             <PieChart
