@@ -754,13 +754,30 @@ function DashboardChart({
 }) {
   const width = 520;
   const height = 320;
-  const padding = { top: 24, right: 18, bottom: 40, left: 44 };
+  const padding = { top: 24, right: 86, bottom: 40, left: 44 };
   const plotWidth = width - padding.left - padding.right;
   const plotHeight = height - padding.top - padding.bottom;
   const maxValue = Math.max(
     5,
     ...chartSeries.flatMap((series) => series.points.map((point) => point.ms))
   );
+  const labelPositionMap = new Map();
+  let previousLabelY = -Infinity;
+
+  [...chartSeries]
+    .sort((a, b) => {
+      const aLast = a.points[a.points.length - 1]?.ms ?? 0;
+      const bLast = b.points[b.points.length - 1]?.ms ?? 0;
+      return bLast - aLast;
+    })
+    .forEach((series) => {
+      const lastPoint = series.points[series.points.length - 1];
+      const baseY = padding.top + plotHeight - ((lastPoint?.ms ?? 0) / maxValue) * plotHeight;
+      const adjustedY = Math.max(baseY, previousLabelY + 16);
+      const clampedY = Math.min(adjustedY, height - padding.bottom + 2);
+      labelPositionMap.set(series.name, clampedY);
+      previousLabelY = clampedY;
+    });
 
   return (
     <div className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,#fff7ed_0%,#ffffff_56%)] p-4">
@@ -772,26 +789,6 @@ function DashboardChart({
           <h3 className="mt-1 whitespace-nowrap text-lg font-semibold text-slate-900">
             {chartTitle}
           </h3>
-        </div>
-        <div className="flex flex-wrap justify-end gap-2">
-          {chartSeries.map((series) => {
-            const isActive = highlightedInsurer === series.name;
-            return (
-              <button
-                key={series.name}
-                type="button"
-                onMouseEnter={() => onHoverInsurer(series.name)}
-                onMouseLeave={onLeaveInsurer}
-                className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
-                  isActive
-                    ? "border-slate-900 bg-slate-900 text-white"
-                    : "border-slate-200 bg-white text-slate-600"
-                }`}
-              >
-                {series.name}
-              </button>
-            );
-          })}
         </div>
       </div>
 
@@ -863,15 +860,21 @@ function DashboardChart({
                   />
                 );
               })}
+              <text
+                x={width - padding.right + 10}
+                y={labelPositionMap.get(series.name) ?? padding.top}
+                fontSize="11"
+                fontWeight="600"
+                fill={series.color}
+                opacity={highlightedInsurer && !isActive ? 0.35 : 1}
+              >
+                {series.name}
+              </text>
             </g>
           );
         })}
 
       </svg>
-
-      <div className="mt-4 rounded-2xl bg-white/80 px-4 py-3 text-sm leading-6 text-slate-600">
-        완만한 상승은 점진적 확대, 급등 후 하락은 일시적 반짝 가능성, 여러 선의 교차는 보험사 간 경쟁구도 변화를 의미합니다.
-      </div>
     </div>
   );
 }
@@ -1559,7 +1562,16 @@ export default function GADashboardPage() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Rank Table</p>
               <h2 className="mt-1 text-xl font-semibold text-slate-900">
-                {dashboardState.tableTitle}
+                {dashboardState.isAllGAView ? (
+                  dashboardState.tableTitle
+                ) : (
+                  <>
+                    <span className="text-slate-900">
+                      {dashboardState.gaMeta?.gaName ?? "선택한 GA"} {dashboardState.selectedSheet?.sheetName ?? selectedSheetName}
+                    </span>{" "}
+                    <span className="text-slate-900">판매 보험사 순위</span>
+                  </>
+                )}
               </h2>
             </div>
             <p className="text-sm text-slate-500">
@@ -1598,7 +1610,6 @@ export default function GADashboardPage() {
                   <th className="px-3 py-2 text-right">실적(천원)</th>
                   <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
                   <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.benchmarkHeaderLabel}</th>
-                  <th className="px-3 py-2 text-right">Gap</th>
                 </tr>
               </thead>
               <tbody>
@@ -1630,11 +1641,8 @@ export default function GADashboardPage() {
                       <td className="px-3 py-3 text-right font-medium text-slate-700">
                         {formatPercent(row.currentMs)}
                       </td>
-                      <td className="px-3 py-3 text-right text-slate-500">
+                      <td className="rounded-r-2xl px-3 py-3 text-right text-slate-500">
                         {formatPercent(row.benchmarkMs)}
-                      </td>
-                      <td className={`rounded-r-2xl px-3 py-3 text-right font-semibold ${getGapTone(row.gap ?? 0)}`}>
-                        {row.gap == null ? "-" : `${row.gap > 0 ? "+" : ""}${row.gap.toFixed(1)}%p`}
                       </td>
                     </tr>
                   );
@@ -1648,7 +1656,6 @@ export default function GADashboardPage() {
               <li>MS(%): 선택한 기간의 전체 실적 대비 해당 대상이 차지하는 비중</li>
               <li>{dashboardState.deltaLabel}: 직전 기간과 비교한 순위 변동</li>
               <li>{dashboardState.benchmarkLabel}: 최근 12개월 동안의 해당 대상 실적 합계를 전체 실적 합계로 나누어 계산한 점유율</li>
-              <li>Gap: 현재 MS와 최근 12개월 MS의 차이(%p)</li>
               {dashboardState.isProductSheet ? <li>우측 파이차트: 선택한 보험사 내부의 상품군 비중</li> : null}
             </ul>
           </div>

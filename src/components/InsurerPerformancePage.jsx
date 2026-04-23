@@ -486,10 +486,27 @@ function DashboardChart({
 }) {
   const width = 520;
   const height = 320;
-  const padding = { top: 24, right: 18, bottom: 40, left: 44 };
+  const padding = { top: 24, right: 86, bottom: 40, left: 44 };
   const plotWidth = width - padding.left - padding.right;
   const plotHeight = height - padding.top - padding.bottom;
   const maxValue = Math.max(5, ...chartSeries.flatMap((series) => series.points.map((point) => point.ms)));
+  const labelPositionMap = new Map();
+  let previousLabelY = -Infinity;
+
+  [...chartSeries]
+    .sort((a, b) => {
+      const aLast = a.points[a.points.length - 1]?.ms ?? 0;
+      const bLast = b.points[b.points.length - 1]?.ms ?? 0;
+      return bLast - aLast;
+    })
+    .forEach((series) => {
+      const lastPoint = series.points[series.points.length - 1];
+      const baseY = padding.top + plotHeight - ((lastPoint?.ms ?? 0) / maxValue) * plotHeight;
+      const adjustedY = Math.max(baseY, previousLabelY + 16);
+      const clampedY = Math.min(adjustedY, height - padding.bottom + 2);
+      labelPositionMap.set(series.name, clampedY);
+      previousLabelY = clampedY;
+    });
 
   return (
     <div className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,#fff7ed_0%,#ffffff_56%)] p-4">
@@ -501,26 +518,6 @@ function DashboardChart({
           <h3 className="mt-1 whitespace-nowrap text-lg font-semibold text-slate-900">
             {chartTitle}
           </h3>
-        </div>
-        <div className="flex flex-wrap justify-end gap-2">
-          {chartSeries.map((series) => {
-            const isActive = highlightedName === series.name;
-            return (
-              <button
-                key={series.name}
-                type="button"
-                onMouseEnter={() => onHoverName(series.name)}
-                onMouseLeave={onLeaveName}
-                className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
-                  isActive
-                    ? "border-slate-900 bg-slate-900 text-white"
-                    : "border-slate-200 bg-white text-slate-600"
-                }`}
-              >
-                {series.name}
-              </button>
-            );
-          })}
         </div>
       </div>
 
@@ -593,6 +590,16 @@ function DashboardChart({
                   />
                 );
               })}
+              <text
+                x={width - padding.right + 10}
+                y={labelPositionMap.get(series.name) ?? padding.top}
+                fontSize="11"
+                fontWeight="600"
+                fill={series.color}
+                opacity={highlightedName && !isActive ? 0.35 : 1}
+              >
+                {series.name}
+              </text>
             </g>
           );
         })}
@@ -1193,7 +1200,6 @@ export default function InsurerPerformancePage() {
                   <th className="px-3 py-2 text-right">실적(천원)</th>
                   <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
                   <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.benchmarkHeaderLabel}</th>
-                  <th className="px-3 py-2 text-right">Gap</th>
                 </tr>
               </thead>
               <tbody>
@@ -1221,10 +1227,7 @@ export default function InsurerPerformancePage() {
                       </td>
                       <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPerformance(row.performance)}</td>
                       <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPercent(row.currentMs)}</td>
-                      <td className="px-3 py-3 text-right text-slate-500">{formatPercent(row.benchmarkMs)}</td>
-                      <td className={`rounded-r-2xl px-3 py-3 text-right font-semibold ${getGapTone(row.gap ?? 0)}`}>
-                        {row.gap == null ? "-" : `${row.gap > 0 ? "+" : ""}${row.gap.toFixed(1)}%p`}
-                      </td>
+                      <td className="rounded-r-2xl px-3 py-3 text-right text-slate-500">{formatPercent(row.benchmarkMs)}</td>
                     </tr>
                   );
                 })}
@@ -1237,7 +1240,6 @@ export default function InsurerPerformancePage() {
               <li>MS(%): 선택한 기간의 전체 실적 대비 해당 대상이 차지하는 비중</li>
               <li>{dashboardState.deltaLabel}: 직전 기간과 비교한 순위 변동</li>
               <li>{dashboardState.benchmarkLabel}: 최근 12개월 동안의 해당 대상 실적 합계를 전체 실적 합계로 나누어 계산한 점유율</li>
-              <li>Gap: 현재 MS와 최근 12개월 MS의 차이(%p)</li>
               {dashboardState.isProductSheet ? <li>우측 파이차트: 선택 항목 내부의 상품군 비중</li> : null}
             </ul>
           </div>
