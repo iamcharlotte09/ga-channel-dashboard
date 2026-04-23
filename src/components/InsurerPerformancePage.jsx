@@ -481,7 +481,7 @@ function buildInsurerDashboardState(
       : `${selectedInsurerName} 상품군 비중`,
     tableTitle: isAllInsurersView
       ? "전체 보험사 순위"
-      : `${selectedInsurerName} 판매 GA Top 20`,
+      : `${selectedInsurerName} ${selectedSheet?.sheetName ?? selectedSheetName} 판매 GA Top 20`,
     benchmarkLabel: periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월 MS(%)",
     benchmarkHeaderLabel: periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월\nMS(%)",
     deltaLabel: periodMode === "yearly" ? "전년 대비" : "전월 대비",
