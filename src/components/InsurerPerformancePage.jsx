@@ -13,7 +13,6 @@ import {
   formatPercent,
   formatPerformance,
   formatPeriodRangeLabel,
-  getGapTone,
   getRankDelta,
   summarizeNames,
 } from "../lib/dashboardFormatters";
@@ -37,10 +36,9 @@ function formatAggregationModeLabel(aggregationMode) {
   return aggregationMode === "decimal" ? "행별 소수점 포함" : "행별 소수점 제외";
 }
 
-function formatChangePercent(currentValue, previousValue) {
-  if (!previousValue) return "비교 불가";
-  const change = ((currentValue - previousValue) / previousValue) * 100;
-  return `${change > 0 ? "+" : ""}${change.toFixed(1)}%`;
+function formatChartLabel(name) {
+  if (!name) return "";
+  return name.length > 4 ? `${name.slice(0, 4)}..` : name;
 }
 
 function getDiscrepancyNotes(discrepancies, periodMode, periodKey, sheetName, insurerName) {
@@ -154,9 +152,9 @@ function buildInsurerPrompt({
     "- 제목은 반드시 한 줄",
     "- 제목은 기사 핵심 구도가 바로 드러나게 작성",
     "- 상위 집중도가 핵심이면:",
-    `  "{보험사명} {월} GA {시장구분} 실적 M/S…‘{핵심 GA1}·{핵심 GA2}·{핵심 GA3}’ 상위 3개사 점유율 {합산 점유율}%"`,
+    `  "{보험사명} {월} GA 생보실적 M/S…‘{핵심 GA1}·{핵심 GA2}·{핵심 GA3}’ 상위 3개사 점유율 {합산 점유율}%"`,
     "- 1위 GA가 핵심이면:",
-    `  "{보험사명} {월} GA {시장구분} 실적 M/S…‘{1위 GA}’ 1위 유지 속, ‘{2위 GA}·{3위 GA}’ 상위권 형성"`,
+    `  "{보험사명} {월} GA 생보실적 M/S…‘{1위 GA}’ 1위 유지 속, ‘{2위 GA}·{3위 GA}’ 상위권 형성"`,
     "",
     "[본문 구성]",
     "- 1문단: 전체 실적과 전월 대비 흐름을 짧게 요약하고, 1위 GA를 함께 제시",
@@ -169,6 +167,7 @@ function buildInsurerPrompt({
     "[용어 규칙]",
     "- 기사 본문에서는 M/S라는 표현 대신 반드시 ‘점유율’로 표기할 것",
     "- 제목에서는 필요할 경우만 M/S를 사용할 수 있으나, 본문에서는 모두 ‘점유율’로 통일할 것",
+    "- 기사 본문에서 ‘GA 월초 실적은’이라는 표현 대신 반드시 ‘GA 채널 신계약 실적은’으로 바꿔 쓸 것",
     "",
     "[중위권 서술 규칙]",
     "- 중위권은 특이점이 없으면 별도의 전월 비교나 해석 없이 간결하게 정리할 것",
@@ -427,6 +426,30 @@ function buildInsurerDashboardState(
           : previousPeriod.totalPerformance
       )
     : null;
+  const previousTotalForChange = previousTotalPerformance ?? 0;
+  const msChangeRows = [...new Set([
+    ...currentPeriod.dimensions.keys(),
+    ...previousPeriod.dimensions.keys(),
+  ])]
+    .map((name) => {
+      const currentPerformance = currentPeriod.dimensions.get(name) ?? 0;
+      const previousPerformance = previousPeriod.dimensions.get(name) ?? 0;
+      const currentMs = currentPeriod.totalPerformance > 0
+        ? (currentPerformance / currentPeriod.totalPerformance) * 100
+        : 0;
+      const previousMs = previousTotalForChange > 0
+        ? (previousPerformance / previousTotalForChange) * 100
+        : 0;
+      return {
+        name,
+        currentMs,
+        previousMs,
+        changeMs: currentMs - previousMs,
+      };
+    })
+    .filter((row) => Math.abs(row.changeMs) > 0)
+    .sort((a, b) => Math.abs(b.changeMs) - Math.abs(a.changeMs))
+    .slice(0, 10);
 
   return {
     isAllInsurersView,
@@ -445,6 +468,7 @@ function buildInsurerDashboardState(
       : "-",
     tableRows,
     chartSeries,
+    msChangeRows,
     chartTitle: isAllInsurersView
         ? periodMode === "yearly"
           ? "최근 3개년 TOP 5 보험사별 MS 추이"
@@ -590,17 +614,62 @@ function DashboardChart({
               <text
                 x={width - padding.right + 10}
                 y={labelPositionMap.get(series.name) ?? padding.top}
-                fontSize="11"
+                fontSize="14"
                 fontWeight="600"
                 fill={series.color}
                 opacity={highlightedName && !isActive ? 0.35 : 1}
               >
-                {series.name}
+                {formatChartLabel(series.name)}
               </text>
             </g>
           );
         })}
       </svg>
+    </div>
+  );
+}
+
+function MsChangeChart({ rows, title }) {
+  const maxAbsValue = Math.max(0.5, ...rows.map((row) => Math.abs(row.changeMs)));
+
+  return (
+    <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+      </div>
+
+      {rows.length ? (
+        <div className="space-y-3">
+          {rows.map((row) => {
+            const width = `${(Math.abs(row.changeMs) / maxAbsValue) * 100}%`;
+            const isPositive = row.changeMs > 0;
+            return (
+              <div key={row.name} className="grid gap-1.5">
+                <div className="flex items-center justify-between gap-3 text-sm">
+                  <span className="truncate font-medium text-slate-900">{row.name}</span>
+                  <span className={isPositive ? "font-semibold text-emerald-700" : "font-semibold text-rose-700"}>
+                    {`${isPositive ? "+" : ""}${row.changeMs.toFixed(1)}%p`}
+                  </span>
+                </div>
+                <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+                  <div
+                    className={`h-full rounded-full ${isPositive ? "bg-emerald-500" : "bg-rose-500"}`}
+                    style={{ width }}
+                  />
+                </div>
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span>이전 {formatPercent(row.previousMs)}</span>
+                  <span>현재 {formatPercent(row.currentMs)}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="rounded-2xl bg-slate-50 px-4 py-6 text-sm text-slate-500">
+          비교 가능한 전월 데이터가 없습니다.
+        </div>
+      )}
     </div>
   );
 }
@@ -947,7 +1016,6 @@ export default function InsurerPerformancePage() {
               </p>
             </div>
           </div>
-
           <div className="w-full rounded-[2.25rem] border border-slate-200 bg-white p-2 shadow-[0_16px_34px_-22px_rgba(15,23,42,0.2)]">
             <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-[0.8fr_0.8fr_1.8fr_1fr_1.6fr] xl:gap-0">
               <label className="rounded-[1.45rem] bg-white px-4 py-3 transition xl:rounded-none xl:border-r xl:border-slate-200">
@@ -1188,18 +1256,18 @@ export default function InsurerPerformancePage() {
           </div>
 
           <div className="mt-4 overflow-x-auto">
-            <table className="min-w-full border-separate border-spacing-y-2 text-sm">
+            <table className="min-w-full border-collapse text-sm">
               <thead>
-                <tr className="text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                <tr className="border-b border-slate-200 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
                   <th className="px-3 py-2">순위</th>
-                  <th className="px-3 py-2 whitespace-nowrap">{dashboardState.deltaLabel}</th>
+                  <th className="whitespace-nowrap px-3 py-2">{dashboardState.deltaLabel}</th>
                   <th className="px-3 py-2">{dashboardState.dimensionLabel}</th>
                   <th className="px-3 py-2 text-right">실적(천원)</th>
                   <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
                   <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.benchmarkHeaderLabel}</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-slate-200">
                 {dashboardState.tableRows.map((row) => {
                   const isHovered = hoveredGAName === row.name;
                   return (
@@ -1207,13 +1275,13 @@ export default function InsurerPerformancePage() {
                       key={row.name}
                       onMouseEnter={() => setHoveredGAName(row.name)}
                       onMouseLeave={() => setHoveredGAName("")}
-                      className={`cursor-pointer rounded-2xl transition ${
+                      className={`cursor-pointer transition ${
                         isHovered
-                          ? "bg-orange-50 shadow-[inset_0_0_0_1px_rgba(249,115,22,0.25)]"
-                          : "bg-slate-50"
+                          ? "bg-orange-50"
+                          : "bg-white"
                       }`}
                     >
-                      <td className="rounded-l-2xl px-3 py-3 font-semibold text-slate-900">{row.rank}</td>
+                      <td className="px-3 py-3 font-semibold text-slate-900">{row.rank}</td>
                       <td className="whitespace-nowrap px-3 py-3">
                         <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${row.delta.tone}`}>
                           {row.delta.label}
@@ -1224,7 +1292,7 @@ export default function InsurerPerformancePage() {
                       </td>
                       <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPerformance(row.performance)}</td>
                       <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPercent(row.currentMs)}</td>
-                      <td className="rounded-r-2xl px-3 py-3 text-right text-slate-500">{formatPercent(row.benchmarkMs)}</td>
+                      <td className="px-3 py-3 text-right text-slate-500">{formatPercent(row.benchmarkMs)}</td>
                     </tr>
                   );
                 })}
@@ -1251,6 +1319,10 @@ export default function InsurerPerformancePage() {
             onLeaveName={() => setHoveredGAName("")}
             chartTitle={dashboardState.chartTitle}
             periodMode={periodMode}
+          />
+          <MsChangeChart
+            rows={dashboardState.msChangeRows}
+            title={periodMode === "yearly" ? "전년 대비 MS 변화 Top 10" : "전월 대비 MS 변화 Top 10"}
           />
           {dashboardState.isProductSheet ? (
             <PieChart

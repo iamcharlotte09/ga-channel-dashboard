@@ -13,7 +13,6 @@ import {
   formatPercent,
   formatPerformance,
   formatPeriodRangeLabel,
-  getGapTone,
   getRankDelta,
   summarizeNames,
 } from "../lib/dashboardFormatters";
@@ -48,6 +47,11 @@ function formatRankChangeLabel(deltaLabel) {
 function formatSignedPercentPoint(value) {
   if (value == null) return "-";
   return `${value > 0 ? "+" : ""}${value.toFixed(1)}%p`;
+}
+
+function formatChartLabel(name) {
+  if (!name) return "";
+  return name.length > 4 ? `${name.slice(0, 4)}..` : name;
 }
 
 function formatChangePercent(currentValue, previousValue) {
@@ -680,7 +684,6 @@ function buildDashboardState(
   const benchmarkLabel = periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월 MS(%)";
   const benchmarkHeaderLabel = periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월\nMS(%)";
   const deltaLabel = periodMode === "yearly" ? "전년 대비" : "전월 대비";
-  const selectedFocusName = tableRows[0]?.name || "";
   const lineChartTitle = isAllGAView
       ? periodMode === "yearly"
         ? "최근 3개년 TOP 5 GA별 MS 추이"
@@ -696,11 +699,6 @@ function buildDashboardState(
   const tableTitle = isAllGAView
     ? "전체 GA 순위"
     : `${gaMeta?.gaName ?? "선택한 GA"} ${selectedSheet?.sheetName ?? selectedSheetName} 판매 보험사 순위`;
-  const summaryDescription = isAllGAView
-    ? "시장 전체 기준 GA 순위와 최근 흐름"
-    : isProductSheet
-      ? "보험사 순위와 선택 보험사 상품군 비중"
-      : "";
 
   return {
     gaMeta,
@@ -732,14 +730,12 @@ function buildDashboardState(
           aggregationMode
         )
       : [],
-    selectedInsurerName: selectedFocusName,
     benchmarkLabel,
     benchmarkHeaderLabel,
     deltaLabel,
     chartTitle: lineChartTitle,
     pieChartTitle,
     tableTitle,
-    summaryDescription,
   };
 }
 
@@ -860,12 +856,12 @@ function DashboardChart({
               <text
                 x={width - padding.right + 10}
                 y={labelPositionMap.get(series.name) ?? padding.top}
-                fontSize="11"
+                fontSize="14"
                 fontWeight="600"
                 fill={series.color}
                 opacity={highlightedInsurer && !isActive ? 0.35 : 1}
               >
-                {series.name}
+                {formatChartLabel(series.name)}
               </text>
             </g>
           );
@@ -876,7 +872,7 @@ function DashboardChart({
   );
 }
 
-function MsChangeChart({ rows, title, deltaLabel }) {
+function MsChangeChart({ rows, title }) {
   const maxAbsValue = Math.max(0.5, ...rows.map((row) => Math.abs(row.changeMs)));
 
   return (
@@ -1329,7 +1325,6 @@ export default function GADashboardPage() {
             </div>
 
           </div>
-
           <div className="w-full rounded-[2.25rem] border border-slate-200 bg-white p-2 shadow-[0_16px_34px_-22px_rgba(15,23,42,0.2)]">
             <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-[0.8fr_0.8fr_1.8fr_1fr_1.6fr] xl:gap-0">
               <label className="rounded-[1.45rem] bg-white px-4 py-3 transition xl:rounded-none xl:border-r xl:border-slate-200">
@@ -1597,18 +1592,18 @@ export default function GADashboardPage() {
           </div>
 
           <div className="mt-4 overflow-x-auto">
-            <table className="min-w-full border-separate border-spacing-y-2 text-sm">
+            <table className="min-w-full border-collapse text-sm">
               <thead>
-                <tr className="text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                <tr className="border-b border-slate-200 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
                   <th className="px-3 py-2">순위</th>
-                  <th className="px-3 py-2 whitespace-nowrap">{dashboardState.deltaLabel}</th>
+                  <th className="whitespace-nowrap px-3 py-2">{dashboardState.deltaLabel}</th>
                   <th className="px-3 py-2">{dashboardState.dimensionLabel === "GA" ? "GA명" : dashboardState.dimensionLabel}</th>
                   <th className="px-3 py-2 text-right">실적(천원)</th>
                   <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
                   <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.benchmarkHeaderLabel}</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-slate-200">
                 {dashboardState.tableRows.map((row) => {
                   const isHovered = hoveredInsurerName === row.name;
                   return (
@@ -1616,13 +1611,13 @@ export default function GADashboardPage() {
                       key={row.name}
                       onMouseEnter={() => setHoveredInsurerName(row.name)}
                       onMouseLeave={() => setHoveredInsurerName("")}
-                      className={`cursor-pointer rounded-2xl transition ${
+                      className={`cursor-pointer transition ${
                         isHovered
-                          ? "bg-orange-50 shadow-[inset_0_0_0_1px_rgba(249,115,22,0.25)]"
-                          : "bg-slate-50"
+                          ? "bg-orange-50"
+                          : "bg-white"
                       }`}
                     >
-                      <td className="rounded-l-2xl px-3 py-3 font-semibold text-slate-900">{row.rank}</td>
+                      <td className="px-3 py-3 font-semibold text-slate-900">{row.rank}</td>
                       <td className="whitespace-nowrap px-3 py-3">
                         <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${row.delta.tone}`}>
                           {row.delta.label}
@@ -1637,7 +1632,7 @@ export default function GADashboardPage() {
                       <td className="px-3 py-3 text-right font-medium text-slate-700">
                         {formatPercent(row.currentMs)}
                       </td>
-                      <td className="rounded-r-2xl px-3 py-3 text-right text-slate-500">
+                      <td className="px-3 py-3 text-right text-slate-500">
                         {formatPercent(row.benchmarkMs)}
                       </td>
                     </tr>
@@ -1670,7 +1665,6 @@ export default function GADashboardPage() {
           <MsChangeChart
             rows={dashboardState.msChangeRows}
             title={periodMode === "yearly" ? "전년 대비 MS 변화 Top 10" : "전월 대비 MS 변화 Top 10"}
-            deltaLabel={dashboardState.deltaLabel}
           />
           {dashboardState.isProductSheet ? (
             <PieChart
