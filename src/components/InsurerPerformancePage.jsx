@@ -293,14 +293,37 @@ function buildInsurerDashboardState(
   const recentPeriods = periods.slice(Math.max(0, currentPeriodIndex - 2), currentPeriodIndex + 1);
   const currentPeriod = periodMap.get(activePeriodKey) ?? {
     dimensions: new Map(),
+    truncatedDimensions: new Map(),
     totalPerformance: 0,
     truncatedTotalPerformance: 0,
   };
   const previousPeriod = previousPeriodKey
-    ? periodMap.get(previousPeriodKey) ?? { dimensions: new Map(), totalPerformance: 0, truncatedTotalPerformance: 0 }
-    : { dimensions: new Map(), totalPerformance: 0, truncatedTotalPerformance: 0 };
+    ? periodMap.get(previousPeriodKey) ?? {
+        dimensions: new Map(),
+        truncatedDimensions: new Map(),
+        totalPerformance: 0,
+        truncatedTotalPerformance: 0,
+      }
+    : {
+        dimensions: new Map(),
+        truncatedDimensions: new Map(),
+        totalPerformance: 0,
+        truncatedTotalPerformance: 0,
+      };
+  const currentDimensionMap = aggregationMode === "truncated"
+    ? currentPeriod.truncatedDimensions
+    : currentPeriod.dimensions;
+  const previousDimensionMap = aggregationMode === "truncated"
+    ? previousPeriod.truncatedDimensions
+    : previousPeriod.dimensions;
+  const selectedCurrentTotalPerformance = aggregationMode === "truncated"
+    ? currentPeriod.truncatedTotalPerformance
+    : currentPeriod.totalPerformance;
+  const selectedPreviousTotalPerformance = aggregationMode === "truncated"
+    ? previousPeriod.truncatedTotalPerformance
+    : previousPeriod.totalPerformance;
 
-  const currentRanked = [...currentPeriod.dimensions.entries()]
+  const currentRanked = [...currentDimensionMap.entries()]
     .map(([name, performance]) => ({ name, performance }))
     .sort((a, b) => b.performance - a.performance);
   const allMonthKeys = [...monthlyTotalsMap.keys()];
@@ -316,7 +339,7 @@ function buildInsurerDashboardState(
     ? rollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
     : 0;
   const previousRankMap = new Map(
-    [...previousPeriod.dimensions.entries()]
+    [...previousDimensionMap.entries()]
       .map(([name, performance]) => ({ name, performance }))
       .sort((a, b) => b.performance - a.performance)
       .map((item, index) => [item.name, index + 1])
@@ -340,8 +363,8 @@ function buildInsurerDashboardState(
 
   const tableRows = rankedRows.map((item, index) => {
     const rank = index + 1;
-    const currentMs = currentPeriod.totalPerformance > 0
-      ? (item.performance / currentPeriod.totalPerformance) * 100
+    const currentMs = selectedCurrentTotalPerformance > 0
+      ? (item.performance / selectedCurrentTotalPerformance) * 100
       : 0;
     const hasBenchmarkData = periodMode === "yearly"
       ? availableYears.length >= 2 && priorPeriods.length >= 1
@@ -350,13 +373,23 @@ function buildInsurerDashboardState(
       ? periodMode === "yearly"
         ? priorPeriods.reduce((sum, periodKey) => {
             const periodEntry = periodMap.get(periodKey);
-            const periodTotal = periodEntry?.totalPerformance ?? 0;
+            const periodTotal = aggregationMode === "truncated"
+              ? (periodEntry?.truncatedTotalPerformance ?? 0)
+              : (periodEntry?.totalPerformance ?? 0);
             const periodPerformance = item.isOtherBucket
               ? (item.memberNames ?? []).reduce(
-                  (memberSum, memberName) => memberSum + (periodEntry?.dimensions.get(memberName) ?? 0),
+                  (memberSum, memberName) => memberSum + (
+                    aggregationMode === "truncated"
+                      ? (periodEntry?.truncatedDimensions.get(memberName) ?? 0)
+                      : (periodEntry?.dimensions.get(memberName) ?? 0)
+                  ),
                   0
                 )
-              : (periodEntry?.dimensions.get(item.name) ?? 0);
+              : (
+                  aggregationMode === "truncated"
+                    ? (periodEntry?.truncatedDimensions.get(item.name) ?? 0)
+                    : (periodEntry?.dimensions.get(item.name) ?? 0)
+                );
             if (!periodTotal) return sum;
             return sum + (periodPerformance / periodTotal) * 100;
           }, 0) / priorPeriods.length
@@ -365,9 +398,21 @@ function buildInsurerDashboardState(
             const rollingPerformance = insurerRecords.reduce((sum, record) => {
               if (!rollingMonthKeySet.has(record.monthKey)) return sum;
               if (!memberNames.has(record[dimensionKey])) return sum;
-              return sum + record.performanceThousandKrw;
+              return sum + (
+                aggregationMode === "truncated"
+                  ? Math.trunc(record.performanceThousandKrw)
+                  : record.performanceThousandKrw
+              );
             }, 0);
-            return (rollingPerformance / rollingTotalPerformance) * 100;
+            const selectedRollingTotalPerformance = aggregationMode === "truncated"
+              ? rollingMonthKeys.reduce(
+                  (sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.truncatedTotalPerformance ?? 0),
+                  0
+                )
+              : rollingTotalPerformance;
+            return selectedRollingTotalPerformance > 0
+              ? (rollingPerformance / selectedRollingTotalPerformance) * 100
+              : 0;
           })()
       : null;
 
@@ -392,10 +437,16 @@ function buildInsurerDashboardState(
     color: CHART_COLORS[index % CHART_COLORS.length],
     points: recentPeriods.map((periodKey) => {
       const periodEntry = periodMap.get(periodKey);
-      const periodTotal = periodEntry?.totalPerformance ?? 0;
+      const periodTotal = aggregationMode === "truncated"
+        ? (periodEntry?.truncatedTotalPerformance ?? 0)
+        : (periodEntry?.totalPerformance ?? 0);
       const memberNames = chartRowMap.get(name)?.memberNames ?? [name];
       const performance = memberNames.reduce(
-        (sum, memberName) => sum + (periodEntry?.dimensions.get(memberName) ?? 0),
+        (sum, memberName) => sum + (
+          aggregationMode === "truncated"
+            ? (periodEntry?.truncatedDimensions.get(memberName) ?? 0)
+            : (periodEntry?.dimensions.get(memberName) ?? 0)
+        ),
         0
       );
       return {
@@ -419,23 +470,17 @@ function buildInsurerDashboardState(
   const totalPerformance = aggregationMode === "truncated"
     ? currentPeriod.truncatedTotalPerformance
     : currentPeriod.totalPerformance;
-  const previousTotalPerformance = previousPeriodKey
-    ? (
-        aggregationMode === "truncated"
-          ? previousPeriod.truncatedTotalPerformance
-          : previousPeriod.totalPerformance
-      )
-    : null;
-  const previousTotalForChange = previousTotalPerformance ?? 0;
+  const previousTotalPerformance = previousPeriodKey ? selectedPreviousTotalPerformance : null;
+  const previousTotalForChange = selectedPreviousTotalPerformance;
   const msChangeRows = [...new Set([
-    ...currentPeriod.dimensions.keys(),
-    ...previousPeriod.dimensions.keys(),
+    ...currentDimensionMap.keys(),
+    ...previousDimensionMap.keys(),
   ])]
     .map((name) => {
-      const currentPerformance = currentPeriod.dimensions.get(name) ?? 0;
-      const previousPerformance = previousPeriod.dimensions.get(name) ?? 0;
-      const currentMs = currentPeriod.totalPerformance > 0
-        ? (currentPerformance / currentPeriod.totalPerformance) * 100
+      const currentPerformance = currentDimensionMap.get(name) ?? 0;
+      const previousPerformance = previousDimensionMap.get(name) ?? 0;
+      const currentMs = selectedCurrentTotalPerformance > 0
+        ? (currentPerformance / selectedCurrentTotalPerformance) * 100
         : 0;
       const previousMs = previousTotalForChange > 0
         ? (previousPerformance / previousTotalForChange) * 100
