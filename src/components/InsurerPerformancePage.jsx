@@ -806,6 +806,7 @@ export default function InsurerPerformancePage() {
   const [isMonthSelectorOpen, setIsMonthSelectorOpen] = useState(false);
   const [isSheetSelectorOpen, setIsSheetSelectorOpen] = useState(false);
   const [hoveredGAName, setHoveredGAName] = useState("");
+  const [isJournalMode, setIsJournalMode] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState("");
   const [copyStatus, setCopyStatus] = useState("idle");
   const insurerSelectorRef = useRef(null);
@@ -1057,7 +1058,15 @@ export default function InsurerPerformancePage() {
                 보험사 상세 분석
               </h1>
               <p className="mt-3 max-w-2xl text-xs leading-6 text-slate-500 sm:text-sm">
-                * 본 자료는 보험저널에서 GA별로 취재, 집계된 데이터입니다.
+                * 본 자료는{" "}
+                <button
+                  type="button"
+                  onClick={() => setIsJournalMode((current) => !current)}
+                  className="font-semibold text-slate-700 underline underline-offset-2 transition hover:text-slate-900"
+                >
+                  보험저널
+                </button>
+                에서 GA별로 취재, 집계된 데이터입니다.
               </p>
             </div>
           </div>
@@ -1378,6 +1387,7 @@ export default function InsurerPerformancePage() {
         </div>
       </section>
 
+      {isJournalMode ? (
       <section className="relative rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm">
         {copyStatus !== "idle" ? (
           <div className="pointer-events-none absolute right-5 top-5 z-10">
@@ -1418,6 +1428,7 @@ export default function InsurerPerformancePage() {
             : "필터를 바꾸면 프롬프트도 자동으로 갱신됩니다."}
         </p>
       </section>
+      ) : null}
 
       {discrepancyNotes.length ? (
         <section className="rounded-[2rem] border border-amber-200 bg-amber-50/70 p-5 shadow-sm">
