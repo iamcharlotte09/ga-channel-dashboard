@@ -1321,15 +1321,15 @@ export default function GADashboardPage() {
                 GA 상세 분석
               </h1>
               <p className="mt-3 max-w-2xl text-xs leading-6 text-slate-500 sm:text-sm">
-                * 본 자료는{" "}
+                * 본 자료는 보
                 <button
                   type="button"
                   onClick={() => setIsJournalMode((current) => !current)}
                   className="m-0 inline appearance-none border-0 bg-transparent p-0 align-baseline font-inherit text-slate-500 no-underline outline-none"
                 >
-                  보험저널
+                  험
                 </button>
-                에서 GA별로 취재, 집계된 데이터입니다.
+                저널에서 GA별로 취재, 집계된 데이터입니다.
               </p>
             </div>
 
