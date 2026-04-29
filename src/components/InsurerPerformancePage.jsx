@@ -1062,7 +1062,7 @@ export default function InsurerPerformancePage() {
                 <button
                   type="button"
                   onClick={() => setIsJournalMode((current) => !current)}
-                  className="font-semibold text-slate-700 underline underline-offset-2 transition hover:text-slate-900"
+                  className="m-0 inline appearance-none border-0 bg-transparent p-0 align-baseline font-inherit text-slate-500 no-underline outline-none"
                 >
                   보험저널
                 </button>
