@@ -81,7 +81,7 @@ function buildInsurerPrompt({
     .slice(0, topThreeShare >= 60 ? 3 : 5);
   const yearlyStructureLines = yearlyLeaders.length
     ? yearlyLeaders.map((row) => `${row.name} ${formatPercent(row.benchmarkMs)}`).join(", ")
-    : "직전 1년 기준 데이터 없음";
+    : "최근 12개월 기준 데이터 없음";
   const topTenLines = topRows.length
     ? topRows.map((row) =>
         `${row.rank}위 ${row.name} | 실적 ${formatPerformance(row.performance)}천원 | 점유율 ${formatPercent(row.currentMs)} | 순위변동 ${row.delta.label}`
@@ -219,7 +219,7 @@ function buildInsurerPrompt({
     `- 전월 전체 실적: ${dashboardState.previousTotalPerformance == null ? "비교 불가" : `${formatPerformance(dashboardState.previousTotalPerformance)}천원`}`,
     `- 상위 3개 GA 합산 점유율: ${formatPercent(topThreeShare)}`,
     `- 당월 GA별 점유율/실적/순위 변동 데이터:\n${topTenLines}`,
-    `- 직전 1년 기준 GA별 점유율 데이터: ${yearlyStructureLines}`,
+    `- 최근 12개월 기준 GA별 점유율 데이터: ${yearlyStructureLines}`,
     `- 최근 월별 추이:\n${trendLines}`,
     `- 실적 기준: ${formatAggregationModeLabel(aggregationMode)}`,
   ].join("\n");
@@ -326,7 +326,7 @@ function buildInsurerDashboardState(
   const currentRanked = [...currentDimensionMap.entries()]
     .map(([name, performance]) => ({ name, performance }))
     .sort((a, b) => b.performance - a.performance);
-  const allMonthKeys = [...monthlyTotalsMap.keys()];
+  const allMonthKeys = dashboardData?.availableMonths ?? [...monthlyTotalsMap.keys()];
   const rollingEndMonthKey = periodMode === "monthly"
     ? activePeriodKey
     : allMonthKeys.filter((monthKey) => monthKey.startsWith(`${activePeriodKey}-`)).at(-1) ?? "";
@@ -334,9 +334,16 @@ function buildInsurerDashboardState(
   const rollingMonthKeys = rollingEndIndex >= 11
     ? allMonthKeys.slice(rollingEndIndex - 11, rollingEndIndex + 1)
     : [];
+  const previousRollingMonthKeys = rollingEndIndex >= 12
+    ? allMonthKeys.slice(rollingEndIndex - 12, rollingEndIndex)
+    : [];
   const rollingMonthKeySet = new Set(rollingMonthKeys);
+  const previousRollingMonthKeySet = new Set(previousRollingMonthKeys);
   const rollingTotalPerformance = rollingMonthKeys.length === 12
     ? rollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
+    : 0;
+  const previousRollingTotalPerformance = previousRollingMonthKeys.length === 12
+    ? previousRollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
     : 0;
   const previousRankMap = new Map(
     [...previousDimensionMap.entries()]
@@ -415,6 +422,31 @@ function buildInsurerDashboardState(
               : 0;
           })()
       : null;
+    const previousYearMs = periodMode === "yearly"
+      ? null
+      : previousRollingMonthKeys.length === 12 && previousRollingTotalPerformance > 0
+        ? (() => {
+            const memberNames = new Set(item.memberNames ?? [item.name]);
+            const previousRollingPerformance = insurerRecords.reduce((sum, record) => {
+              if (!previousRollingMonthKeySet.has(record.monthKey)) return sum;
+              if (!memberNames.has(record[dimensionKey])) return sum;
+              return sum + (
+                aggregationMode === "truncated"
+                  ? Math.trunc(record.performanceThousandKrw)
+                  : record.performanceThousandKrw
+              );
+            }, 0);
+            const selectedPreviousRollingTotalPerformance = aggregationMode === "truncated"
+              ? previousRollingMonthKeys.reduce(
+                  (sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.truncatedTotalPerformance ?? 0),
+                  0
+                )
+              : previousRollingTotalPerformance;
+            return selectedPreviousRollingTotalPerformance > 0
+              ? (previousRollingPerformance / selectedPreviousRollingTotalPerformance) * 100
+              : null;
+          })()
+        : null;
 
     return {
       rank,
@@ -423,6 +455,7 @@ function buildInsurerDashboardState(
       memberNames: item.memberNames ?? [item.name],
       currentMs,
       benchmarkMs,
+      previousYearMs,
       gap: benchmarkMs == null ? null : currentMs - benchmarkMs,
       delta: item.isOtherBucket ? getRankDelta(null, rank) : getRankDelta(previousRankMap.get(item.name) ?? null, rank),
       isOtherBucket: Boolean(item.isOtherBucket),
@@ -467,6 +500,9 @@ function buildInsurerDashboardState(
         );
       }, 0)
     : null;
+  const previous12RangeLabel = previousRollingMonthKeys.length === 12
+    ? formatPeriodRangeLabel(previousRollingMonthKeys[0], previousRollingMonthKeys[previousRollingMonthKeys.length - 1])
+    : "-";
   const totalPerformance = aggregationMode === "truncated"
     ? currentPeriod.truncatedTotalPerformance
     : currentPeriod.totalPerformance;
@@ -511,6 +547,7 @@ function buildInsurerDashboardState(
     recent12RangeLabel: rollingMonthKeys.length === 12
       ? formatPeriodRangeLabel(rollingMonthKeys[0], rollingMonthKeys[rollingMonthKeys.length - 1])
       : "-",
+    previous12RangeLabel,
     tableRows,
     chartSeries,
     msChangeRows,
@@ -529,6 +566,7 @@ function buildInsurerDashboardState(
       : `${selectedInsurerName} ${selectedSheet?.sheetName ?? selectedSheetName} 판매 GA Top 20`,
     benchmarkLabel: periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월 MS(%)",
     benchmarkHeaderLabel: periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월\nMS(%)",
+    previousYearHeaderLabel: periodMode === "yearly" ? "" : "직전 1년\nMS(%)",
     deltaLabel: periodMode === "yearly" ? "전년 대비" : "전월 대비",
     summaryName: isAllInsurersView ? "전체" : selectedInsurerName,
     pieSlices: isProductSheet
@@ -1319,6 +1357,9 @@ export default function InsurerPerformancePage() {
                   <th className="px-3 py-2 text-right">실적(천원)</th>
                   <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
                   <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.benchmarkHeaderLabel}</th>
+                  {periodMode === "monthly" ? (
+                    <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.previousYearHeaderLabel}</th>
+                  ) : null}
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
@@ -1347,6 +1388,9 @@ export default function InsurerPerformancePage() {
                       <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPerformance(row.performance)}</td>
                       <td className="px-3 py-3 text-right font-medium text-slate-700">{formatPercent(row.currentMs)}</td>
                       <td className="px-3 py-3 text-right text-slate-500">{formatPercent(row.benchmarkMs)}</td>
+                      {periodMode === "monthly" ? (
+                        <td className="px-3 py-3 text-right text-slate-500">{formatPercent(row.previousYearMs)}</td>
+                      ) : null}
                     </tr>
                   );
                 })}
@@ -1359,6 +1403,7 @@ export default function InsurerPerformancePage() {
               <li>MS(%): 선택한 기간의 전체 실적 대비 해당 대상이 차지하는 비중</li>
               <li>{dashboardState.deltaLabel}: 직전 기간과 비교한 순위 변동</li>
               <li>{dashboardState.benchmarkLabel}: 최근 12개월 동안의 해당 대상 실적 합계를 전체 실적 합계로 나누어 계산한 점유율</li>
+              {periodMode === "monthly" ? <li>직전 1년 MS(%): 최근 12개월 구간 바로 직전 12개월 기준 점유율</li> : null}
               {dashboardState.isProductSheet ? <li>우측 파이차트: 선택 항목 내부의 상품군 비중</li> : null}
             </ul>
           </div>
