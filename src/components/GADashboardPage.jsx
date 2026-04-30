@@ -607,31 +607,6 @@ function buildDashboardState(
               : 0;
           })()
       : null;
-    const previousYearMs = periodMode === "yearly"
-      ? null
-      : previousRollingMonthKeys.length === 12 && previousRollingTotalPerformance > 0
-        ? (() => {
-            const memberNames = new Set(item.memberNames ?? [item.name]);
-            const previousRollingPerformance = sheetRecords.reduce((sum, record) => {
-              if (!previousRollingMonthKeySet.has(record.monthKey)) return sum;
-              if (!memberNames.has(record[dimensionKey])) return sum;
-              return sum + (
-                aggregationMode === "truncated"
-                  ? Math.trunc(record.performanceThousandKrw)
-                  : record.performanceThousandKrw
-              );
-            }, 0);
-            const selectedPreviousRollingTotalPerformance = aggregationMode === "truncated"
-              ? previousRollingMonthKeys.reduce(
-                  (sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.truncatedTotalPerformance ?? 0),
-                  0
-                )
-              : previousRollingTotalPerformance;
-            return selectedPreviousRollingTotalPerformance > 0
-              ? (previousRollingPerformance / selectedPreviousRollingTotalPerformance) * 100
-              : null;
-          })()
-        : null;
 
     return {
       rank,
@@ -640,7 +615,6 @@ function buildDashboardState(
       memberNames: item.memberNames ?? [item.name],
       currentMs,
       benchmarkMs,
-      previousYearMs,
       gap: benchmarkMs == null ? null : currentMs - benchmarkMs,
       delta: item.isOtherBucket ? getRankDelta(null, rank) : getRankDelta(previousRankMap.get(item.name) ?? null, rank),
       isOtherBucket: Boolean(item.isOtherBucket),
@@ -769,7 +743,6 @@ function buildDashboardState(
       : [],
     benchmarkLabel,
     benchmarkHeaderLabel,
-    previousYearHeaderLabel: periodMode === "yearly" ? "" : "직전 1년\nMS(%)",
     deltaLabel,
     chartTitle: lineChartTitle,
     pieChartTitle,
@@ -1648,9 +1621,6 @@ export default function GADashboardPage() {
                   <th className="px-3 py-2 text-right">실적(천원)</th>
                   <th className="px-3 py-2 text-right">{periodMode === "yearly" ? "당해 MS" : "당월 MS"}</th>
                   <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.benchmarkHeaderLabel}</th>
-                  {periodMode === "monthly" ? (
-                    <th className="whitespace-pre-line px-3 py-2 text-right leading-4">{dashboardState.previousYearHeaderLabel}</th>
-                  ) : null}
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
@@ -1685,11 +1655,6 @@ export default function GADashboardPage() {
                       <td className="px-3 py-3 text-right text-slate-500">
                         {formatPercent(row.benchmarkMs)}
                       </td>
-                      {periodMode === "monthly" ? (
-                        <td className="px-3 py-3 text-right text-slate-500">
-                          {formatPercent(row.previousYearMs)}
-                        </td>
-                      ) : null}
                     </tr>
                   );
                 })}
@@ -1702,7 +1667,6 @@ export default function GADashboardPage() {
               <li>MS(%): 선택한 기간의 전체 실적 대비 해당 대상이 차지하는 비중</li>
               <li>{dashboardState.deltaLabel}: 직전 기간과 비교한 순위 변동</li>
               <li>{dashboardState.benchmarkLabel}: 최근 12개월 동안의 해당 대상 실적 합계를 전체 실적 합계로 나누어 계산한 점유율</li>
-              {periodMode === "monthly" ? <li>직전 1년 MS(%): 최근 12개월 구간 바로 직전 12개월 기준 점유율</li> : null}
               {dashboardState.isProductSheet ? <li>우측 파이차트: 선택한 보험사 내부의 상품군 비중</li> : null}
             </ul>
           </div>
