@@ -516,16 +516,9 @@ function buildDashboardState(
   const rollingMonthKeys = rollingEndIndex >= 11
     ? allMonthKeys.slice(rollingEndIndex - 11, rollingEndIndex + 1)
     : [];
-  const previousRollingMonthKeys = rollingEndIndex >= 12
-    ? allMonthKeys.slice(rollingEndIndex - 12, rollingEndIndex)
-    : [];
   const rollingMonthKeySet = new Set(rollingMonthKeys);
-  const previousRollingMonthKeySet = new Set(previousRollingMonthKeys);
   const rollingTotalPerformance = rollingMonthKeys.length === 12
     ? rollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
-    : 0;
-  const previousRollingTotalPerformance = previousRollingMonthKeys.length === 12
-    ? previousRollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
     : 0;
 
   const previousRankMap = new Map(
