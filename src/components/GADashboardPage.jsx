@@ -685,9 +685,6 @@ function buildDashboardState(
         );
       }, 0)
     : null;
-  const previous12RangeLabel = previousRollingMonthKeys.length === 12
-    ? formatPeriodRangeLabel(previousRollingMonthKeys[0], previousRollingMonthKeys[previousRollingMonthKeys.length - 1])
-    : "-";
   const totalPerformance = aggregationMode === "truncated"
     ? currentPeriod.truncatedTotalPerformance
     : currentPeriod.totalPerformance;
@@ -726,7 +723,6 @@ function buildDashboardState(
     recent12RangeLabel: rollingMonthKeys.length === 12
       ? formatPeriodRangeLabel(rollingMonthKeys[0], rollingMonthKeys[rollingMonthKeys.length - 1])
       : "-",
-    previous12RangeLabel,
     totalPerformance,
     tableRows,
     chartSeries,
