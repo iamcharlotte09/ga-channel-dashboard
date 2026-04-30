@@ -8,9 +8,11 @@ export default function TopNav({ currentPath, navigateTo }) {
     <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-5">
         <button onClick={() => navigateTo("/dashboard")} className="shrink-0 text-left">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
-            보험저널
-          </p>
+          <img
+            src="/insjournal-logo.png"
+            alt="보험저널"
+            className="h-12 w-auto sm:h-14"
+          />
         </button>
         <nav className="mt-6 flex items-end gap-0">
           {NAV_ITEMS.map((item) => {
