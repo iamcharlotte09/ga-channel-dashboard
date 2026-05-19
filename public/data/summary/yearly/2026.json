@@ -58,6 +58,11 @@
     },
     {
       "sheetName": "건강_간편",
+      "gaName": "가온금융서비스",
+      "totalPerformanceThousandKrw": 637.0
+    },
+    {
+      "sheetName": "건강_간편",
       "gaName": "가온누리에셋",
       "totalPerformanceThousandKrw": 188.286
     },
@@ -68,7 +73,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "경영자문그룹위드플러스보험대리점",
+      "gaName": "경영자문그룹위드플러스",
       "totalPerformanceThousandKrw": 112.67
     },
     {
@@ -103,7 +108,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "다사랑인스보험대리점",
+      "gaName": "다사랑인스",
       "totalPerformanceThousandKrw": 35.929
     },
     {
@@ -128,7 +133,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "더블에셋보험대리점",
+      "gaName": "더블에셋",
       "totalPerformanceThousandKrw": 71.0
     },
     {
@@ -168,11 +173,6 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "동아세무회계연구소",
-      "totalPerformanceThousandKrw": 637.0
-    },
-    {
-      "sheetName": "건강_간편",
       "gaName": "동양생명금융서비스",
       "totalPerformanceThousandKrw": 37.616
     },
@@ -203,7 +203,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 1170.485
     },
     {
@@ -223,7 +223,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "리치금융서비스",
+      "gaName": "리치금융서비스보험대리점",
       "totalPerformanceThousandKrw": 124.357
     },
     {
@@ -248,17 +248,17 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "매크로인슈보험대리점",
+      "gaName": "매크로인슈",
       "totalPerformanceThousandKrw": 62.0
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "맥스라이프보험대리점",
+      "gaName": "맥스라이프",
       "totalPerformanceThousandKrw": 16647.961
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "맥스인보험대리점",
+      "gaName": "맥스인",
       "totalPerformanceThousandKrw": 474.088
     },
     {
@@ -293,7 +293,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "모닝삼성보험대리점",
+      "gaName": "모닝삼성",
       "totalPerformanceThousandKrw": 297.487
     },
     {
@@ -318,7 +318,12 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 52192.584
+    },
+    {
+      "sheetName": "건강_간편",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 362.0
     },
     {
@@ -333,7 +338,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "베스트코아보험대리점",
+      "gaName": "베스트코아",
       "totalPerformanceThousandKrw": 56.284
     },
     {
@@ -378,7 +383,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "삼성광역법인보험대리점",
+      "gaName": "삼성광역법인",
       "totalPerformanceThousandKrw": 122.865
     },
     {
@@ -408,12 +413,12 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 259.646
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 52.901
     },
     {
@@ -433,23 +438,18 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "삼성화재일산법인보험대리점",
+      "gaName": "삼성화재일산법인",
       "totalPerformanceThousandKrw": 268.966
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "삼성화재전환법인보험대리점",
+      "gaName": "삼성화재전환법인",
       "totalPerformanceThousandKrw": 251.982
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 1358.81
-    },
-    {
-      "sheetName": "건강_간편",
-      "gaName": "세무법인셜록택스",
-      "totalPerformanceThousandKrw": 275.884
     },
     {
       "sheetName": "건강_간편",
@@ -460,6 +460,11 @@
       "sheetName": "건강_간편",
       "gaName": "세안프라자",
       "totalPerformanceThousandKrw": 301.318
+    },
+    {
+      "sheetName": "건강_간편",
+      "gaName": "셜록택스",
+      "totalPerformanceThousandKrw": 275.884
     },
     {
       "sheetName": "건강_간편",
@@ -483,7 +488,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "스타인스보험대리점",
+      "gaName": "스타인스",
       "totalPerformanceThousandKrw": 578.35
     },
     {
@@ -533,7 +538,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "아이클라프보험대리점",
+      "gaName": "아이클라프",
       "totalPerformanceThousandKrw": 2184.953
     },
     {
@@ -563,7 +568,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "에이엘엠씨보험대리점",
+      "gaName": "에이엘엠씨",
       "totalPerformanceThousandKrw": 416.398
     },
     {
@@ -573,7 +578,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "에이원플러스보험대리점",
+      "gaName": "에이원플러스",
       "totalPerformanceThousandKrw": 388.985
     },
     {
@@ -603,11 +608,6 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 670.85
-    },
-    {
-      "sheetName": "건강_간편",
       "gaName": "에프씨네스트에셋",
       "totalPerformanceThousandKrw": 1076.083
     },
@@ -615,11 +615,6 @@
       "sheetName": "건강_간편",
       "gaName": "에프앤솔루션",
       "totalPerformanceThousandKrw": 536.852
-    },
-    {
-      "sheetName": "건강_간편",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 52192.584
     },
     {
       "sheetName": "건강_간편",
@@ -638,7 +633,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "엔젤인베스터C&F",
+      "gaName": "엔젤인베스터씨앤에프",
       "totalPerformanceThousandKrw": 427.363
     },
     {
@@ -693,7 +688,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "월드클래스컨설팅금융서비스",
+      "gaName": "월드클래스금융",
       "totalPerformanceThousandKrw": 42.0
     },
     {
@@ -713,7 +708,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "윙스컨설팅그룹",
+      "gaName": "윙스세일즈앤컨설팅그룹",
       "totalPerformanceThousandKrw": 96.0
     },
     {
@@ -768,7 +763,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 10433.806
     },
     {
@@ -788,7 +783,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "재람보험대리점",
+      "gaName": "재람",
       "totalPerformanceThousandKrw": 1118.094
     },
     {
@@ -823,7 +818,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "참좋은재무컨설팅보험대리점",
+      "gaName": "참좋은재무컨설팅",
       "totalPerformanceThousandKrw": 1356.041
     },
     {
@@ -843,7 +838,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 35072.016
     },
     {
@@ -913,6 +908,11 @@
     },
     {
       "sheetName": "건강_간편",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 670.85
+    },
+    {
+      "sheetName": "건강_간편",
       "gaName": "푸른신호등",
       "totalPerformanceThousandKrw": 14029.906
     },
@@ -923,7 +923,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "프로넷인슈보험대리점",
+      "gaName": "프로넷인슈",
       "totalPerformanceThousandKrw": 315.687
     },
     {
@@ -988,22 +988,22 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "해피트리에셋보험대리점",
+      "gaName": "해피트리에셋",
       "totalPerformanceThousandKrw": 111.0
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "행복한사람들보험대리점",
+      "gaName": "행복한사람들",
       "totalPerformanceThousandKrw": 1148.288
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "현대금융컨설팅강남보험대리점",
+      "gaName": "현대금융컨설팅강남",
       "totalPerformanceThousandKrw": 105.454
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "현대금융컨설팅강북보험대리점",
+      "gaName": "현대금융컨설팅강북",
       "totalPerformanceThousandKrw": 549.986
     },
     {
@@ -1023,6 +1023,11 @@
     },
     {
       "sheetName": "건강_일반",
+      "gaName": "가온금융서비스",
+      "totalPerformanceThousandKrw": 321.0
+    },
+    {
+      "sheetName": "건강_일반",
       "gaName": "가온누리에셋",
       "totalPerformanceThousandKrw": 557.508
     },
@@ -1033,7 +1038,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "경영자문그룹위드플러스보험대리점",
+      "gaName": "경영자문그룹위드플러스",
       "totalPerformanceThousandKrw": 113.0
     },
     {
@@ -1078,7 +1083,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "다사랑인스보험대리점",
+      "gaName": "다사랑인스",
       "totalPerformanceThousandKrw": 22.958
     },
     {
@@ -1138,11 +1143,6 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "동아세무회계연구소",
-      "totalPerformanceThousandKrw": 321.0
-    },
-    {
-      "sheetName": "건강_일반",
       "gaName": "동양생명금융서비스",
       "totalPerformanceThousandKrw": 166.762
     },
@@ -1173,7 +1173,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 1128.589
     },
     {
@@ -1193,7 +1193,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "리치금융서비스",
+      "gaName": "리치금융서비스보험대리점",
       "totalPerformanceThousandKrw": 181.212
     },
     {
@@ -1213,17 +1213,17 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "매크로인슈보험대리점",
+      "gaName": "매크로인슈",
       "totalPerformanceThousandKrw": 152.858
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "맥스라이프보험대리점",
+      "gaName": "맥스라이프",
       "totalPerformanceThousandKrw": 1806.048
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "맥스인보험대리점",
+      "gaName": "맥스인",
       "totalPerformanceThousandKrw": 94.711
     },
     {
@@ -1258,7 +1258,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "모닝삼성보험대리점",
+      "gaName": "모닝삼성",
       "totalPerformanceThousandKrw": 52.263
     },
     {
@@ -1283,12 +1283,17 @@
     },
     {
       "sheetName": "건강_일반",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 36826.186
+    },
+    {
+      "sheetName": "건강_일반",
       "gaName": "배려",
       "totalPerformanceThousandKrw": 311.0
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 1584.113
     },
     {
@@ -1338,7 +1343,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "삼성광역법인보험대리점",
+      "gaName": "삼성광역법인",
       "totalPerformanceThousandKrw": 40.46
     },
     {
@@ -1373,7 +1378,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 120.133
     },
     {
@@ -1388,7 +1393,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "삼성화재전환법인보험대리점",
+      "gaName": "삼성화재전환법인",
       "totalPerformanceThousandKrw": 33.485
     },
     {
@@ -1398,13 +1403,8 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 2252.869
-    },
-    {
-      "sheetName": "건강_일반",
-      "gaName": "세무법인셜록택스",
-      "totalPerformanceThousandKrw": 378.671
     },
     {
       "sheetName": "건강_일반",
@@ -1415,6 +1415,11 @@
       "sheetName": "건강_일반",
       "gaName": "세안프라자",
       "totalPerformanceThousandKrw": 370.891
+    },
+    {
+      "sheetName": "건강_일반",
+      "gaName": "셜록택스",
+      "totalPerformanceThousandKrw": 378.671
     },
     {
       "sheetName": "건강_일반",
@@ -1438,7 +1443,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "스타인스보험대리점",
+      "gaName": "스타인스",
       "totalPerformanceThousandKrw": 49.534
     },
     {
@@ -1488,7 +1493,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "아이클라프보험대리점",
+      "gaName": "아이클라프",
       "totalPerformanceThousandKrw": 1080.62
     },
     {
@@ -1523,7 +1528,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "에이엘엠씨보험대리점",
+      "gaName": "에이엘엠씨",
       "totalPerformanceThousandKrw": 146.0
     },
     {
@@ -1533,7 +1538,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "에이원플러스보험대리점",
+      "gaName": "에이원플러스",
       "totalPerformanceThousandKrw": 124.622
     },
     {
@@ -1558,11 +1563,6 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 770.144
-    },
-    {
-      "sheetName": "건강_일반",
       "gaName": "에프씨네스트에셋",
       "totalPerformanceThousandKrw": 775.517
     },
@@ -1570,11 +1570,6 @@
       "sheetName": "건강_일반",
       "gaName": "에프앤솔루션",
       "totalPerformanceThousandKrw": 3382.802
-    },
-    {
-      "sheetName": "건강_일반",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 36826.186
     },
     {
       "sheetName": "건강_일반",
@@ -1603,7 +1598,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "예스인보험대리점",
+      "gaName": "예스인",
       "totalPerformanceThousandKrw": 447.312
     },
     {
@@ -1663,7 +1658,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "윙스컨설팅그룹",
+      "gaName": "윙스세일즈앤컨설팅그룹",
       "totalPerformanceThousandKrw": 82.0
     },
     {
@@ -1718,7 +1713,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 3189.47
     },
     {
@@ -1738,7 +1733,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "재람보험대리점",
+      "gaName": "재람",
       "totalPerformanceThousandKrw": 259.69
     },
     {
@@ -1778,7 +1773,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "참좋은재무컨설팅보험대리점",
+      "gaName": "참좋은재무컨설팅",
       "totalPerformanceThousandKrw": 511.194
     },
     {
@@ -1793,7 +1788,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 29346.956
     },
     {
@@ -1853,6 +1848,11 @@
     },
     {
       "sheetName": "건강_일반",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 770.144
+    },
+    {
+      "sheetName": "건강_일반",
       "gaName": "푸른신호등",
       "totalPerformanceThousandKrw": 3769.413
     },
@@ -1863,7 +1863,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "프로넷인슈보험대리점",
+      "gaName": "프로넷인슈",
       "totalPerformanceThousandKrw": 282.58
     },
     {
@@ -1933,17 +1933,17 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "해피트리에셋보험대리점",
+      "gaName": "해피트리에셋",
       "totalPerformanceThousandKrw": 73.0
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "행복한사람들보험대리점",
+      "gaName": "행복한사람들",
       "totalPerformanceThousandKrw": 794.692
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "현대금융컨설팅강북보험대리점",
+      "gaName": "현대금융컨설팅강북",
       "totalPerformanceThousandKrw": 137.459
     },
     {
@@ -1968,7 +1968,7 @@
     },
     {
       "sheetName": "경정",
-      "gaName": "굿타임보험대리점",
+      "gaName": "굿타임",
       "totalPerformanceThousandKrw": 3003.55
     },
     {
@@ -2018,7 +2018,7 @@
     },
     {
       "sheetName": "경정",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 10110.45
     },
     {
@@ -2138,7 +2138,7 @@
     },
     {
       "sheetName": "경정",
-      "gaName": "에스제이에셋보험대리점",
+      "gaName": "에스제이에셋",
       "totalPerformanceThousandKrw": 2996.5
     },
     {
@@ -2213,7 +2213,7 @@
     },
     {
       "sheetName": "경정",
-      "gaName": "올바른에셋금융서비스",
+      "gaName": "와이엔에셋금융서비스",
       "totalPerformanceThousandKrw": 18100.0
     },
     {
@@ -2233,7 +2233,7 @@
     },
     {
       "sheetName": "경정",
-      "gaName": "월드클래스컨설팅금융서비스",
+      "gaName": "월드클래스금융",
       "totalPerformanceThousandKrw": 32493.0
     },
     {
@@ -2283,7 +2283,7 @@
     },
     {
       "sheetName": "경정",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 21877.0
     },
     {
@@ -2413,7 +2413,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "더블에셋보험대리점",
+      "gaName": "더블에셋",
       "totalPerformanceThousandKrw": 30.0
     },
     {
@@ -2438,7 +2438,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "덕암에셋보험대리점",
+      "gaName": "덕암에셋",
       "totalPerformanceThousandKrw": 68.7
     },
     {
@@ -2473,7 +2473,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 179.308
     },
     {
@@ -2503,7 +2503,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "맥스라이프보험대리점",
+      "gaName": "맥스라이프",
       "totalPerformanceThousandKrw": 146.2
     },
     {
@@ -2528,7 +2528,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "모닝삼성보험대리점",
+      "gaName": "모닝삼성",
       "totalPerformanceThousandKrw": 44.422
     },
     {
@@ -2548,7 +2548,12 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 7491.289
+    },
+    {
+      "sheetName": "기타건강",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 144.736
     },
     {
@@ -2558,7 +2563,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "베스트코아보험대리점",
+      "gaName": "베스트코아",
       "totalPerformanceThousandKrw": 204.096
     },
     {
@@ -2593,7 +2598,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성광역법인보험대리점",
+      "gaName": "삼성광역법인",
       "totalPerformanceThousandKrw": 744.71
     },
     {
@@ -2633,7 +2638,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 40.345
     },
     {
@@ -2643,7 +2648,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 468.07
     },
     {
@@ -2668,12 +2673,12 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성화재일산법인보험대리점",
+      "gaName": "삼성화재일산법인",
       "totalPerformanceThousandKrw": 267.03
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성화재전환법인보험대리점",
+      "gaName": "삼성화재전환법인",
       "totalPerformanceThousandKrw": 254.7
     },
     {
@@ -2688,7 +2693,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 376.165
     },
     {
@@ -2708,7 +2713,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "스카이보험대리점",
+      "gaName": "스카이",
       "totalPerformanceThousandKrw": 5320.973
     },
     {
@@ -2793,23 +2798,13 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "에임자산관리보험대리점",
+      "gaName": "에임자산관리",
       "totalPerformanceThousandKrw": 654.116
     },
     {
       "sheetName": "기타건강",
       "gaName": "에즈금융서비스",
       "totalPerformanceThousandKrw": 208824.326
-    },
-    {
-      "sheetName": "기타건강",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 39.9
-    },
-    {
-      "sheetName": "기타건강",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 7491.289
     },
     {
       "sheetName": "기타건강",
@@ -2908,7 +2903,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 1531.96
     },
     {
@@ -2928,7 +2923,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "재람보험대리점",
+      "gaName": "재람",
       "totalPerformanceThousandKrw": 38.0
     },
     {
@@ -2963,7 +2958,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 2916.795
     },
     {
@@ -3015,6 +3010,11 @@
       "sheetName": "기타건강",
       "gaName": "티금융서비스",
       "totalPerformanceThousandKrw": 5040.796
+    },
+    {
+      "sheetName": "기타건강",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 39.9
     },
     {
       "sheetName": "기타건강",
@@ -3085,6 +3085,11 @@
       "sheetName": "기타건강",
       "gaName": "현대홈쇼핑",
       "totalPerformanceThousandKrw": 25783.511
+    },
+    {
+      "sheetName": "기타종신",
+      "gaName": "가온금융서비스",
+      "totalPerformanceThousandKrw": 16256.0
     },
     {
       "sheetName": "기타종신",
@@ -3173,7 +3178,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "덕암에셋보험대리점",
+      "gaName": "덕암에셋",
       "totalPerformanceThousandKrw": 20028.0
     },
     {
@@ -3185,11 +3190,6 @@
       "sheetName": "기타종신",
       "gaName": "동부본부보험대리점",
       "totalPerformanceThousandKrw": 320.72
-    },
-    {
-      "sheetName": "기타종신",
-      "gaName": "동아세무회계연구소",
-      "totalPerformanceThousandKrw": 16256.0
     },
     {
       "sheetName": "기타종신",
@@ -3223,7 +3223,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 52353.826
     },
     {
@@ -3308,7 +3308,12 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 35631.517
+    },
+    {
+      "sheetName": "기타종신",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 23072.57
     },
     {
@@ -3368,18 +3373,13 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 536522.078
     },
     {
       "sheetName": "기타종신",
       "gaName": "서화74",
       "totalPerformanceThousandKrw": 1006.0
-    },
-    {
-      "sheetName": "기타종신",
-      "gaName": "세무법인셜록택스",
-      "totalPerformanceThousandKrw": 37050.22
     },
     {
       "sheetName": "기타종신",
@@ -3390,6 +3390,11 @@
       "sheetName": "기타종신",
       "gaName": "세안프라자",
       "totalPerformanceThousandKrw": 2130.4
+    },
+    {
+      "sheetName": "기타종신",
+      "gaName": "셜록택스",
+      "totalPerformanceThousandKrw": 37050.22
     },
     {
       "sheetName": "기타종신",
@@ -3498,11 +3503,6 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 45710.69
-    },
-    {
-      "sheetName": "기타종신",
       "gaName": "에프씨네스트에셋",
       "totalPerformanceThousandKrw": 54568.3
     },
@@ -3513,12 +3513,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 35631.517
-    },
-    {
-      "sheetName": "기타종신",
-      "gaName": "에프에이치씨보험대리점",
+      "gaName": "에프에이치씨",
       "totalPerformanceThousandKrw": 36267.93
     },
     {
@@ -3528,7 +3523,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "에프엠피파트너즈보험대리점",
+      "gaName": "에프엠피",
       "totalPerformanceThousandKrw": 264.46
     },
     {
@@ -3568,7 +3563,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "올바른에셋금융서비스",
+      "gaName": "와이엔에셋금융서비스",
       "totalPerformanceThousandKrw": 3000.0
     },
     {
@@ -3588,13 +3583,18 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "월드클래스컨설팅금융서비스",
+      "gaName": "월드클래스금융",
       "totalPerformanceThousandKrw": 145569.52
     },
     {
       "sheetName": "기타종신",
-      "gaName": "윙스컨설팅그룹",
+      "gaName": "윙스세일즈앤컨설팅그룹",
       "totalPerformanceThousandKrw": 56662.0
+    },
+    {
+      "sheetName": "기타종신",
+      "gaName": "유앤아이금융서비스",
+      "totalPerformanceThousandKrw": 114605.964
     },
     {
       "sheetName": "기타종신",
@@ -3643,7 +3643,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 2211.494
     },
     {
@@ -3655,11 +3655,6 @@
       "sheetName": "기타종신",
       "gaName": "인포유금융서비스",
       "totalPerformanceThousandKrw": 289619.414
-    },
-    {
-      "sheetName": "기타종신",
-      "gaName": "재무설계센타",
-      "totalPerformanceThousandKrw": 114605.964
     },
     {
       "sheetName": "기타종신",
@@ -3713,7 +3708,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 78123.945
     },
     {
@@ -3785,6 +3780,11 @@
       "sheetName": "기타종신",
       "gaName": "티금융서비스",
       "totalPerformanceThousandKrw": 243479.338
+    },
+    {
+      "sheetName": "기타종신",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 45710.69
     },
     {
       "sheetName": "기타종신",
@@ -3863,7 +3863,7 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "헤리티지센터보험대리점",
+      "gaName": "헤리티지센터",
       "totalPerformanceThousandKrw": 35037.0
     },
     {
@@ -3938,7 +3938,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "더블에셋보험대리점",
+      "gaName": "더블에셋",
       "totalPerformanceThousandKrw": 2366.14
     },
     {
@@ -3993,12 +3993,12 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 3759.66
     },
     {
       "sheetName": "단기납",
-      "gaName": "리더스보험대리점",
+      "gaName": "리더스",
       "totalPerformanceThousandKrw": 7154.15
     },
     {
@@ -4033,7 +4033,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "맥스라이프보험대리점",
+      "gaName": "맥스라이프",
       "totalPerformanceThousandKrw": 995.06
     },
     {
@@ -4063,7 +4063,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "모닝삼성보험대리점",
+      "gaName": "모닝삼성",
       "totalPerformanceThousandKrw": 42977.66
     },
     {
@@ -4083,7 +4083,12 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 40865.177
+    },
+    {
+      "sheetName": "단기납",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 49079.02
     },
     {
@@ -4143,7 +4148,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 824.96
     },
     {
@@ -4163,13 +4168,8 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 1663687.454
-    },
-    {
-      "sheetName": "단기납",
-      "gaName": "세무법인셜록택스",
-      "totalPerformanceThousandKrw": 728.862
     },
     {
       "sheetName": "단기납",
@@ -4188,6 +4188,11 @@
     },
     {
       "sheetName": "단기납",
+      "gaName": "셜록택스",
+      "totalPerformanceThousandKrw": 728.862
+    },
+    {
+      "sheetName": "단기납",
       "gaName": "쇼엠인슈어런스",
       "totalPerformanceThousandKrw": 1590.13
     },
@@ -4198,7 +4203,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "스카이보험대리점",
+      "gaName": "스카이",
       "totalPerformanceThousandKrw": 6033.14
     },
     {
@@ -4213,7 +4218,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "스타인스보험대리점",
+      "gaName": "스타인스",
       "totalPerformanceThousandKrw": 136.2
     },
     {
@@ -4258,7 +4263,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "아이클라프보험대리점",
+      "gaName": "아이클라프",
       "totalPerformanceThousandKrw": 1030.86
     },
     {
@@ -4298,7 +4303,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "에이원플러스보험대리점",
+      "gaName": "에이원플러스",
       "totalPerformanceThousandKrw": 3091.75
     },
     {
@@ -4318,7 +4323,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "에임자산관리보험대리점",
+      "gaName": "에임자산관리",
       "totalPerformanceThousandKrw": 79580.522
     },
     {
@@ -4328,22 +4333,12 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 121081.939
-    },
-    {
-      "sheetName": "단기납",
       "gaName": "에프씨네스트에셋",
       "totalPerformanceThousandKrw": 1541.0
     },
     {
       "sheetName": "단기납",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 40865.177
-    },
-    {
-      "sheetName": "단기납",
-      "gaName": "에프에이치씨보험대리점",
+      "gaName": "에프에이치씨",
       "totalPerformanceThousandKrw": 2020.1
     },
     {
@@ -4353,7 +4348,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "에프엠피파트너즈보험대리점",
+      "gaName": "에프엠피",
       "totalPerformanceThousandKrw": 19563.789
     },
     {
@@ -4378,7 +4373,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "예스인보험대리점",
+      "gaName": "예스인",
       "totalPerformanceThousandKrw": 952.28
     },
     {
@@ -4398,7 +4393,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "올바른에셋금융서비스",
+      "gaName": "와이엔에셋금융서비스",
       "totalPerformanceThousandKrw": 6260.0
     },
     {
@@ -4448,6 +4443,11 @@
     },
     {
       "sheetName": "단기납",
+      "gaName": "유앤아이금융서비스",
+      "totalPerformanceThousandKrw": 118149.0
+    },
+    {
+      "sheetName": "단기납",
       "gaName": "유어즈에셋",
       "totalPerformanceThousandKrw": 154210.164
     },
@@ -4483,7 +4483,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "인스럭키대리점",
+      "gaName": "인스럭키",
       "totalPerformanceThousandKrw": 3417.45
     },
     {
@@ -4493,7 +4493,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 3733.42
     },
     {
@@ -4508,17 +4508,12 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "재람보험대리점",
+      "gaName": "재람",
       "totalPerformanceThousandKrw": 629.16
     },
     {
       "sheetName": "단기납",
-      "gaName": "재무설계센타",
-      "totalPerformanceThousandKrw": 118149.0
-    },
-    {
-      "sheetName": "단기납",
-      "gaName": "제이앤굿종합법인보험대리점",
+      "gaName": "제이앤굿종합법인",
       "totalPerformanceThousandKrw": 2010.19
     },
     {
@@ -4553,7 +4548,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "진천화랑보험대리점",
+      "gaName": "진천화랑",
       "totalPerformanceThousandKrw": 16150.34
     },
     {
@@ -4568,7 +4563,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 55550.213
     },
     {
@@ -4633,6 +4628,11 @@
     },
     {
       "sheetName": "단기납",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 121081.939
+    },
+    {
+      "sheetName": "단기납",
       "gaName": "파인빌머치",
       "totalPerformanceThousandKrw": 23833.318
     },
@@ -4693,7 +4693,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "한국중소기업지원",
+      "gaName": "한국중소기업지원보험대리점",
       "totalPerformanceThousandKrw": 10999.186
     },
     {
@@ -4728,12 +4728,12 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "행복한사람들보험대리점",
+      "gaName": "행복한사람들",
       "totalPerformanceThousandKrw": 9216.76
     },
     {
       "sheetName": "단기납",
-      "gaName": "현대금융컨설팅강남보험대리점",
+      "gaName": "현대금융컨설팅강남",
       "totalPerformanceThousandKrw": 510.18
     },
     {
@@ -4748,7 +4748,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "현파트너즈보험대리점",
+      "gaName": "현파트너즈",
       "totalPerformanceThousandKrw": 5015.0
     },
     {
@@ -4818,7 +4818,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "덕암에셋보험대리점",
+      "gaName": "덕암에셋",
       "totalPerformanceThousandKrw": 10000.0
     },
     {
@@ -4848,7 +4848,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 1000.0
     },
     {
@@ -4898,6 +4898,11 @@
     },
     {
       "sheetName": "변액저축",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 52250.0
+    },
+    {
+      "sheetName": "변액저축",
       "gaName": "밸류마크",
       "totalPerformanceThousandKrw": 115513.2
     },
@@ -4938,7 +4943,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 105530.0
     },
     {
@@ -4983,7 +4988,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "안심금융지키미",
+      "gaName": "아이케이금융서비스",
       "totalPerformanceThousandKrw": 10650.0
     },
     {
@@ -5048,11 +5053,6 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 52250.0
-    },
-    {
-      "sheetName": "변액저축",
       "gaName": "에프엔마스터",
       "totalPerformanceThousandKrw": 500.0
     },
@@ -5063,7 +5063,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "에프엠피파트너즈보험대리점",
+      "gaName": "에프엠피",
       "totalPerformanceThousandKrw": 17600.0
     },
     {
@@ -5073,7 +5073,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "엔젤인베스터C&F",
+      "gaName": "엔젤인베스터씨앤에프",
       "totalPerformanceThousandKrw": 14100.0
     },
     {
@@ -5098,7 +5098,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "올바른에셋금융서비스",
+      "gaName": "와이엔에셋금융서비스",
       "totalPerformanceThousandKrw": 10600.0
     },
     {
@@ -5118,7 +5118,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "윙스컨설팅그룹",
+      "gaName": "윙스세일즈앤컨설팅그룹",
       "totalPerformanceThousandKrw": 6950.0
     },
     {
@@ -5143,7 +5143,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 1500.0
     },
     {
@@ -5188,7 +5188,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 145463.7
     },
     {
@@ -5298,6 +5298,11 @@
     },
     {
       "sheetName": "보장성",
+      "gaName": "가온금융서비스",
+      "totalPerformanceThousandKrw": 17214.0
+    },
+    {
+      "sheetName": "보장성",
       "gaName": "가온누리에셋",
       "totalPerformanceThousandKrw": 745.794
     },
@@ -5308,7 +5313,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "경영자문그룹위드플러스보험대리점",
+      "gaName": "경영자문그룹위드플러스",
       "totalPerformanceThousandKrw": 851.634
     },
     {
@@ -5338,7 +5343,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "굿타임보험대리점",
+      "gaName": "굿타임",
       "totalPerformanceThousandKrw": 3003.55
     },
     {
@@ -5373,7 +5378,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "다사랑인스보험대리점",
+      "gaName": "다사랑인스",
       "totalPerformanceThousandKrw": 58.887
     },
     {
@@ -5398,7 +5403,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "더블에셋보험대리점",
+      "gaName": "더블에셋",
       "totalPerformanceThousandKrw": 2467.14
     },
     {
@@ -5423,7 +5428,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "덕암에셋보험대리점",
+      "gaName": "덕암에셋",
       "totalPerformanceThousandKrw": 20404.7
     },
     {
@@ -5450,11 +5455,6 @@
       "sheetName": "보장성",
       "gaName": "동신",
       "totalPerformanceThousandKrw": 263.3
-    },
-    {
-      "sheetName": "보장성",
-      "gaName": "동아세무회계연구소",
-      "totalPerformanceThousandKrw": 17214.0
     },
     {
       "sheetName": "보장성",
@@ -5493,12 +5493,12 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 69944.8
     },
     {
       "sheetName": "보장성",
-      "gaName": "리더스보험대리점",
+      "gaName": "리더스",
       "totalPerformanceThousandKrw": 13225.162
     },
     {
@@ -5518,7 +5518,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "리치금융서비스",
+      "gaName": "리치금융서비스보험대리점",
       "totalPerformanceThousandKrw": 305.569
     },
     {
@@ -5543,17 +5543,17 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "매크로인슈보험대리점",
+      "gaName": "매크로인슈",
       "totalPerformanceThousandKrw": 215.858
     },
     {
       "sheetName": "보장성",
-      "gaName": "맥스라이프보험대리점",
+      "gaName": "맥스라이프",
       "totalPerformanceThousandKrw": 20316.269
     },
     {
       "sheetName": "보장성",
-      "gaName": "맥스인보험대리점",
+      "gaName": "맥스인",
       "totalPerformanceThousandKrw": 808.799
     },
     {
@@ -5588,7 +5588,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "모닝삼성보험대리점",
+      "gaName": "모닝삼성",
       "totalPerformanceThousandKrw": 43371.832
     },
     {
@@ -5628,6 +5628,11 @@
     },
     {
       "sheetName": "보장성",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 184773.769
+    },
+    {
+      "sheetName": "보장성",
       "gaName": "미소보험대리점",
       "totalPerformanceThousandKrw": 31.172
     },
@@ -5638,7 +5643,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 74241.439
     },
     {
@@ -5658,7 +5663,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "베스트코아보험대리점",
+      "gaName": "베스트코아",
       "totalPerformanceThousandKrw": 260.38
     },
     {
@@ -5683,7 +5688,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "보험세상보험대리점",
+      "gaName": "보험세상",
       "totalPerformanceThousandKrw": 43.0
     },
     {
@@ -5718,7 +5723,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성광역법인보험대리점",
+      "gaName": "삼성광역법인",
       "totalPerformanceThousandKrw": 908.035
     },
     {
@@ -5758,7 +5763,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 827.891
     },
     {
@@ -5768,7 +5773,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 1640.114
     },
     {
@@ -5798,12 +5803,12 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성화재일산법인보험대리점",
+      "gaName": "삼성화재일산법인",
       "totalPerformanceThousandKrw": 757.396
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성화재전환법인보험대리점",
+      "gaName": "삼성화재전환법인",
       "totalPerformanceThousandKrw": 880.213
     },
     {
@@ -5823,7 +5828,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 2212574.41
     },
     {
@@ -5835,11 +5840,6 @@
       "sheetName": "보장성",
       "gaName": "선우HK",
       "totalPerformanceThousandKrw": 1641.0
-    },
-    {
-      "sheetName": "보장성",
-      "gaName": "세무법인셜록택스",
-      "totalPerformanceThousandKrw": 48432.635
     },
     {
       "sheetName": "보장성",
@@ -5858,6 +5858,11 @@
     },
     {
       "sheetName": "보장성",
+      "gaName": "셜록택스",
+      "totalPerformanceThousandKrw": 48432.635
+    },
+    {
+      "sheetName": "보장성",
       "gaName": "쇼엠인슈어런스",
       "totalPerformanceThousandKrw": 36947.584
     },
@@ -5868,7 +5873,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "스카이보험대리점",
+      "gaName": "스카이",
       "totalPerformanceThousandKrw": 15590.239
     },
     {
@@ -5883,7 +5888,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "스타인스보험대리점",
+      "gaName": "스타인스",
       "totalPerformanceThousandKrw": 828.764
     },
     {
@@ -5943,13 +5948,13 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "아이클라프보험대리점",
-      "totalPerformanceThousandKrw": 4583.061
+      "gaName": "아이케이금융서비스",
+      "totalPerformanceThousandKrw": 163.36
     },
     {
       "sheetName": "보장성",
-      "gaName": "안심금융지키미",
-      "totalPerformanceThousandKrw": 163.36
+      "gaName": "아이클라프",
+      "totalPerformanceThousandKrw": 4583.061
     },
     {
       "sheetName": "보장성",
@@ -5978,7 +5983,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "에스제이에셋보험대리점",
+      "gaName": "에스제이에셋",
       "totalPerformanceThousandKrw": 2996.5
     },
     {
@@ -5998,7 +6003,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "에이엘엠씨보험대리점",
+      "gaName": "에이엘엠씨",
       "totalPerformanceThousandKrw": 562.283
     },
     {
@@ -6008,7 +6013,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "에이원플러스보험대리점",
+      "gaName": "에이원플러스",
       "totalPerformanceThousandKrw": 4372.423
     },
     {
@@ -6033,18 +6038,13 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "에임자산관리보험대리점",
+      "gaName": "에임자산관리",
       "totalPerformanceThousandKrw": 82610.638
     },
     {
       "sheetName": "보장성",
       "gaName": "에즈금융서비스",
       "totalPerformanceThousandKrw": 6009429.944
-    },
-    {
-      "sheetName": "보장성",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 168585.898
     },
     {
       "sheetName": "보장성",
@@ -6058,12 +6058,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 184773.769
-    },
-    {
-      "sheetName": "보장성",
-      "gaName": "에프에이치씨보험대리점",
+      "gaName": "에프에이치씨",
       "totalPerformanceThousandKrw": 38750.81
     },
     {
@@ -6073,7 +6068,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "에프엠피파트너즈보험대리점",
+      "gaName": "에프엠피",
       "totalPerformanceThousandKrw": 24814.249
     },
     {
@@ -6088,7 +6083,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "엔젤인베스터C&F",
+      "gaName": "엔젤인베스터씨앤에프",
       "totalPerformanceThousandKrw": 5271.506
     },
     {
@@ -6108,7 +6103,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "예스인보험대리점",
+      "gaName": "예스인",
       "totalPerformanceThousandKrw": 1399.592
     },
     {
@@ -6143,7 +6138,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "올바른에셋금융서비스",
+      "gaName": "와이엔에셋금융서비스",
       "totalPerformanceThousandKrw": 27360.0
     },
     {
@@ -6173,7 +6168,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "월드클래스컨설팅금융서비스",
+      "gaName": "월드클래스금융",
       "totalPerformanceThousandKrw": 197776.905
     },
     {
@@ -6193,7 +6188,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "윙스컨설팅그룹",
+      "gaName": "윙스세일즈앤컨설팅그룹",
       "totalPerformanceThousandKrw": 56840.0
     },
     {
@@ -6205,6 +6200,11 @@
       "sheetName": "보장성",
       "gaName": "유민파트너",
       "totalPerformanceThousandKrw": 1212.728
+    },
+    {
+      "sheetName": "보장성",
+      "gaName": "유앤아이금융서비스",
+      "totalPerformanceThousandKrw": 236483.384
     },
     {
       "sheetName": "보장성",
@@ -6253,7 +6253,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "인슈포유명성보험대리점",
+      "gaName": "인슈포유명성",
       "totalPerformanceThousandKrw": 100.3
     },
     {
@@ -6268,7 +6268,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "인스럭키대리점",
+      "gaName": "인스럭키",
       "totalPerformanceThousandKrw": 3417.45
     },
     {
@@ -6278,7 +6278,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 26271.874
     },
     {
@@ -6298,17 +6298,12 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "재람보험대리점",
+      "gaName": "재람",
       "totalPerformanceThousandKrw": 2044.179
     },
     {
       "sheetName": "보장성",
-      "gaName": "재무설계센타",
-      "totalPerformanceThousandKrw": 236483.384
-    },
-    {
-      "sheetName": "보장성",
-      "gaName": "제이앤굿종합법인보험대리점",
+      "gaName": "제이앤굿종합법인",
       "totalPerformanceThousandKrw": 2010.19
     },
     {
@@ -6328,7 +6323,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "제티아이보험대리점",
+      "gaName": "제티아이",
       "totalPerformanceThousandKrw": 5060.0
     },
     {
@@ -6373,12 +6368,12 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "진천화랑보험대리점",
+      "gaName": "진천화랑",
       "totalPerformanceThousandKrw": 19308.84
     },
     {
       "sheetName": "보장성",
-      "gaName": "참좋은재무컨설팅보험대리점",
+      "gaName": "참좋은재무컨설팅",
       "totalPerformanceThousandKrw": 1916.99
     },
     {
@@ -6403,7 +6398,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 247948.515
     },
     {
@@ -6493,7 +6488,12 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "티앤티지에이보험대리점",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 168585.898
+    },
+    {
+      "sheetName": "보장성",
+      "gaName": "티앤티지에이",
       "totalPerformanceThousandKrw": 70.126
     },
     {
@@ -6523,7 +6523,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "프로넷인슈보험대리점",
+      "gaName": "프로넷인슈",
       "totalPerformanceThousandKrw": 598.267
     },
     {
@@ -6573,7 +6573,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "한국중소기업지원",
+      "gaName": "한국중소기업지원보험대리점",
       "totalPerformanceThousandKrw": 10999.186
     },
     {
@@ -6613,27 +6613,27 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "해피트리에셋보험대리점",
+      "gaName": "해피트리에셋",
       "totalPerformanceThousandKrw": 183.0
     },
     {
       "sheetName": "보장성",
-      "gaName": "행복한사람들보험대리점",
+      "gaName": "행복한사람들",
       "totalPerformanceThousandKrw": 11159.74
     },
     {
       "sheetName": "보장성",
-      "gaName": "헤리티지센터보험대리점",
+      "gaName": "헤리티지센터",
       "totalPerformanceThousandKrw": 35037.0
     },
     {
       "sheetName": "보장성",
-      "gaName": "현대금융컨설팅강남보험대리점",
+      "gaName": "현대금융컨설팅강남",
       "totalPerformanceThousandKrw": 654.719
     },
     {
       "sheetName": "보장성",
-      "gaName": "현대금융컨설팅강북보험대리점",
+      "gaName": "현대금융컨설팅강북",
       "totalPerformanceThousandKrw": 686.445
     },
     {
@@ -6653,17 +6653,17 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "현파트너즈보험대리점",
+      "gaName": "현파트너즈",
       "totalPerformanceThousandKrw": 15081.75
     },
     {
       "sheetName": "보장성",
-      "gaName": "휴런스보험대리점",
+      "gaName": "휴런스",
       "totalPerformanceThousandKrw": 2715.951
     },
     {
       "sheetName": "보장성",
-      "gaName": "희우법률세무연구원보험대리점",
+      "gaName": "희우법률세무연구원",
       "totalPerformanceThousandKrw": 2454.0
     },
     {
@@ -6728,7 +6728,7 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "덕암에셋보험대리점",
+      "gaName": "덕암에셋",
       "totalPerformanceThousandKrw": 308.0
     },
     {
@@ -6773,12 +6773,12 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "맥스라이프보험대리점",
+      "gaName": "맥스라이프",
       "totalPerformanceThousandKrw": 721.0
     },
     {
       "sheetName": "상속",
-      "gaName": "맥스인보험대리점",
+      "gaName": "맥스인",
       "totalPerformanceThousandKrw": 240.0
     },
     {
@@ -6805,6 +6805,11 @@
       "sheetName": "상속",
       "gaName": "미래에셋금융서비스",
       "totalPerformanceThousandKrw": 5879.28
+    },
+    {
+      "sheetName": "상속",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 1087.43
     },
     {
       "sheetName": "상속",
@@ -6843,7 +6848,7 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 498.6
     },
     {
@@ -6853,7 +6858,7 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 403.01
     },
     {
@@ -6958,16 +6963,6 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 205.19
-    },
-    {
-      "sheetName": "상속",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 1087.43
-    },
-    {
-      "sheetName": "상속",
       "gaName": "에프엠에셋",
       "totalPerformanceThousandKrw": 19585.013
     },
@@ -6978,7 +6973,7 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "엔젤인베스터C&F",
+      "gaName": "엔젤인베스터씨앤에프",
       "totalPerformanceThousandKrw": 4767.0
     },
     {
@@ -7043,7 +7038,7 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 1048.83
     },
     {
@@ -7058,7 +7053,7 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "제티아이보험대리점",
+      "gaName": "제티아이",
       "totalPerformanceThousandKrw": 5060.0
     },
     {
@@ -7093,7 +7088,7 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 17318.641
     },
     {
@@ -7145,6 +7140,11 @@
       "sheetName": "상속",
       "gaName": "티금융서비스",
       "totalPerformanceThousandKrw": 3510.16
+    },
+    {
+      "sheetName": "상속",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 205.19
     },
     {
       "sheetName": "상속",
@@ -7203,6 +7203,11 @@
     },
     {
       "sheetName": "월초",
+      "gaName": "가온금융서비스",
+      "totalPerformanceThousandKrw": 17914.0
+    },
+    {
+      "sheetName": "월초",
       "gaName": "가온누리에셋",
       "totalPerformanceThousandKrw": 745.794
     },
@@ -7213,7 +7218,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "경영자문그룹위드플러스보험대리점",
+      "gaName": "경영자문그룹위드플러스",
       "totalPerformanceThousandKrw": 851.634
     },
     {
@@ -7243,7 +7248,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "굿타임보험대리점",
+      "gaName": "굿타임",
       "totalPerformanceThousandKrw": 3003.55
     },
     {
@@ -7278,7 +7283,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "다사랑인스보험대리점",
+      "gaName": "다사랑인스",
       "totalPerformanceThousandKrw": 58.887
     },
     {
@@ -7303,7 +7308,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "더블에셋보험대리점",
+      "gaName": "더블에셋",
       "totalPerformanceThousandKrw": 2467.14
     },
     {
@@ -7328,7 +7333,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "덕암에셋보험대리점",
+      "gaName": "덕암에셋",
       "totalPerformanceThousandKrw": 30404.7
     },
     {
@@ -7355,11 +7360,6 @@
       "sheetName": "월초",
       "gaName": "동신",
       "totalPerformanceThousandKrw": 263.3
-    },
-    {
-      "sheetName": "월초",
-      "gaName": "동아세무회계연구소",
-      "totalPerformanceThousandKrw": 17914.0
     },
     {
       "sheetName": "월초",
@@ -7403,12 +7403,12 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 72944.8
     },
     {
       "sheetName": "월초",
-      "gaName": "리더스보험대리점",
+      "gaName": "리더스",
       "totalPerformanceThousandKrw": 13225.162
     },
     {
@@ -7428,7 +7428,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "리치금융서비스",
+      "gaName": "리치금융서비스보험대리점",
       "totalPerformanceThousandKrw": 305.569
     },
     {
@@ -7453,17 +7453,17 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "매크로인슈보험대리점",
+      "gaName": "매크로인슈",
       "totalPerformanceThousandKrw": 215.858
     },
     {
       "sheetName": "월초",
-      "gaName": "맥스라이프보험대리점",
+      "gaName": "맥스라이프",
       "totalPerformanceThousandKrw": 20316.269
     },
     {
       "sheetName": "월초",
-      "gaName": "맥스인보험대리점",
+      "gaName": "맥스인",
       "totalPerformanceThousandKrw": 908.799
     },
     {
@@ -7498,7 +7498,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "모닝삼성보험대리점",
+      "gaName": "모닝삼성",
       "totalPerformanceThousandKrw": 43371.832
     },
     {
@@ -7538,6 +7538,11 @@
     },
     {
       "sheetName": "월초",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 253257.769
+    },
+    {
+      "sheetName": "월초",
       "gaName": "미소보험대리점",
       "totalPerformanceThousandKrw": 31.172
     },
@@ -7548,7 +7553,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 79141.439
     },
     {
@@ -7573,7 +7578,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "베스트코아보험대리점",
+      "gaName": "베스트코아",
       "totalPerformanceThousandKrw": 260.38
     },
     {
@@ -7598,7 +7603,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "보험세상보험대리점",
+      "gaName": "보험세상",
       "totalPerformanceThousandKrw": 43.0
     },
     {
@@ -7633,7 +7638,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성광역법인보험대리점",
+      "gaName": "삼성광역법인",
       "totalPerformanceThousandKrw": 1108.035
     },
     {
@@ -7678,7 +7683,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 3827.891
     },
     {
@@ -7688,7 +7693,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 3290.114
     },
     {
@@ -7718,12 +7723,12 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성화재일산법인보험대리점",
+      "gaName": "삼성화재일산법인",
       "totalPerformanceThousandKrw": 757.396
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성화재전환법인보험대리점",
+      "gaName": "삼성화재전환법인",
       "totalPerformanceThousandKrw": 1830.213
     },
     {
@@ -7748,7 +7753,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 2318904.41
     },
     {
@@ -7760,11 +7765,6 @@
       "sheetName": "월초",
       "gaName": "선우HK",
       "totalPerformanceThousandKrw": 4346.4
-    },
-    {
-      "sheetName": "월초",
-      "gaName": "세무법인셜록택스",
-      "totalPerformanceThousandKrw": 48432.635
     },
     {
       "sheetName": "월초",
@@ -7783,6 +7783,11 @@
     },
     {
       "sheetName": "월초",
+      "gaName": "셜록택스",
+      "totalPerformanceThousandKrw": 48432.635
+    },
+    {
+      "sheetName": "월초",
       "gaName": "쇼엠인슈어런스",
       "totalPerformanceThousandKrw": 36947.584
     },
@@ -7793,7 +7798,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "스카이보험대리점",
+      "gaName": "스카이",
       "totalPerformanceThousandKrw": 15590.239
     },
     {
@@ -7808,7 +7813,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "스타인스보험대리점",
+      "gaName": "스타인스",
       "totalPerformanceThousandKrw": 928.764
     },
     {
@@ -7868,13 +7873,13 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "아이클라프보험대리점",
-      "totalPerformanceThousandKrw": 4583.061
+      "gaName": "아이케이금융서비스",
+      "totalPerformanceThousandKrw": 10813.36
     },
     {
       "sheetName": "월초",
-      "gaName": "안심금융지키미",
-      "totalPerformanceThousandKrw": 10813.36
+      "gaName": "아이클라프",
+      "totalPerformanceThousandKrw": 4583.061
     },
     {
       "sheetName": "월초",
@@ -7908,7 +7913,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "에스제이에셋보험대리점",
+      "gaName": "에스제이에셋",
       "totalPerformanceThousandKrw": 2996.5
     },
     {
@@ -7928,7 +7933,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "에이엘엠씨보험대리점",
+      "gaName": "에이엘엠씨",
       "totalPerformanceThousandKrw": 812.283
     },
     {
@@ -7938,7 +7943,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "에이원플러스보험대리점",
+      "gaName": "에이원플러스",
       "totalPerformanceThousandKrw": 4372.423
     },
     {
@@ -7963,18 +7968,13 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "에임자산관리보험대리점",
+      "gaName": "에임자산관리",
       "totalPerformanceThousandKrw": 82610.638
     },
     {
       "sheetName": "월초",
       "gaName": "에즈금융서비스",
       "totalPerformanceThousandKrw": 6630249.364
-    },
-    {
-      "sheetName": "월초",
-      "gaName": "에프씨금융서비스",
-      "totalPerformanceThousandKrw": 168585.898
     },
     {
       "sheetName": "월초",
@@ -7988,12 +7988,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 253257.769
-    },
-    {
-      "sheetName": "월초",
-      "gaName": "에프에이치씨보험대리점",
+      "gaName": "에프에이치씨",
       "totalPerformanceThousandKrw": 38750.81
     },
     {
@@ -8008,7 +8003,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "에프엠피파트너즈보험대리점",
+      "gaName": "에프엠피",
       "totalPerformanceThousandKrw": 48914.249
     },
     {
@@ -8023,7 +8018,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "엔젤인베스터C&F",
+      "gaName": "엔젤인베스터씨앤에프",
       "totalPerformanceThousandKrw": 19371.506
     },
     {
@@ -8048,7 +8043,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "예스인보험대리점",
+      "gaName": "예스인",
       "totalPerformanceThousandKrw": 1399.592
     },
     {
@@ -8083,7 +8078,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "올바른에셋금융서비스",
+      "gaName": "와이엔에셋금융서비스",
       "totalPerformanceThousandKrw": 37960.0
     },
     {
@@ -8113,7 +8108,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "월드클래스컨설팅금융서비스",
+      "gaName": "월드클래스금융",
       "totalPerformanceThousandKrw": 197776.905
     },
     {
@@ -8133,7 +8128,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "윙스컨설팅그룹",
+      "gaName": "윙스세일즈앤컨설팅그룹",
       "totalPerformanceThousandKrw": 63790.0
     },
     {
@@ -8145,6 +8140,11 @@
       "sheetName": "월초",
       "gaName": "유민파트너",
       "totalPerformanceThousandKrw": 1212.728
+    },
+    {
+      "sheetName": "월초",
+      "gaName": "유앤아이금융서비스",
+      "totalPerformanceThousandKrw": 236483.384
     },
     {
       "sheetName": "월초",
@@ -8193,7 +8193,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "인슈포유명성보험대리점",
+      "gaName": "인슈포유명성",
       "totalPerformanceThousandKrw": 100.3
     },
     {
@@ -8208,7 +8208,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "인스럭키대리점",
+      "gaName": "인스럭키",
       "totalPerformanceThousandKrw": 3417.45
     },
     {
@@ -8218,7 +8218,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 34621.874
     },
     {
@@ -8238,22 +8238,17 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "일석TS보험대리점",
+      "gaName": "일석TS",
       "totalPerformanceThousandKrw": 200.0
     },
     {
       "sheetName": "월초",
-      "gaName": "재람보험대리점",
+      "gaName": "재람",
       "totalPerformanceThousandKrw": 2044.179
     },
     {
       "sheetName": "월초",
-      "gaName": "재무설계센타",
-      "totalPerformanceThousandKrw": 236483.384
-    },
-    {
-      "sheetName": "월초",
-      "gaName": "제이앤굿종합법인보험대리점",
+      "gaName": "제이앤굿종합법인",
       "totalPerformanceThousandKrw": 2010.19
     },
     {
@@ -8273,7 +8268,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "제티아이보험대리점",
+      "gaName": "제티아이",
       "totalPerformanceThousandKrw": 5060.0
     },
     {
@@ -8318,12 +8313,12 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "진천화랑보험대리점",
+      "gaName": "진천화랑",
       "totalPerformanceThousandKrw": 19308.84
     },
     {
       "sheetName": "월초",
-      "gaName": "참좋은재무컨설팅보험대리점",
+      "gaName": "참좋은재무컨설팅",
       "totalPerformanceThousandKrw": 1916.99
     },
     {
@@ -8348,7 +8343,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 411332.215
     },
     {
@@ -8438,7 +8433,12 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "티앤티지에이보험대리점",
+      "gaName": "티앤에스파트너스",
+      "totalPerformanceThousandKrw": 168585.898
+    },
+    {
+      "sheetName": "월초",
+      "gaName": "티앤티지에이",
       "totalPerformanceThousandKrw": 70.126
     },
     {
@@ -8473,7 +8473,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "프로넷인슈보험대리점",
+      "gaName": "프로넷인슈",
       "totalPerformanceThousandKrw": 598.267
     },
     {
@@ -8523,7 +8523,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "한국중소기업지원",
+      "gaName": "한국중소기업지원보험대리점",
       "totalPerformanceThousandKrw": 10999.186
     },
     {
@@ -8563,12 +8563,12 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "해피트리에셋보험대리점",
+      "gaName": "해피트리에셋",
       "totalPerformanceThousandKrw": 183.0
     },
     {
       "sheetName": "월초",
-      "gaName": "행복한사람들보험대리점",
+      "gaName": "행복한사람들",
       "totalPerformanceThousandKrw": 12159.74
     },
     {
@@ -8578,17 +8578,17 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "헤리티지센터보험대리점",
+      "gaName": "헤리티지센터",
       "totalPerformanceThousandKrw": 35037.0
     },
     {
       "sheetName": "월초",
-      "gaName": "현대금융컨설팅강남보험대리점",
+      "gaName": "현대금융컨설팅강남",
       "totalPerformanceThousandKrw": 654.719
     },
     {
       "sheetName": "월초",
-      "gaName": "현대금융컨설팅강북보험대리점",
+      "gaName": "현대금융컨설팅강북",
       "totalPerformanceThousandKrw": 686.445
     },
     {
@@ -8608,18 +8608,23 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "현파트너즈보험대리점",
+      "gaName": "현파트너즈",
       "totalPerformanceThousandKrw": 15081.75
     },
     {
       "sheetName": "월초",
-      "gaName": "휴런스보험대리점",
+      "gaName": "휴런스",
       "totalPerformanceThousandKrw": 2715.951
     },
     {
       "sheetName": "월초",
-      "gaName": "희우법률세무연구원보험대리점",
+      "gaName": "희우법률세무연구원",
       "totalPerformanceThousandKrw": 2454.0
+    },
+    {
+      "sheetName": "일반저축",
+      "gaName": "가온금융서비스",
+      "totalPerformanceThousandKrw": 700.0
     },
     {
       "sheetName": "일반저축",
@@ -8688,11 +8693,6 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "동아세무회계연구소",
-      "totalPerformanceThousandKrw": 700.0
-    },
-    {
-      "sheetName": "일반저축",
       "gaName": "드림라이프",
       "totalPerformanceThousandKrw": 16895.0
     },
@@ -8713,7 +8713,7 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 1800.0
     },
     {
@@ -8763,7 +8763,12 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "밸런스에셋보험대리점",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 15900.0
+    },
+    {
+      "sheetName": "일반저축",
+      "gaName": "밸런스에셋",
       "totalPerformanceThousandKrw": 1100.0
     },
     {
@@ -8788,7 +8793,7 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "삼성광역법인보험대리점",
+      "gaName": "삼성광역법인",
       "totalPerformanceThousandKrw": 200.0
     },
     {
@@ -8813,12 +8818,12 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 2500.0
     },
     {
       "sheetName": "일반저축",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 500.0
     },
     {
@@ -8833,7 +8838,7 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 500.0
     },
     {
@@ -8928,17 +8933,12 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 15900.0
-    },
-    {
-      "sheetName": "일반저축",
       "gaName": "에프엠에셋",
       "totalPerformanceThousandKrw": 155121.0
     },
     {
       "sheetName": "일반저축",
-      "gaName": "에프엠피파트너즈보험대리점",
+      "gaName": "에프엠피",
       "totalPerformanceThousandKrw": 6500.0
     },
     {
@@ -9018,7 +9018,7 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 6850.0
     },
     {
@@ -9068,7 +9068,7 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 15850.0
     },
     {
@@ -9283,7 +9283,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "레인보우에셋보험대리점",
+      "gaName": "레인보우에셋",
       "totalPerformanceThousandKrw": 243.61
     },
     {
@@ -9348,6 +9348,11 @@
     },
     {
       "sheetName": "치매",
+      "gaName": "미래전략금융서비스",
+      "totalPerformanceThousandKrw": 3667.622
+    },
+    {
+      "sheetName": "치매",
       "gaName": "미소보험대리점",
       "totalPerformanceThousandKrw": 31.172
     },
@@ -9408,7 +9413,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "삼성화재수도권법인보험대리점",
+      "gaName": "삼성화재수도권법인",
       "totalPerformanceThousandKrw": 115.55
     },
     {
@@ -9423,12 +9428,12 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "삼성화재전환법인보험대리점",
+      "gaName": "삼성화재전환법인",
       "totalPerformanceThousandKrw": 301.24
     },
     {
       "sheetName": "치매",
-      "gaName": "서울법인재무설계센터",
+      "gaName": "서울법인금융센터",
       "totalPerformanceThousandKrw": 4096.132
     },
     {
@@ -9538,11 +9543,6 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "에프에스아이금융서비스보험대리점",
-      "totalPerformanceThousandKrw": 3667.622
-    },
-    {
-      "sheetName": "치매",
       "gaName": "에프엠에셋",
       "totalPerformanceThousandKrw": 51564.431
     },
@@ -9623,7 +9623,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "인슈포유명성보험대리점",
+      "gaName": "인슈포유명성",
       "totalPerformanceThousandKrw": 100.3
     },
     {
@@ -9643,7 +9643,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "인스토피아",
+      "gaName": "인스토피아보험총괄대리점",
       "totalPerformanceThousandKrw": 742.057
     },
     {
@@ -9698,7 +9698,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "케이비라이프파트너스보험대리점",
+      "gaName": "케이비라이프파트너스",
       "totalPerformanceThousandKrw": 2303.017
     },
     {
@@ -9823,7 +9823,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "현대금융컨설팅강남보험대리점",
+      "gaName": "현대금융컨설팅강남",
       "totalPerformanceThousandKrw": 39.085
     },
     {

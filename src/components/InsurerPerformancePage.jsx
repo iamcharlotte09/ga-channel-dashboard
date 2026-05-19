@@ -293,14 +293,39 @@ function buildInsurerDashboardState(
   const monthlyTotalsMap = buildMonthlyTotals(insurerRecords);
   const periods = [...periodMap.keys()].sort();
   const activePeriodKey = periods.includes(selectedPeriodKey) ? selectedPeriodKey : periods.at(-1) ?? "";
-  const currentPeriodIndex = periods.indexOf(activePeriodKey);
-  const previousPeriodKey = currentPeriodIndex > 0 ? periods[currentPeriodIndex - 1] : null;
-  const priorPeriods = currentPeriodIndex > 0
-    ? periodMode === "yearly"
-      ? periods.slice(0, currentPeriodIndex)
-      : periods.slice(Math.max(0, currentPeriodIndex - 12), currentPeriodIndex)
-    : [];
-  const recentPeriods = periods.slice(Math.max(0, currentPeriodIndex - 2), currentPeriodIndex + 1);
+
+  let previousPeriodKey = null;
+  let priorPeriodKeyYearly = null;
+  let recentPeriods = [];
+
+  if (activePeriodKey) {
+    if (periodMode === "yearly") {
+      const y = parseInt(activePeriodKey, 10);
+      const prevY = String(y - 1);
+      if (periods.includes(prevY)) previousPeriodKey = prevY;
+      priorPeriodKeyYearly = periods.includes(prevY) ? prevY : null;
+      for (let i = 2; i >= 0; i--) {
+        const k = String(y - i);
+        if (periods.includes(k)) recentPeriods.push(k);
+      }
+    } else {
+      const [yStr, mStr] = activePeriodKey.split("-");
+      let y = parseInt(yStr, 10);
+      let m = parseInt(mStr, 10);
+      let prevY = y;
+      let prevM = m - 1;
+      if (prevM <= 0) { prevM += 12; prevY -= 1; }
+      const prevKey = `${prevY}-${String(prevM).padStart(2, "0")}`;
+      if (periods.includes(prevKey)) previousPeriodKey = prevKey;
+      for (let i = 2; i >= 0; i--) {
+        let calcY = y;
+        let calcM = m - i;
+        if (calcM <= 0) { calcM += 12; calcY -= 1; }
+        const k = `${calcY}-${String(calcM).padStart(2, "0")}`;
+        if (periods.includes(k)) recentPeriods.push(k);
+      }
+    }
+  }
   const currentPeriod = periodMap.get(activePeriodKey) ?? {
     dimensions: new Map(),
     truncatedDimensions: new Map(),
@@ -340,10 +365,24 @@ function buildInsurerDashboardState(
   const rollingEndMonthKey = periodMode === "monthly"
     ? activePeriodKey
     : allMonthKeys.filter((monthKey) => monthKey.startsWith(`${activePeriodKey}-`)).at(-1) ?? "";
-  const rollingEndIndex = allMonthKeys.indexOf(rollingEndMonthKey);
-  const rollingMonthKeys = rollingEndIndex >= 11
-    ? allMonthKeys.slice(rollingEndIndex - 11, rollingEndIndex + 1)
-    : [];
+
+  let rollingMonthKeys = [];
+  if (rollingEndMonthKey) {
+    const [yearStr, monthStr] = rollingEndMonthKey.split("-");
+    let year = parseInt(yearStr, 10);
+    let month = parseInt(monthStr, 10);
+    for (let i = 0; i < 12; i++) {
+      let y = year;
+      let m = month - i;
+      if (m <= 0) {
+        m += 12;
+        y -= 1;
+      }
+      rollingMonthKeys.push(`${y}-${String(m).padStart(2, "0")}`);
+    }
+    rollingMonthKeys.reverse(); // oldest to newest
+  }
+
   const rollingMonthKeySet = new Set(rollingMonthKeys);
   const rollingTotalPerformance = rollingMonthKeys.length === 12
     ? rollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
@@ -359,7 +398,8 @@ function buildInsurerDashboardState(
     ? currentRanked.slice(0, OVERALL_TABLE_ROW_LIMIT)
     : currentRanked.slice(0, DETAIL_TABLE_ROW_LIMIT);
   const otherRanked = isAllInsurersView ? [] : currentRanked.slice(DETAIL_TABLE_ROW_LIMIT);
-  const rankedRows = otherRanked.length
+
+  const rankedRows = (!isAllInsurersView && otherRanked.length > 0)
     ? [
         ...visibleRanked,
         {
@@ -377,37 +417,45 @@ function buildInsurerDashboardState(
       ? (item.performance / selectedCurrentTotalPerformance) * 100
       : 0;
     const hasBenchmarkData = periodMode === "yearly"
-      ? availableYears.length >= 2 && priorPeriods.length >= 1
+      ? availableYears.length >= 2 && priorPeriodKeyYearly !== null
       : rollingMonthKeys.length >= 12 && rollingTotalPerformance > 0;
     const benchmarkMs = hasBenchmarkData
       ? periodMode === "yearly"
-        ? priorPeriods.reduce((sum, periodKey) => {
-            const periodEntry = periodMap.get(periodKey);
+        ? (() => {
+            const priorPeriodKey = priorPeriodKeyYearly;
+            const periodEntry = periodMap.get(priorPeriodKey);
             const periodTotal = aggregationMode === "truncated"
               ? (periodEntry?.truncatedTotalPerformance ?? 0)
               : (periodEntry?.totalPerformance ?? 0);
-            const periodPerformance = item.isOtherBucket
-              ? (item.memberNames ?? []).reduce(
-                  (memberSum, memberName) => memberSum + (
-                    aggregationMode === "truncated"
-                      ? (periodEntry?.truncatedDimensions.get(memberName) ?? 0)
-                      : (periodEntry?.dimensions.get(memberName) ?? 0)
-                  ),
-                  0
-                )
-              : (
+            if (!periodTotal) return 0;
+
+            let periodPerformance = 0;
+            if (item.isOtherBucket) {
+              const topNPerformance = visibleRanked.reduce((sum, visibleItem) => {
+                return sum + (
                   aggregationMode === "truncated"
-                    ? (periodEntry?.truncatedDimensions.get(item.name) ?? 0)
-                    : (periodEntry?.dimensions.get(item.name) ?? 0)
+                    ? (periodEntry?.truncatedDimensions.get(visibleItem.name) ?? 0)
+                    : (periodEntry?.dimensions.get(visibleItem.name) ?? 0)
                 );
-            if (!periodTotal) return sum;
-            return sum + (periodPerformance / periodTotal) * 100;
-          }, 0) / priorPeriods.length
+              }, 0);
+              periodPerformance = periodTotal - topNPerformance;
+            } else {
+              periodPerformance = aggregationMode === "truncated"
+                ? (periodEntry?.truncatedDimensions.get(item.name) ?? 0)
+                : (periodEntry?.dimensions.get(item.name) ?? 0);
+            }
+            return (periodPerformance / periodTotal) * 100;
+          })()
         : (() => {
             const memberNames = new Set(item.memberNames ?? [item.name]);
+            const excludedNames = new Set(visibleRanked.map((v) => v.name));
             const rollingPerformance = insurerRecords.reduce((sum, record) => {
               if (!rollingMonthKeySet.has(record.monthKey)) return sum;
-              if (!memberNames.has(record[dimensionKey])) return sum;
+              if (item.isOtherBucket) {
+                if (excludedNames.has(record[dimensionKey])) return sum;
+              } else {
+                if (!memberNames.has(record[dimensionKey])) return sum;
+              }
               return sum + (
                 aggregationMode === "truncated"
                   ? Math.trunc(record.performanceThousandKrw)
