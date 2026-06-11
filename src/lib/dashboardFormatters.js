@@ -63,12 +63,15 @@ export function buildPeriodMap(records, periodMode, dimensionKey) {
       periodKey,
       dimensions: new Map(),
       truncatedDimensions: new Map(),
+      flooredDimensions: new Map(),
       totalPerformance: 0,
       truncatedTotalPerformance: 0,
+      flooredTotalPerformance: 0,
     };
 
     periodEntry.totalPerformance += record.performanceThousandKrw;
     periodEntry.truncatedTotalPerformance += Math.round(record.performanceThousandKrw);
+    periodEntry.flooredTotalPerformance += Math.trunc(record.performanceThousandKrw);
     periodEntry.dimensions.set(
       dimensionName,
       (periodEntry.dimensions.get(dimensionName) ?? 0) + record.performanceThousandKrw
@@ -76,6 +79,10 @@ export function buildPeriodMap(records, periodMode, dimensionKey) {
     periodEntry.truncatedDimensions.set(
       dimensionName,
       (periodEntry.truncatedDimensions.get(dimensionName) ?? 0) + Math.round(record.performanceThousandKrw)
+    );
+    periodEntry.flooredDimensions.set(
+      dimensionName,
+      (periodEntry.flooredDimensions.get(dimensionName) ?? 0) + Math.trunc(record.performanceThousandKrw)
     );
     periodMap.set(periodKey, periodEntry);
   });
@@ -91,10 +98,12 @@ export function buildMonthlyTotals(records) {
     const current = monthlyTotalsMap.get(monthKey) ?? {
       totalPerformance: 0,
       truncatedTotalPerformance: 0,
+      flooredTotalPerformance: 0,
     };
 
     current.totalPerformance += record.performanceThousandKrw;
     current.truncatedTotalPerformance += Math.round(record.performanceThousandKrw);
+    current.flooredTotalPerformance += Math.trunc(record.performanceThousandKrw);
     monthlyTotalsMap.set(monthKey, current);
   });
 

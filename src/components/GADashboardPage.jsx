@@ -33,7 +33,27 @@ function formatSelectionMonthLabel(selectedYear, selectedMonth) {
 }
 
 function formatAggregationModeLabel(aggregationMode) {
-  return aggregationMode === "decimal" ? "행별 소수점 포함" : "행별 소수점 반올림";
+  if (aggregationMode === "decimal") return "행별 소수점 포함";
+  if (aggregationMode === "floored") return "행별 소수점 제외";
+  return "행별 소수점 반올림";
+}
+
+function getAggregatedRecordValue(record, aggregationMode) {
+  if (aggregationMode === "truncated") return Math.round(record.performanceThousandKrw);
+  if (aggregationMode === "floored") return Math.trunc(record.performanceThousandKrw);
+  return record.performanceThousandKrw;
+}
+
+function getAggregatedDimensionMap(periodEntry, aggregationMode) {
+  if (aggregationMode === "truncated") return periodEntry.truncatedDimensions;
+  if (aggregationMode === "floored") return periodEntry.flooredDimensions;
+  return periodEntry.dimensions;
+}
+
+function getAggregatedTotalPerformance(periodEntry, aggregationMode) {
+  if (aggregationMode === "truncated") return periodEntry.truncatedTotalPerformance;
+  if (aggregationMode === "floored") return periodEntry.flooredTotalPerformance;
+  return periodEntry.totalPerformance;
 }
 
 function formatRankChangeLabel(deltaLabel) {
@@ -413,9 +433,7 @@ function buildProductMixSlices(records, activePeriodKey, periodMode, filters, ch
     })
     .forEach((record) => {
       const key = record.productName || "기타";
-      const value = aggregationMode === "truncated"
-        ? Math.round(record.performanceThousandKrw)
-        : record.performanceThousandKrw;
+      const value = getAggregatedRecordValue(record, aggregationMode);
       grouped.set(key, (grouped.get(key) ?? 0) + value);
       const insurerSet = productInsurerMap.get(key) ?? new Set();
       insurerSet.add(record.insurerName);
@@ -509,35 +527,33 @@ function buildDashboardState(
   const currentPeriod = periodMap.get(activePeriodKey) ?? {
     dimensions: new Map(),
     truncatedDimensions: new Map(),
+    flooredDimensions: new Map(),
     totalPerformance: 0,
     truncatedTotalPerformance: 0,
+    flooredTotalPerformance: 0,
   };
   const previousPeriod = previousPeriodKey
     ? periodMap.get(previousPeriodKey) ?? {
         dimensions: new Map(),
         truncatedDimensions: new Map(),
+        flooredDimensions: new Map(),
         totalPerformance: 0,
         truncatedTotalPerformance: 0,
+        flooredTotalPerformance: 0,
       }
     : {
         dimensions: new Map(),
         truncatedDimensions: new Map(),
+        flooredDimensions: new Map(),
         totalPerformance: 0,
         truncatedTotalPerformance: 0,
+        flooredTotalPerformance: 0,
       };
 
-  const currentDimensionMap = aggregationMode === "truncated"
-    ? currentPeriod.truncatedDimensions
-    : currentPeriod.dimensions;
-  const previousDimensionMap = aggregationMode === "truncated"
-    ? previousPeriod.truncatedDimensions
-    : previousPeriod.dimensions;
-  const selectedCurrentTotalPerformance = aggregationMode === "truncated"
-    ? currentPeriod.truncatedTotalPerformance
-    : currentPeriod.totalPerformance;
-  const selectedPreviousTotalPerformance = aggregationMode === "truncated"
-    ? previousPeriod.truncatedTotalPerformance
-    : previousPeriod.totalPerformance;
+  const currentDimensionMap = getAggregatedDimensionMap(currentPeriod, aggregationMode);
+  const previousDimensionMap = getAggregatedDimensionMap(previousPeriod, aggregationMode);
+  const selectedCurrentTotalPerformance = getAggregatedTotalPerformance(currentPeriod, aggregationMode);
+  const selectedPreviousTotalPerformance = getAggregatedTotalPerformance(previousPeriod, aggregationMode);
 
   const currentRanked = [...currentDimensionMap.entries()]
     .map(([name, performance]) => ({ name, performance }))
@@ -569,6 +585,17 @@ function buildDashboardState(
   const rollingTotalPerformance = rollingMonthKeys.length === 12
     ? rollingMonthKeys.reduce((sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.totalPerformance ?? 0), 0)
     : 0;
+  const priorRollingMonthKeys = rollingMonthKeys.length === 12 ? rollingMonthKeys.slice(0, 11) : [];
+  if (rollingMonthKeys.length === 12) {
+    const [firstYearStr, firstMonthStr] = rollingMonthKeys[0].split("-");
+    let priorYear = parseInt(firstYearStr, 10);
+    let priorMonth = parseInt(firstMonthStr, 10) - 1;
+    if (priorMonth <= 0) {
+      priorMonth += 12;
+      priorYear -= 1;
+    }
+    priorRollingMonthKeys.unshift(`${priorYear}-${String(priorMonth).padStart(2, "0")}`);
+  }
 
   const previousRankMap = new Map(
     [...previousDimensionMap.entries()]
@@ -609,24 +636,18 @@ function buildDashboardState(
         ? (() => {
             const priorPeriodKey = priorPeriodKeyYearly;
             const periodEntry = periodMap.get(priorPeriodKey);
-            const periodTotal = aggregationMode === "truncated"
-              ? (periodEntry?.truncatedTotalPerformance ?? 0)
-              : (periodEntry?.totalPerformance ?? 0);
+            const periodTotal = periodEntry ? getAggregatedTotalPerformance(periodEntry, aggregationMode) : 0;
             if (!periodTotal) return 0;
 
             const periodPerformance = item.isOtherBucket
               ? (item.memberNames ?? []).reduce(
                   (memberSum, memberName) => memberSum + (
-                    aggregationMode === "truncated"
-                      ? (periodEntry?.truncatedDimensions.get(memberName) ?? 0)
-                      : (periodEntry?.dimensions.get(memberName) ?? 0)
+                    getAggregatedDimensionMap(periodEntry, aggregationMode).get(memberName) ?? 0
                   ),
                   0
                 )
               : (
-                  aggregationMode === "truncated"
-                    ? (periodEntry?.truncatedDimensions.get(item.name) ?? 0)
-                    : (periodEntry?.dimensions.get(item.name) ?? 0)
+                  getAggregatedDimensionMap(periodEntry, aggregationMode).get(item.name) ?? 0
                 );
             return (periodPerformance / periodTotal) * 100;
           })()
@@ -635,18 +656,16 @@ function buildDashboardState(
             const rollingPerformance = sheetRecords.reduce((sum, record) => {
               if (!rollingMonthKeySet.has(record.monthKey)) return sum;
               if (!memberNames.has(record[dimensionKey])) return sum;
-              return sum + (
-                aggregationMode === "truncated"
-                  ? Math.round(record.performanceThousandKrw)
-                  : record.performanceThousandKrw
-              );
+              return sum + getAggregatedRecordValue(record, aggregationMode);
             }, 0);
-            const selectedRollingTotalPerformance = aggregationMode === "truncated"
-              ? rollingMonthKeys.reduce(
-                  (sum, monthKey) => sum + (monthlyTotalsMap.get(monthKey)?.truncatedTotalPerformance ?? 0),
-                  0
-                )
-              : rollingTotalPerformance;
+            const selectedRollingTotalPerformance = rollingMonthKeys.reduce(
+              (sum, monthKey) => sum + (
+                monthlyTotalsMap.get(monthKey)
+                  ? getAggregatedTotalPerformance(monthlyTotalsMap.get(monthKey), aggregationMode)
+                  : 0
+              ),
+              0
+            );
             return selectedRollingTotalPerformance > 0
               ? (rollingPerformance / selectedRollingTotalPerformance) * 100
               : 0;
@@ -674,15 +693,11 @@ function buildDashboardState(
     color: CHART_COLORS[index % CHART_COLORS.length],
     points: recentPeriods.map((periodKey) => {
       const periodEntry = periodMap.get(periodKey);
-      const periodTotal = aggregationMode === "truncated"
-        ? (periodEntry?.truncatedTotalPerformance ?? 0)
-        : (periodEntry?.totalPerformance ?? 0);
+      const periodTotal = periodEntry ? getAggregatedTotalPerformance(periodEntry, aggregationMode) : 0;
       const memberNames = chartRowMap.get(name)?.memberNames ?? [name];
       const performance = memberNames.reduce(
         (sum, memberName) => sum + (
-          aggregationMode === "truncated"
-            ? (periodEntry?.truncatedDimensions.get(memberName) ?? 0)
-            : (periodEntry?.dimensions.get(memberName) ?? 0)
+          (periodEntry ? getAggregatedDimensionMap(periodEntry, aggregationMode).get(memberName) : 0) ?? 0
         ),
         0
       );
@@ -723,16 +738,16 @@ function buildDashboardState(
   const recent12TotalPerformance = rollingMonthKeys.length === 12
     ? rollingMonthKeys.reduce((sum, monthKey) => {
         const monthEntry = monthlyTotalsMap.get(monthKey);
-        return sum + (
-          aggregationMode === "truncated"
-            ? (monthEntry?.truncatedTotalPerformance ?? 0)
-            : (monthEntry?.totalPerformance ?? 0)
-        );
+        return sum + (monthEntry ? getAggregatedTotalPerformance(monthEntry, aggregationMode) : 0);
       }, 0)
     : null;
-  const totalPerformance = aggregationMode === "truncated"
-    ? currentPeriod.truncatedTotalPerformance
-    : currentPeriod.totalPerformance;
+  const priorYearTotalPerformance = priorRollingMonthKeys.length === 12
+    ? priorRollingMonthKeys.reduce((sum, monthKey) => {
+        const monthEntry = monthlyTotalsMap.get(monthKey);
+        return sum + (monthEntry ? getAggregatedTotalPerformance(monthEntry, aggregationMode) : 0);
+      }, 0)
+    : null;
+  const totalPerformance = getAggregatedTotalPerformance(currentPeriod, aggregationMode);
   const benchmarkLabel = periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월 MS(%)";
   const benchmarkHeaderLabel = periodMode === "yearly" ? "전년 MS(%)" : "최근 12개월\nMS(%)";
   const deltaLabel = periodMode === "yearly" ? "전년 대비" : "전월 대비";
@@ -765,8 +780,12 @@ function buildDashboardState(
     recentPeriods,
     topBenchmarkMs,
     recent12TotalPerformance,
+    priorYearTotalPerformance,
     recent12RangeLabel: rollingMonthKeys.length === 12
       ? formatPeriodRangeLabel(rollingMonthKeys[0], rollingMonthKeys[rollingMonthKeys.length - 1])
+      : "-",
+    priorYearRangeLabel: priorRollingMonthKeys.length === 12
+      ? formatPeriodRangeLabel(priorRollingMonthKeys[0], priorRollingMonthKeys[priorRollingMonthKeys.length - 1])
       : "-",
     totalPerformance,
     tableRows,
@@ -1578,10 +1597,11 @@ export default function GADashboardPage() {
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                   합산 방법
                 </span>
-                <div className="mt-1.5 grid grid-cols-2 gap-2">
+                <div className="mt-1.5 grid grid-cols-3 gap-2">
                   {[
                     { value: "decimal", label: "행별 소수점 포함" },
                     { value: "truncated", label: "행별 소수점 반올림" },
+                    { value: "floored", label: "행별 소수점 제외" },
                   ].map((option) => (
                     <button
                       key={option.value}
@@ -1633,7 +1653,7 @@ export default function GADashboardPage() {
             </p>
           </div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">당월 실적</p>
               <p className="mt-2 text-xl font-semibold text-slate-900">
@@ -1649,6 +1669,15 @@ export default function GADashboardPage() {
                   : formatPerformance(dashboardState.recent12TotalPerformance)}
               </p>
               <p className="mt-1 text-xs text-slate-400">기준: {dashboardState.recent12RangeLabel}</p>
+            </div>
+            <div className="rounded-[1.5rem] bg-slate-50 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">직전 1년 누적 실적</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">
+                {dashboardState.priorYearTotalPerformance == null
+                  ? "-"
+                  : formatPerformance(dashboardState.priorYearTotalPerformance)}
+              </p>
+              <p className="mt-1 text-xs text-slate-400">기준: {dashboardState.priorYearRangeLabel}</p>
             </div>
           </div>
 
