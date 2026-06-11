@@ -33,7 +33,7 @@ function formatSelectionMonthLabel(selectedYear, selectedMonth) {
 }
 
 function formatAggregationModeLabel(aggregationMode) {
-  return aggregationMode === "decimal" ? "행별 소수점 포함" : "행별 소수점 제외";
+  return aggregationMode === "decimal" ? "행별 소수점 포함" : "행별 소수점 반올림";
 }
 
 function formatChartLabel(name) {
@@ -458,7 +458,7 @@ function buildInsurerDashboardState(
               }
               return sum + (
                 aggregationMode === "truncated"
-                  ? Math.trunc(record.performanceThousandKrw)
+                  ? Math.round(record.performanceThousandKrw)
                   : record.performanceThousandKrw
               );
             }, 0);
@@ -1305,7 +1305,7 @@ export default function InsurerPerformancePage() {
                 <div className="mt-1.5 grid grid-cols-2 gap-2">
                   {[
                     { value: "decimal", label: "행별 소수점 포함" },
-                    { value: "truncated", label: "행별 소수점 제외" },
+                    { value: "truncated", label: "행별 소수점 반올림" },
                   ].map((option) => (
                     <button
                       key={option.value}

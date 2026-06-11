@@ -68,14 +68,14 @@ export function buildPeriodMap(records, periodMode, dimensionKey) {
     };
 
     periodEntry.totalPerformance += record.performanceThousandKrw;
-    periodEntry.truncatedTotalPerformance += Math.trunc(record.performanceThousandKrw);
+    periodEntry.truncatedTotalPerformance += Math.round(record.performanceThousandKrw);
     periodEntry.dimensions.set(
       dimensionName,
       (periodEntry.dimensions.get(dimensionName) ?? 0) + record.performanceThousandKrw
     );
     periodEntry.truncatedDimensions.set(
       dimensionName,
-      (periodEntry.truncatedDimensions.get(dimensionName) ?? 0) + Math.trunc(record.performanceThousandKrw)
+      (periodEntry.truncatedDimensions.get(dimensionName) ?? 0) + Math.round(record.performanceThousandKrw)
     );
     periodMap.set(periodKey, periodEntry);
   });
@@ -94,7 +94,7 @@ export function buildMonthlyTotals(records) {
     };
 
     current.totalPerformance += record.performanceThousandKrw;
-    current.truncatedTotalPerformance += Math.trunc(record.performanceThousandKrw);
+    current.truncatedTotalPerformance += Math.round(record.performanceThousandKrw);
     monthlyTotalsMap.set(monthKey, current);
   });
 

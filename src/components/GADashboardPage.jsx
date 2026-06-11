@@ -33,7 +33,7 @@ function formatSelectionMonthLabel(selectedYear, selectedMonth) {
 }
 
 function formatAggregationModeLabel(aggregationMode) {
-  return aggregationMode === "decimal" ? "행별 소수점 포함" : "행별 소수점 제외";
+  return aggregationMode === "decimal" ? "행별 소수점 포함" : "행별 소수점 반올림";
 }
 
 function formatRankChangeLabel(deltaLabel) {
@@ -414,7 +414,7 @@ function buildProductMixSlices(records, activePeriodKey, periodMode, filters, ch
     .forEach((record) => {
       const key = record.productName || "기타";
       const value = aggregationMode === "truncated"
-        ? Math.trunc(record.performanceThousandKrw)
+        ? Math.round(record.performanceThousandKrw)
         : record.performanceThousandKrw;
       grouped.set(key, (grouped.get(key) ?? 0) + value);
       const insurerSet = productInsurerMap.get(key) ?? new Set();
@@ -637,7 +637,7 @@ function buildDashboardState(
               if (!memberNames.has(record[dimensionKey])) return sum;
               return sum + (
                 aggregationMode === "truncated"
-                  ? Math.trunc(record.performanceThousandKrw)
+                  ? Math.round(record.performanceThousandKrw)
                   : record.performanceThousandKrw
               );
             }, 0);
@@ -1581,7 +1581,7 @@ export default function GADashboardPage() {
                 <div className="mt-1.5 grid grid-cols-2 gap-2">
                   {[
                     { value: "decimal", label: "행별 소수점 포함" },
-                    { value: "truncated", label: "행별 소수점 제외" },
+                    { value: "truncated", label: "행별 소수점 반올림" },
                   ].map((option) => (
                     <button
                       key={option.value}
