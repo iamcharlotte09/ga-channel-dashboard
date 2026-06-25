@@ -1064,7 +1064,7 @@ export default function GADashboardPage() {
   const [yearRecordsMap, setYearRecordsMap] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [aggregationMode, setAggregationMode] = useState("decimal");
+  const [aggregationMode, setAggregationMode] = useState("floored");
   const [selectedRegistrationNumber, setSelectedRegistrationNumber] = useState("");
   const [selectedSheetName, setSelectedSheetName] = useState("월초");
   const [selectedYear, setSelectedYear] = useState("");

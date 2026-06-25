@@ -872,7 +872,7 @@ export default function InsurerPerformancePage() {
   const [yearRecordsMap, setYearRecordsMap] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [aggregationMode, setAggregationMode] = useState("decimal");
+  const [aggregationMode, setAggregationMode] = useState("floored");
   const [selectedInsurerName, setSelectedInsurerName] = useState(ALL_INSURERS_NAME);
   const [selectedSheetName, setSelectedSheetName] = useState("월초");
   const [selectedYear, setSelectedYear] = useState("");
