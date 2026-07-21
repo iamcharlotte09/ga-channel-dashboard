@@ -268,7 +268,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "미래인슈",
+      "gaName": "미래인슈보험대리점",
       "totalPerformanceThousandKrw": 3254.838
     },
     {
@@ -1048,7 +1048,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "미래인슈",
+      "gaName": "미래인슈보험대리점",
       "totalPerformanceThousandKrw": 20.06
     },
     {
@@ -2128,7 +2128,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "미래인슈",
+      "gaName": "미래인슈보험대리점",
       "totalPerformanceThousandKrw": 82.812
     },
     {
@@ -2188,7 +2188,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성화재강남총괄",
+      "gaName": "삼성화재강남총괄보험대리점",
       "totalPerformanceThousandKrw": 39.15
     },
     {
@@ -2203,7 +2203,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성화재부경프라임보험대리점",
+      "gaName": "삼성화재부경프라임",
       "totalPerformanceThousandKrw": 56.35
     },
     {
@@ -3378,7 +3378,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "미래인슈",
+      "gaName": "미래인슈보험대리점",
       "totalPerformanceThousandKrw": 1523.0
     },
     {
@@ -3388,7 +3388,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "미소보험대리점",
+      "gaName": "미소",
       "totalPerformanceThousandKrw": 504.1
     },
     {
@@ -3458,7 +3458,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "삼성화재부경프라임보험대리점",
+      "gaName": "삼성화재부경프라임",
       "totalPerformanceThousandKrw": 501.98
     },
     {
@@ -3653,7 +3653,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "에프엠피",
+      "gaName": "에프엠피파트너즈",
       "totalPerformanceThousandKrw": 17100.0
     },
     {
@@ -4243,7 +4243,7 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "에프엠피",
+      "gaName": "에프엠피파트너즈",
       "totalPerformanceThousandKrw": 6000.0
     },
     {
@@ -4803,7 +4803,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "미래인슈",
+      "gaName": "미래인슈보험대리점",
       "totalPerformanceThousandKrw": 5842.524
     },
     {
@@ -4813,7 +4813,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "미소보험대리점",
+      "gaName": "미소",
       "totalPerformanceThousandKrw": 504.1
     },
     {
@@ -4913,7 +4913,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성화재강남총괄",
+      "gaName": "삼성화재강남총괄보험대리점",
       "totalPerformanceThousandKrw": 39.15
     },
     {
@@ -4933,7 +4933,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성화재부경프라임보험대리점",
+      "gaName": "삼성화재부경프라임",
       "totalPerformanceThousandKrw": 558.33
     },
     {
@@ -5198,7 +5198,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "에프엠피",
+      "gaName": "에프엠피파트너즈",
       "totalPerformanceThousandKrw": 17100.0
     },
     {
@@ -6518,7 +6518,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "미래인슈",
+      "gaName": "미래인슈보험대리점",
       "totalPerformanceThousandKrw": 6842.524
     },
     {
@@ -6528,7 +6528,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "미소보험대리점",
+      "gaName": "미소",
       "totalPerformanceThousandKrw": 504.1
     },
     {
@@ -6643,7 +6643,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성화재강남총괄",
+      "gaName": "삼성화재강남총괄보험대리점",
       "totalPerformanceThousandKrw": 39.15
     },
     {
@@ -6668,7 +6668,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성화재부경프라임보험대리점",
+      "gaName": "삼성화재부경프라임",
       "totalPerformanceThousandKrw": 558.33
     },
     {
@@ -6943,7 +6943,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "에프엠피",
+      "gaName": "에프엠피파트너즈",
       "totalPerformanceThousandKrw": 28800.0
     },
     {
@@ -7773,7 +7773,7 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "에프엠피",
+      "gaName": "에프엠피파트너즈",
       "totalPerformanceThousandKrw": 5700.0
     },
     {
@@ -8143,7 +8143,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "미래인슈",
+      "gaName": "미래인슈보험대리점",
       "totalPerformanceThousandKrw": 877.338
     },
     {
