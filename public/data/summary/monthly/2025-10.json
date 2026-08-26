@@ -53,11 +53,6 @@
   "gaTotals": [
     {
       "sheetName": "건강_간편",
-      "gaName": "KS자산관리",
-      "totalPerformanceThousandKrw": 2289.785
-    },
-    {
-      "sheetName": "건강_간편",
       "gaName": "가온금융서비스",
       "totalPerformanceThousandKrw": 44.146
     },
@@ -263,7 +258,7 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "미래인슈보험대리점",
+      "gaName": "미래인슈",
       "totalPerformanceThousandKrw": 8877.701
     },
     {
@@ -623,6 +618,11 @@
     },
     {
       "sheetName": "건강_간편",
+      "gaName": "케이에스자산관리",
+      "totalPerformanceThousandKrw": 2289.785
+    },
+    {
+      "sheetName": "건강_간편",
       "gaName": "케이에프지",
       "totalPerformanceThousandKrw": 4453.488
     },
@@ -693,11 +693,6 @@
     },
     {
       "sheetName": "건강_간편",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 64675.054
-    },
-    {
-      "sheetName": "건강_간편",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 4354.87
     },
@@ -743,6 +738,11 @@
     },
     {
       "sheetName": "건강_간편",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 64675.054
+    },
+    {
+      "sheetName": "건강_간편",
       "gaName": "현대금융컨설팅강북",
       "totalPerformanceThousandKrw": 238.036
     },
@@ -755,11 +755,6 @@
       "sheetName": "건강_간편",
       "gaName": "현대홈쇼핑",
       "totalPerformanceThousandKrw": 45815.91
-    },
-    {
-      "sheetName": "건강_일반",
-      "gaName": "KS자산관리",
-      "totalPerformanceThousandKrw": 767.481
     },
     {
       "sheetName": "건강_일반",
@@ -958,7 +953,7 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "미래인슈보험대리점",
+      "gaName": "미래인슈",
       "totalPerformanceThousandKrw": 1135.389
     },
     {
@@ -1328,6 +1323,11 @@
     },
     {
       "sheetName": "건강_일반",
+      "gaName": "케이에스자산관리",
+      "totalPerformanceThousandKrw": 767.481
+    },
+    {
+      "sheetName": "건강_일반",
       "gaName": "케이에프지",
       "totalPerformanceThousandKrw": 4013.06
     },
@@ -1403,11 +1403,6 @@
     },
     {
       "sheetName": "건강_일반",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 46828.442
-    },
-    {
-      "sheetName": "건강_일반",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 1498.897
     },
@@ -1455,6 +1450,11 @@
       "sheetName": "건강_일반",
       "gaName": "한화생명금융서비스",
       "totalPerformanceThousandKrw": 35767.801
+    },
+    {
+      "sheetName": "건강_일반",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 46828.442
     },
     {
       "sheetName": "건강_일반",
@@ -1693,11 +1693,6 @@
     },
     {
       "sheetName": "경정",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 125551.75
-    },
-    {
-      "sheetName": "경정",
       "gaName": "한국보험금융",
       "totalPerformanceThousandKrw": 23759.201
     },
@@ -1718,6 +1713,11 @@
     },
     {
       "sheetName": "경정",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 125551.75
+    },
+    {
+      "sheetName": "경정",
       "gaName": "헤리티지센터",
       "totalPerformanceThousandKrw": 9030.98
     },
@@ -1725,11 +1725,6 @@
       "sheetName": "경정",
       "gaName": "현대홈쇼핑",
       "totalPerformanceThousandKrw": 2454.349
-    },
-    {
-      "sheetName": "기타건강",
-      "gaName": "KS자산관리",
-      "totalPerformanceThousandKrw": 1618.229
     },
     {
       "sheetName": "기타건강",
@@ -1873,7 +1868,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "미래인슈보험대리점",
+      "gaName": "미래인슈",
       "totalPerformanceThousandKrw": 127.878
     },
     {
@@ -1948,7 +1943,7 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 172.2
     },
     {
@@ -2228,6 +2223,11 @@
     },
     {
       "sheetName": "기타건강",
+      "gaName": "케이에스자산관리",
+      "totalPerformanceThousandKrw": 1618.229
+    },
+    {
+      "sheetName": "기타건강",
       "gaName": "케이에프지",
       "totalPerformanceThousandKrw": 1018.705
     },
@@ -2293,11 +2293,6 @@
     },
     {
       "sheetName": "기타건강",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 7876.246
-    },
-    {
-      "sheetName": "기타건강",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 538.422
     },
@@ -2335,6 +2330,11 @@
       "sheetName": "기타건강",
       "gaName": "한화생명금융서비스",
       "totalPerformanceThousandKrw": 7923.078
+    },
+    {
+      "sheetName": "기타건강",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 7876.246
     },
     {
       "sheetName": "기타건강",
@@ -2928,11 +2928,6 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 973843.329
-    },
-    {
-      "sheetName": "기타종신",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 10147.204
     },
@@ -2973,13 +2968,13 @@
     },
     {
       "sheetName": "기타종신",
-      "gaName": "현대홈쇼핑",
-      "totalPerformanceThousandKrw": 10317.81
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 973843.329
     },
     {
-      "sheetName": "단기납",
-      "gaName": "KS자산관리",
-      "totalPerformanceThousandKrw": 1132.15
+      "sheetName": "기타종신",
+      "gaName": "현대홈쇼핑",
+      "totalPerformanceThousandKrw": 10317.81
     },
     {
       "sheetName": "단기납",
@@ -3173,7 +3168,7 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "미래인슈보험대리점",
+      "gaName": "미래인슈",
       "totalPerformanceThousandKrw": 506.0
     },
     {
@@ -3593,6 +3588,11 @@
     },
     {
       "sheetName": "단기납",
+      "gaName": "케이에스자산관리",
+      "totalPerformanceThousandKrw": 1132.15
+    },
+    {
+      "sheetName": "단기납",
       "gaName": "케이에프지",
       "totalPerformanceThousandKrw": 10255.966
     },
@@ -3673,11 +3673,6 @@
     },
     {
       "sheetName": "단기납",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 97745.633
-    },
-    {
-      "sheetName": "단기납",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 10413.629
     },
@@ -3730,6 +3725,11 @@
       "sheetName": "단기납",
       "gaName": "한화생명금융서비스",
       "totalPerformanceThousandKrw": 92565.942
+    },
+    {
+      "sheetName": "단기납",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 97745.633
     },
     {
       "sheetName": "단기납",
@@ -4183,11 +4183,6 @@
     },
     {
       "sheetName": "변액저축",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 31580.0
-    },
-    {
-      "sheetName": "변액저축",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 2350.0
     },
@@ -4218,6 +4213,11 @@
     },
     {
       "sheetName": "변액저축",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 31580.0
+    },
+    {
+      "sheetName": "변액저축",
       "gaName": "허브인",
       "totalPerformanceThousandKrw": 5500.0
     },
@@ -4225,11 +4225,6 @@
       "sheetName": "변액저축",
       "gaName": "현대홈쇼핑",
       "totalPerformanceThousandKrw": 5600.0
-    },
-    {
-      "sheetName": "보장성",
-      "gaName": "KS자산관리",
-      "totalPerformanceThousandKrw": 6512.105
     },
     {
       "sheetName": "보장성",
@@ -4503,7 +4498,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "미래인슈보험대리점",
+      "gaName": "미래인슈",
       "totalPerformanceThousandKrw": 11643.286
     },
     {
@@ -4618,7 +4613,7 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 172.2
     },
     {
@@ -5118,6 +5113,11 @@
     },
     {
       "sheetName": "보장성",
+      "gaName": "케이에스자산관리",
+      "totalPerformanceThousandKrw": 6512.105
+    },
+    {
+      "sheetName": "보장성",
       "gaName": "케이에프지",
       "totalPerformanceThousandKrw": 33539.875
     },
@@ -5228,11 +5228,6 @@
     },
     {
       "sheetName": "보장성",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 1364244.373
-    },
-    {
-      "sheetName": "보장성",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 29982.569
     },
@@ -5290,6 +5285,11 @@
       "sheetName": "보장성",
       "gaName": "한화생명금융서비스",
       "totalPerformanceThousandKrw": 255532.066
+    },
+    {
+      "sheetName": "보장성",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 1364244.373
     },
     {
       "sheetName": "보장성",
@@ -5648,11 +5648,6 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 6725.621
-    },
-    {
-      "sheetName": "상속",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 1199.81
     },
@@ -5673,13 +5668,13 @@
     },
     {
       "sheetName": "상속",
-      "gaName": "현대홈쇼핑",
-      "totalPerformanceThousandKrw": 1224.57
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 6725.621
     },
     {
-      "sheetName": "월초",
-      "gaName": "KS자산관리",
-      "totalPerformanceThousandKrw": 6512.105
+      "sheetName": "상속",
+      "gaName": "현대홈쇼핑",
+      "totalPerformanceThousandKrw": 1224.57
     },
     {
       "sheetName": "월초",
@@ -5958,7 +5953,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "미래인슈보험대리점",
+      "gaName": "미래인슈",
       "totalPerformanceThousandKrw": 11643.286
     },
     {
@@ -6078,7 +6073,7 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 1122.2
     },
     {
@@ -6583,6 +6578,11 @@
     },
     {
       "sheetName": "월초",
+      "gaName": "케이에스자산관리",
+      "totalPerformanceThousandKrw": 6512.105
+    },
+    {
+      "sheetName": "월초",
       "gaName": "케이에프지",
       "totalPerformanceThousandKrw": 41039.875
     },
@@ -6698,11 +6698,6 @@
     },
     {
       "sheetName": "월초",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 1435285.063
-    },
-    {
-      "sheetName": "월초",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 38372.569
     },
@@ -6760,6 +6755,11 @@
       "sheetName": "월초",
       "gaName": "한화생명금융서비스",
       "totalPerformanceThousandKrw": 404892.066
+    },
+    {
+      "sheetName": "월초",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 1435285.063
     },
     {
       "sheetName": "월초",
@@ -6978,7 +6978,7 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "삼성화재부경프라임",
+      "gaName": "삼성화재부경프라임보험대리점",
       "totalPerformanceThousandKrw": 600.0
     },
     {
@@ -7233,11 +7233,6 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 35961.69
-    },
-    {
-      "sheetName": "일반저축",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 6040.0
     },
@@ -7273,13 +7268,13 @@
     },
     {
       "sheetName": "일반저축",
-      "gaName": "현대홈쇼핑",
-      "totalPerformanceThousandKrw": 19900.0
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 35961.69
     },
     {
-      "sheetName": "치매",
-      "gaName": "KS자산관리",
-      "totalPerformanceThousandKrw": 484.716
+      "sheetName": "일반저축",
+      "gaName": "현대홈쇼핑",
+      "totalPerformanceThousandKrw": 19900.0
     },
     {
       "sheetName": "치매",
@@ -7433,7 +7428,7 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "미래인슈보험대리점",
+      "gaName": "미래인슈",
       "totalPerformanceThousandKrw": 946.627
     },
     {
@@ -7743,6 +7738,11 @@
     },
     {
       "sheetName": "치매",
+      "gaName": "케이에스자산관리",
+      "totalPerformanceThousandKrw": 484.716
+    },
+    {
+      "sheetName": "치매",
       "gaName": "케이에프지",
       "totalPerformanceThousandKrw": 1892.899
     },
@@ -7813,11 +7813,6 @@
     },
     {
       "sheetName": "치매",
-      "gaName": "피플라이프",
-      "totalPerformanceThousandKrw": 25392.944
-    },
-    {
-      "sheetName": "치매",
       "gaName": "하나금융파인드",
       "totalPerformanceThousandKrw": 836.951
     },
@@ -7860,6 +7855,11 @@
       "sheetName": "치매",
       "gaName": "한화생명금융서비스",
       "totalPerformanceThousandKrw": 15701.31
+    },
+    {
+      "sheetName": "치매",
+      "gaName": "한화피플라이프",
+      "totalPerformanceThousandKrw": 25392.944
     },
     {
       "sheetName": "치매",
